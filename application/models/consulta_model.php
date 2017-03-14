@@ -10,24 +10,28 @@ class Consulta_model extends CI_Model
 
 	public function busca($input)
 	{
+    $input = $this->db->escape_like_str($input);
 		$rs = $this->db->query
 		("
 			SELECT pessoa.id_pessoa as 'id', pessoa.nome_pes as 'name', 'p' as type, pessoa.email_pes as 'info1', pessoa.lattes_pes as 'info2', pessoa.website_pes as 'info3'
 			FROM pessoa
-			WHERE pessoa.nome_pes LIKE '%".$this->db->escape_like_str($input)."%'
+			WHERE pessoa.nome_pes LIKE '%".$input."%'
 
 			UNION ALL
 
 			SELECT laboratorio.id_laboratorio as 'id', laboratorio.nome_lab as 'name', 'l' as type, laboratorio.descricao_lab as 'info1', laboratorio.atividades_lab as 'info2', laboratorio.areas_atendidas_lab as 'info3'
 			FROM laboratorio
-			WHERE laboratorio.nome_lab LIKE '%".$this->db->escape_like_str($input)."%'
-			OR laboratorio.palavras_chave LIKE '%".$this->db->escape_like_str($input)."%'
+      LEFT JOIN laboratorio_has_curso ON fk_id_laboratorio = laboratorio.id_laboratorio
+      LEFT JOIN curso ON fk_id_curso = id_curso
+			WHERE laboratorio.nome_lab LIKE '%".$input."%'
+			OR laboratorio.palavras_chave LIKE '%".$input."%'
+      OR nome_cur LIKE '%".$input."%'
 
 			UNION ALL
 
 			SELECT equipamento.id_equipamento as 'id', equipamento.nome_eqp as 'name', 'e' as type, equipamento.descricao_eqp as 'info1', equipamento.especificacao_eqp as 'info2', equipamento.fabricante_eqp as 'info3'
 			FROM equipamento
-			WHERE equipamento.nome_eqp LIKE '%".$this->db->escape_like_str($input)."%'
+			WHERE equipamento.nome_eqp LIKE '%".$input."%'
 		");
 		return $rs->result();
 	}
