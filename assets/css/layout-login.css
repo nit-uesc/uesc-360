@@ -1,0 +1,86 @@
+.conteudo-login
+{
+	margin-top: 50px;
+}
+
+.conteudo-login .login-box
+{
+	background-color: rgba(0,0,0,.8);
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border: 1px solid #ccc;
+}
+
+.conteudo-login .login-box .titulo-login-box
+{
+	border-left: 15px solid #008CBA;
+	margin-bottom: 20px;
+}
+
+.conteudo-login .login-box .titulo-login-box h3
+{
+	color: #fff;
+	font-family: futuraBT;
+	font-weight: bolder;
+	padding-left: 20px;
+	margin-bottom: 30px;
+
+}
+
+.conteudo-login .login-box .input-login-box
+{
+	padding-left: 20px;
+	padding-right: 20px;
+
+}
+
+.conteudo-login .login-box .input-login-box span
+{
+	color: #ccc;
+	position: relative;
+	top: -36px;
+	left: -10px;
+	font-size: 18pt;
+}
+
+.conteudo-login .login-box .input-login-box a
+{
+	color: #d6d6d6;
+	font-family: futuraBT;
+	font-size: 10px;
+}
+
+.conteudo-login .login-box .input-login-box input[type="text"],
+.conteudo-login .login-box .input-login-box input[type="password"]
+{
+	transition: 1s;
+	background-color: #F8F8F8;
+	font-family: futuraBT;
+	border: none;
+	border-style: none;
+	box-shadow: none;
+	height: 3rem;
+	border-bottom: 3px solid #d6d6d6;
+}
+
+.conteudo-login .login-box .input-login-box input[type="text"]:focus,
+.conteudo-login .login-box .input-login-box input[type="password"]:focus
+{
+	border-color: #008CBA;
+}
+
+.conteudo-login .login-box button
+{
+	transition: .5s;
+	font-family: futuraBT;
+	font-weight: bolder;
+	height: 3rem;
+	margin-bottom: 30px;
+	/*background-color: #008CBA;*/
+}
+
+.conteudo-login .login-box button:hover
+{
+	/*transition: .5s;*/
+	/*background-color: #5A7498;*/
+}

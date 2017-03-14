@@ -1,0 +1,140 @@
+nav.top-bar
+{
+	/*background-color: gray;	*/
+	/*background-color: transparent;	*/
+	/*background-color: #8A8A8A;	*/
+	/*background-color: #C7C7C7;	*/
+	text-align:center;
+	height: 80px;
+}
+
+section.top-bar-section
+{
+	/*height: 80px;*/
+	/*margin-right: 10px;*/
+	/*background: transparent;*/
+}
+
+/* Opções do menu */
+.top-bar-section ul li
+{
+	background: transparent;
+	/*background: red;*/
+}
+
+.top-bar-section ul li a
+{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 11pt;
+	/*font-family: futura;*/
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button)
+{
+	/*padding: 0 15px;*/
+	line-height: 80px;
+	color: white;
+	/*background: #008cba !important;*/
+	/*background: red ;*/
+}
+
+
+/* Fundo do botão */
+.top-bar-section .has-form
+{
+	/*background-color: black;*/
+	background-color: transparent;
+	/*line-height: 100px;*/
+	/*height: 40px;*/
+}
+
+/* Botão do menu*/
+.top-bar-section ul li > a.button
+{
+	/*padding-top: 10px;*/
+	/*padding-bottom: 10px;*/
+	/*margin-top: 12px;*/
+}
+
+/* Fundo dos links */
+.top-bar-section li:not(.has-form) a:not(.button)
+{
+	background-color: transparent;
+	/*color: #000;*/
+	/*color: #292929;*/
+	/*color: #3D3D3D;*/
+	/*color: #C1C0C2;*/
+	color: #FFFFFF;
+	transition: .3s;
+	/*background-color: red;*/
+	line-height: 80px;
+    font-family: futuraBT;
+}
+
+/* Fundo dos links hover */
+.top-bar-section li:not(.has-form) a:not(.button):hover
+{
+	/*background-color: green;*/
+	background-color: transparent;
+	/*border-bottom: 1px solid #fff;*/
+	transition: .5s;
+	/*color: #FFFFFF;*/
+	/*color: #C1C0C2;*/
+	/*color: #4F4F4F;*/
+	color: #7d7d7d;
+}
+
+/* altera a borda do divider */
+.top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"]
+{
+ /*border-right: solid 10px #4e4e4e;*/
+}
+
+.divider
+{
+	/*margin-top: 15px;*/
+}
+
+.panel
+{
+	background: #FAFAFA;
+}
+
+form .row .prefix-radius.row.collapse .prefix
+{
+	border-radius: 0;
+	-webkit-border-bottom-left-radius: 3px;
+	-webkit-border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+form .row .prefix-radius.row.collapse input, form .row .prefix-radius.row.collapse textarea, form .row .prefix-radius.row.collapse select, form .row .prefix-radius.row.collapse button {
+	border-radius: 0;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+
+span.prefix, label.prefix
+{
+	background: #f2f2f2;
+	border-right: none;
+	color: #333333;
+	border-color: #cccccc;
+}
+
+/*
+ *	Nav lateral
+ */
+
+.side-nav li
+{
+	/*font-family: futura;*/
+	/*font-weight: bolder;*/
+	margin: 0 0 0.4375rem 0;
+	font-size: 0.875rem;
+}

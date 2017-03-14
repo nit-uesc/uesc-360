@@ -1,0 +1,75 @@
+/*
+ * [Confuguração do layout EXPLORE]
+ */
+
+.conteudo-explore
+{
+	/*margin-top: 30px;*/
+	margin-bottom: 30px;
+}
+
+.conteudo-explore .box-explore
+{
+	/*width: 333px;*/
+	/*width: 273px;*/
+	/*width: 326px;*/
+	/*width: 320px;*/
+	text-align: center;
+	padding: 1.5px;
+}
+
+.conteudo-explore .tabs-content .box-explore a h6
+{
+	display: table-cell;
+	vertical-align: middle;
+
+	padding-top: 30px;
+	padding-bottom: 30px;
+
+	color: #008cba;
+	width: 333px;
+
+	font-family: futura;
+	font-weight: bolder;
+
+	background-color: #efefef;
+	transition: .4s;
+}
+
+.conteudo-explore .tabs-content .box-explore a h6:hover
+{
+	background-color: #d7d7d7;
+	transition: .5s;
+
+}
+
+.conteudo-explore .tabs-content
+{
+	padding-bottom: 5px;
+	width: 100%;
+	border: 1px solid #efefef;
+
+	/*display: block;*/
+	/*margin-left: auto;*/
+	/*margin-right: auto;*/
+	/*text-align: center;*/
+}
+
+.conteudo-explore .tabs dd.active a, .tabs .tab-title.active a
+{
+	/*background: white;*/
+	background: #ccc;
+	color: #222222;
+}
+
+.conteudo-explore .tabs dd > a, .tabs .tab-title > a
+{
+	display: block;
+	background: #efefef;
+	/*background-color: red;*/
+	color: #222222;
+	padding: 1rem 2rem;
+	/*font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;*/
+	font-family: futuraBT !important;
+	font-size: 2rem;
+}

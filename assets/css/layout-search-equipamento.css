@@ -1,0 +1,39 @@
+.conteudo-search-equipamento
+{
+	margin-top: 30px;
+	/*background-color: #ccc;*/
+	padding-top: 10px;
+	padding-left: 30px;
+	padding-right: 40px;
+}
+
+.conteudo-search-equipamento .label-search-equipamento
+{
+	/*background-color: red;*/
+	text-align: right;
+	width: 35%;
+	padding-right: 20px;
+	float: left;
+	clear: both;
+}
+
+.conteudo-search-equipamento .label-search-equipamento h6
+{
+	font-family: futura;
+	/*font-weight: bolder;*/
+}
+
+.conteudo-search-equipamento .info-search-equipamento
+{
+	padding-left: 20px;
+	width: 65%;
+	border-left: 1px solid #333;
+	/*background-color: blue;*/
+	float: right;
+}
+
+.conteudo-search-equipamento .info-search-equipamento h6
+{
+	font-family: futura;
+	font-weight: bolder;
+}

@@ -1,0 +1,73 @@
+.backTransp{
+    background-color: rgba(255, 255, 255, 1);
+    /*border-radius: 10px;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.back{
+	color: #fff;
+    background-color: rgba(0, 0, 0, .85);
+	text-shadow: 1px 1px black;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#bSearch{
+    background-color: rgba(255, 203, 0, .95);
+}
+
+#div_busca
+{
+    background-color: #fff;
+    padding-top: 0;
+}
+
+.consulta_div
+{
+    border-right: 1px solid #E8E8E8;
+}
+
+.consulta_div button
+{
+    /*border: none;*/
+    background-color: transparent;
+    padding: 0;
+    color: gray;
+}
+
+.consulta_div button:hover
+{
+    color: black;
+}
+
+.div_botoes_painel
+{
+    /*border: 1px solid gray;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+}
+
+.div_botoes_painel button
+{
+    height: 90px;
+    padding: 0;
+    margin: 0;
+}
+
+.div_botoes_painel a
+{
+    height: 90px;
+    padding: 35px;
+    margin: 0;
+    border: 1px solid black;
+    /*border-radius: 3px;*/
+    /*margin: 1px 1px 1px 1px;*/
+    /*margin-bottom: 2px;*/
+    /*margin-right: 1px;*/
+    /*ma*/
+}

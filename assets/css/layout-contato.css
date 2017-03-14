@@ -1,0 +1,21 @@
+.conteudo-contato
+{
+	/*background-color: red;*/
+	margin-top: 30px;
+	/*position: relative;*/
+	/*top: 5px;*/
+	/*top: -30px;*/
+	padding: 40px;
+}
+
+.conteudo-contato h1
+{
+	font-family: futura;
+}
+
+.conteudo-contato h5
+{
+	font-family: futura;
+	font-size: 20pt;
+	font-weight: normal;
+}

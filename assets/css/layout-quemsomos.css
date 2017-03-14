@@ -1,0 +1,52 @@
+.conteudo-quemsomos
+{
+	/*background-color: #ccc;*/
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.conteudo-quemsomos .desc-quemsomos
+{
+	margin-bottom: 30px;
+}
+
+.conteudo-quemsomos h1, h2, h3, h4, h5, h6
+{
+	font-family: futura;
+	color: #333333;
+}
+
+.conteudo-quemsomos .label-quemsomos
+{
+	/*background-color: red;*/
+	text-align: right;
+	/*width: 35%;*/
+	width: 50%;
+	padding-right: 20px;
+	float: left;
+}
+
+.conteudo-quemsomos .label-quemsomos h6
+{
+	font-family: futura;
+	/*font-weight: bolder;*/
+	/*font-size: .5rem;*/
+	font-size: 10pt;
+	padding-top: 4px;
+}
+
+.conteudo-quemsomos .info-quemsomos
+{
+	/*background-color: blue;*/
+	padding-left: 20px;
+	/*width: 65%;*/
+	width: 50%;
+	border-left: 1px solid #333;
+	float: right;
+}
+
+.conteudo-quemsomos .info-quemsomos h6
+{
+	font-family: futura;
+	font-weight: bolder;
+}
