@@ -54,7 +54,7 @@
 			        <div class="input-field col s12">
 			          <i class="material-icons prefix">person</i>
 			          <input id="icon_user" type="text" name="usuario" value="<?php echo set_value('usuario'); ?>" class="validate">
-			          <label for="icon_user">Usuário</label>
+			          <label for="icon_user">Email</label>
 								<?php echo form_error('usuario'); ?>
 			        </div>
 
