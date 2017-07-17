@@ -1,3 +1,4 @@
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Consulta_model extends CI_Model
@@ -17,7 +18,7 @@ class Consulta_model extends CI_Model
 			FROM pessoa
 			WHERE pessoa.nome_pes LIKE '%".$input."%'
 
-			UNION ALL
+			UNION 
 
 			SELECT laboratorio.id_laboratorio as 'id', laboratorio.nome_lab as 'name', 'l' as type, laboratorio.descricao_lab as 'info1', laboratorio.atividades_lab as 'info2', laboratorio.areas_atendidas_lab as 'info3'
 			FROM laboratorio
@@ -27,7 +28,7 @@ class Consulta_model extends CI_Model
 			OR laboratorio.palavras_chave LIKE '%".$input."%'
       OR nome_cur LIKE '%".$input."%'
 
-			UNION ALL
+			UNION 
 
 			SELECT equipamento.id_equipamento as 'id', equipamento.nome_eqp as 'name', 'e' as type, equipamento.descricao_eqp as 'info1', equipamento.especificacao_eqp as 'info2', equipamento.fabricante_eqp as 'info3'
 			FROM equipamento
