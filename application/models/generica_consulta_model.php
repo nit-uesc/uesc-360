@@ -71,7 +71,6 @@ class Generica_consulta_model extends CI_Model
         endif;
     }
 
-
     public function consulta_pavilhoes()
     {
         $this->db->order_by('nome_pav', "asc");
@@ -99,8 +98,6 @@ class Generica_consulta_model extends CI_Model
         $this->db->order_by('nome_pes', 'asc');
         return $this->db->get()->result();
     }
-
-
 
     // public function getAllLaboratorio()
     // {
@@ -159,9 +156,6 @@ class Generica_consulta_model extends CI_Model
         endif;
         return false;
     }
-
-
-
 
     // Dados do laboratório por ID
     public function consulta_laboratorio_by_id($id_laboratorio)
