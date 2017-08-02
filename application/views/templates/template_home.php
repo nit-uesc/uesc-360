@@ -48,6 +48,10 @@
                 <a href="<?php echo base_url('contato'); ?>">Contato</a>
               </li>
 
+              <li class="<?php if($this->uri->segment(1) == 'legislacao'){echo 'ativo';} ?>">
+                <a href="<?php echo base_url('legislacao'); ?>">Legislação</a>
+              </li>
+
               <li class="<?php if($this->uri->segment(1) == 'sobre'){echo 'ativo';} ?>">
                 <a href="<?php echo base_url('sobre'); ?>">Sobre</a>
               </li>
@@ -71,6 +75,7 @@
               <?php endif; ?>
 
               <li><a href="<?php echo base_url('contato'); ?>">Contato</a></li>
+              <li><a href="<?php echo base_url('legislacao'); ?>">Legislação</a></li>
               <li><a href="<?php echo base_url('sobre'); ?>">Sobre</a></li>
               <?php if($this->session->userdata('logged_in')): ?>
               <li><a class="indigo white-text" href="<?php echo base_url('painel'); ?>"><i class="material-icons left">dashboard</i> painel</a></li>
