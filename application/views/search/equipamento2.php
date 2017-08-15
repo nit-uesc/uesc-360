@@ -1,4 +1,4 @@
-<?php if(empty($equipamento)): ?>
+  <?php if(empty($equipamento)): ?>
   <div class="row"><div class="col s12 m8 offset-m2 l6 offset-l3 center lighten-4"><p class="flow-text">Oops... nenhum dado foi encontrado! :(</p></div></div>
 <?php else: ?>
   <div class="row">

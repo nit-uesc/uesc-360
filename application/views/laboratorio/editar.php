@@ -40,6 +40,10 @@
     	<a href="<?php echo base_url('laboratorio/gerenciar_imagens_laboratorio/'.$laboratorio[0]->id_laboratorio); ?>"><div class="collapsible-header"><i class="material-icons">image</i>Imagens</div></a>
     </li>
 
+    <li>
+    	<a href="<?php echo base_url('laboratorio/gerenciar_regulamentos/'.$laboratorio[0]->id_laboratorio); ?>"><div class="collapsible-header"><i class="material-icons">&#xE415;</i>Imagens</div></a>
+    </li>
+
     <li class="blue-text">
       <div class="collapsible-header"><i class="material-icons">build</i>Equipamentos</div>
       <div class="collapsible-body grey lighten-4 black-text">
