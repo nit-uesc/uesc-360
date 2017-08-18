@@ -162,28 +162,26 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-
-                <!-- REGULAMENTO DE USO -->
-                 <div id="departamentos_lab" class="section scrollspy col s12 indigo">
-                    <h5 class="white-text">Normas e regulamentos para ultilização do laboratorio</h5>
+                
+                <!-- IMAGENS DO LABORATÓRIO -->
+                <div id="imagens_lab" class="section scrollspy col s12 indigo">
+                    <h5 class="white-text">Imagens do laboratório</h5>
                 </div>
-
                 <div class="col s12">
-                    <div class="collection">
-                          <a class="collection-item blue-text" href="upload.php">Regulamento de Uso</a>
-                          <?php
-                               while($row = mysql_fetch_array($res)){
-                                    $id 		= $row[''];
-                                    $name	  = $row[''];
-                                    $path   = $row[''];
-                              }
-                           ?>
-
-                    </div>
-
+                    <?php if (empty($laboratorio_img)): ?>
+                        <div class="divider"></div>
+                        <p>Não há imagens vinculadas ao laboratório.</p>
+                    <?php else: ?>
+                        <div class="divider"></div>
+                        <?php foreach ($laboratorio_img as $row): ?>
+                            <br>
+                            <img class="materialboxed" data-caption="<?php echo $laboratorio[0]->nome_lab; ?>" width="200" src="<?php echo base_url('uploads/laboratorio/' . $row->nome_iml); ?>">
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
-            </div>
-        </div>
+
+            </div> 
+        </div> 
 
         <div class="col hide-on-small-only m2 l3">
             <div style="position:fixed;">
