@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html>
     <head>
         <title>UESC 360º</title>
@@ -44,6 +44,7 @@
             <div class="col s12 m9 l10">
                 <div class="card-panel">
                     <?php $this->load->view($main); ?>
+                  
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 <!-- Mensagem de sucesso -->
+
 <?php if ($this->session->flashdata('sucesso') != ''): ?>
     <div class="row">
         <div class="col s12 card-panel green white-text">
@@ -71,46 +72,44 @@
 
     <div class="row">
         <div class="col s12">
-
             <?php if (empty($laboratorio_reg)): ?>
-
                 <p>Não há documentos vinculadas ao laboratório. :(</p>
             <?php else: ?>
 
-                <div class="row">
-                    <?php foreach ($laboratorio_reg as $row): ?>
-                        <div class="col s12 m6 l4">
-                            <div class="card small">
-                                <div class="card-image">
-                                    <img class="materialboxed" data-caption="<?php echo $laboratorio[0]->nome_lab; ?>" width="200" src="<?php echo base_url('uploads/laboratorio/' . $row->nome_iml); ?>">
-                                </div>
-                                <div class="card-action">
+                <?php foreach ($laboratorio_reg as $row): ?>
 
-                                    <a class="modal-trigger btn-flat waves-effect red-text" href="#rmi<?php echo $row->id_img_laboratorio; ?>">
-                                        <i class="material-icons left">delete</i> Remover
-                                    </a>
-
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col s8">
+                            <a target="_blank" href="<?php echo site_url('uploads/normas_regulamentos/' . $row->nome_reg_lab) ?>">
+                                <i class="material-icons">&#xE415;</i>Normas e Regulamentos
+                            </a>
                         </div>
-
-                        <!-- Confirmação deletar -->
-                        <div id="rmi<?php echo $row->id_img_laboratorio; ?>" class="modal">
-                            <div class="modal-content red white-text left-align">
-                                <h4 class="white-text">Remover Imagem</h4>
-                                <p><b>Você tem certeza que deseja continuar?</b></p>
-                                <p><b>Após concluir essa ação você não poderá recuperar a imagem.</b></p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="<?php echo base_url('laboratorio/deletar_imagem_laboratorio/' . $laboratorio[0]->id_laboratorio . '/' . $row->id_img_laboratorio); ?>" class="btn red modal-action modal-close waves-effect waves-green">Tenho certeza!</a>
-                            </div>
+                        <div class="col s4">
+                            <a class="modal-trigger btn-flat waves-effect red-text" href="#rmi<?php echo $row->id_reg_lab; ?>">
+                                <i class="material-icons left">delete</i> Remover
+                            </a>
                         </div>
+                    </div>
+                    <div class="collapsible-header"></div>
 
-                    <?php endforeach; ?>
-                </div>
+                    <!-- Confirmação deletar -->
+                    <div id="rmi<?php echo $row->id_reg_lab; ?>" class="modal">
+                        <div class="modal-content red white-text left-align">
+                            <h4 class="white-text">Remover Documento</h4>
+                            <p><b>Você tem certeza que deseja continuar?</b></p>
+                            <p><b>Após concluir essa ação você não poderá recuperar o documento.</b></p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="<?php echo base_url('laboratorio/deletar_norma_regulamento_laboratorio/' . $row->id_reg_lab . '/' . $row->id_reg_lab); ?>" class="btn red modal-action modal-close waves-effect waves-green">Tenho certeza!</a>
+                        </div>
+                    </div>
 
-            <?php endif; ?>
-        </div>
+                <?php endforeach; ?>
+            </div>
+
+        <?php endif; ?>
+    </div>
     </div>
 
 <?php endif; ?>
+

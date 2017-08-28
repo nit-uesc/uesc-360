@@ -524,31 +524,6 @@ class Laboratorio extends CI_Controller {
     //Função criada para inserir arquivo .pdf que contenha as normas e regulamentos para utilização do laboratorio
     public function gerenciar_normas_regulamentos_laboratorio($id_laboratorio = NULL) {
 
-        /*
-          $config['upload_path'] = './uploads';
-          $config['allowed_types'] = 'pdf';
-          $config['max_size'] = 1000;
-          $config['max_width'] = 1024;
-          $config['max_height'] = 768;
-          $config['encrypt_name'] = TRUE;
-          $this->load->library('upload', $config);
-          $this->upload->initialize($config);
-          if ($this->upload->do_upload('canvas')) {
-          $aux = $this->upload->data();
-          $data['descricao'] = $this->input->post("descricao");
-          $data['estagio_desenvolvimento'] = $this->input->post("estagio_desenvolvimento");
-          $data['apoio'] = $this->input->post("apoio");
-          $data['necessario'] = $this->input->post("necessario");
-          $data['id_usuario_pre'] = $id_usuario;
-
-          $data['canvas'] = $aux['file_name'];
-          $this->Atualizar_proposta_model->cadastrar_preincubacao($data, $dados);
-          } else {
-
-          echo "erro";
-          }
-          /* fim função passada por jefeson */
-
         $id_laboratorio = $this->funcoes->antiInjection($id_laboratorio);
         $this->security_model->youShallNotPass($id_laboratorio, 'LAB');
 
@@ -580,18 +555,19 @@ class Laboratorio extends CI_Controller {
                     $reg_laboratorio['nome_antigo_reg_lab'] = $reg['upload_data']['orig_name'];
                     $reg_laboratorio['tam_reg_lab'] = $reg['upload_data']['file_size'];
                     $reg_laboratorio['extensao_reg_lab'] = $reg['upload_data']['file_ext'];
-                    $reg_laboratorio['descricao_regulamento'] = $this->input->post("textareaDescricao");
+
+                    $reg_laboratorio['descricao_regulamento'] = $this->funcoes->antiInjection($this->input->post("textareaDescricao"));
                     $reg_laboratorio['fk_id_tipo_regulamento'] = 1;
                     $reg_laboratorio['ativo_reg_lab'] = 1;
 
 
-                  if ($this->laboratorio_model->inserir_regulamento_laboratorio($id_laboratorio, $reg_laboratorio)):
-                  $this->session->set_flashdata('sucesso', 'Regulamento salvo com sucesso! :)');
-                  redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
-                  else:
-                  $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao fazer o upload de imagem! :(');
-                  redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
-                  endif;
+                    if ($this->laboratorio_model->inserir_regulamento_laboratorio($id_laboratorio, $reg_laboratorio)):
+                        $this->session->set_flashdata('sucesso', 'Regulamento salvo com sucesso! :)');
+                        redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
+                    else:
+                        $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao fazer o upload de imagem! :(');
+                        redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
+                    endif;
                 endif;
             endif;
             $data['laboratorio'] = $this->generica_consulta_model->consulta_laboratorio_by_id($id_laboratorio);
@@ -604,6 +580,30 @@ class Laboratorio extends CI_Controller {
     }
 
     /* ------------------- fim função gerenciar_normas_regulamentos_laboratorio------------------------------------- */
+
+     //Função deleta o regulamento de acordo com seu id
+    public function deletar_norma_regulamento_laboratorio($id_laboratorio = NULL, $id_reg_laboratorio = NULL) {
+
+
+        $id_laboratorio = $this->funcoes->antiInjection($id_laboratorio);
+        $id_img_laboratorio = $this->funcoes->antiInjection($id_reg_laboratorio);
+      //  $this->security_model->youShallNotPass($id_laboratorio, 'LAB');
+
+        if ($id_laboratorio != NULL && is_numeric($id_laboratorio) && $id_reg_laboratorio != NULL && is_numeric($id_reg_laboratorio)):
+
+            if ($this->laboratorio_model->deletar_norma_regulamento_laboratorio($id_reg_laboratorio)):
+                $this->session->set_flashdata('sucesso', 'Documento removido com sucesso! :)');
+
+                //redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
+            else:
+
+                $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao remover o documento! :(');
+              //  redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
+            endif;
+        endif;
+        
+    }
+    /* -------------------fim função deletar_norma_regulamento_laboratorio------------------------------------- */
 
     public function deletar_imagem_laboratorio($id_laboratorio = NULL, $id_img_laboratorio = NULL) {
         $id_laboratorio = $this->funcoes->antiInjection($id_laboratorio);
