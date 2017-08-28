@@ -71,12 +71,14 @@
 
     <div class="row">
         <div class="col s12">
-            <?php if (empty($laboratorio_img)): ?>
+
+            <?php if (empty($laboratorio_reg)): ?>
+
                 <p>Não há documentos vinculadas ao laboratório. :(</p>
             <?php else: ?>
 
                 <div class="row">
-                    <?php foreach ($laboratorio_img as $row): ?>
+                    <?php foreach ($laboratorio_reg as $row): ?>
                         <div class="col s12 m6 l4">
                             <div class="card small">
                                 <div class="card-image">

@@ -563,10 +563,10 @@ class Laboratorio extends CI_Controller {
             $config['remove_spaces'] = TRUE;
             $config['encrypt_name'] = TRUE;
 
-            //$this->form_validation->set_rules('arquivo', 'ARQUIVO', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('arquivo', 'ARQUIVO', 'trim|required|xss_clean');
 
 
-           // if ($this->form_validation->run() === TRUE):
+            if ($this->form_validation->run() === TRUE):
 
                 $this->load->library('upload', $config);
 
@@ -574,30 +574,28 @@ class Laboratorio extends CI_Controller {
                     $data['error'] = $this->upload->display_errors();
                     var_dump('dano');
                 else:
-                     
+
                     $reg['upload_data'] = $this->upload->data();
                     $reg_laboratorio['nome_reg_lab'] = $reg['upload_data']['file_name'];
                     $reg_laboratorio['nome_antigo_reg_lab'] = $reg['upload_data']['orig_name'];
                     $reg_laboratorio['tam_reg_lab'] = $reg['upload_data']['file_size'];
                     $reg_laboratorio['extensao_reg_lab'] = $reg['upload_data']['file_ext'];
                     $reg_laboratorio['descricao_regulamento'] = $this->input->post("textareaDescricao");
+                    $reg_laboratorio['fk_id_tipo_regulamento'] = 1;
                     $reg_laboratorio['ativo_reg_lab'] = 1;
-                    var_dump($reg_laboratorio);
 
 
-                /*
-                  if ($this->laboratorio_model->inserir_imagem_laboratorio($id_laboratorio, $img_laboratorio)):
-                  $this->session->set_flashdata('sucesso', 'Imagem salva com sucesso! :)');
-                  redirect('laboratorio/gerenciar_imagens_laboratorio/' . $id_laboratorio);
+                  if ($this->laboratorio_model->inserir_regulamento_laboratorio($id_laboratorio, $reg_laboratorio)):
+                  $this->session->set_flashdata('sucesso', 'Regulamento salvo com sucesso! :)');
+                  redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
                   else:
                   $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao fazer o upload de imagem! :(');
-                  redirect('laboratorio/gerenciar_imagens_laboratorio/' . $id_laboratorio);
-                  endif; */
+                  redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
+                  endif;
                 endif;
-            //endif;
-
+            endif;
             $data['laboratorio'] = $this->generica_consulta_model->consulta_laboratorio_by_id($id_laboratorio);
-            $data['laboratorio_img'] = $this->generica_consulta_model->consulta_imagem_laboratorio($id_laboratorio);
+            $data['laboratorio_reg'] = $this->generica_consulta_model->consulta_normas_regulamentos_laboratorio($id_laboratorio);
 
             $data['main'] = 'laboratorio/gerenciar_normas_regulamentos';
             $this->load->view('templates/template_admin2', $data);

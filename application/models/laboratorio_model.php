@@ -59,33 +59,64 @@ class Laboratorio_model extends CI_Model
             endif;
         endif;
     }
-
     public function inserir_imagem_laboratorio($id_laboratorio=NULL, $img_laboratorio)
     {
-        if($id_laboratorio!=NULL && $img_laboratorio!=NULL):
+      if($id_laboratorio!=NULL && $img_laboratorio!=NULL):
 
-            $this->db->trans_begin();
+        $this->db->trans_begin();
 
-            $this->db->insert('img_laboratorio', $img_laboratorio);
+        $this->db->insert('img_laboratorio', $img_laboratorio);
 
-            $id_img_laboratorio = $this->db->insert_id();
+        $id_img_laboratorio = $this->db->insert_id();
 
-            $laboratorio_has_img['fk_id_laboratorio']     = $id_laboratorio;
-            $laboratorio_has_img['fk_id_img_laboratorio'] = $id_img_laboratorio;
+        $laboratorio_has_img['fk_id_laboratorio']     = $id_laboratorio;
+        $laboratorio_has_img['fk_id_img_laboratorio'] = $id_img_laboratorio;
 
-            $this->db->insert('laboratorio_has_img', $laboratorio_has_img);
+        $this->db->insert('laboratorio_has_img', $laboratorio_has_img);
 
 
-            if ($this->db->trans_status() === FALSE):
-                $this->db->trans_rollback();
-                return false;
-            else:
-                $this->db->trans_commit();
-                return true;
-            endif;
+        if ($this->db->trans_status() === FALSE):
+          $this->db->trans_rollback();
+          return false;
+        else:
+          $this->db->trans_commit();
+          return true;
         endif;
-        return false;
+      endif;
+      return false;
     }
+
+
+
+
+    public function inserir_regulamento_laboratorio($id_laboratorio=NULL, $reg_laboratorio)
+    {
+      if($id_laboratorio!=NULL && $reg_laboratorio!=NULL):
+
+        $this->db->trans_begin();
+
+        $this->db->insert('regulamento_laboratorio', $reg_laboratorio);
+
+        $id_reg_laboratorio = $this->db->insert_id();
+
+        $laboratorio_has_regulamento['fk_id_laboratorio']     = $id_laboratorio;
+        $laboratorio_has_regulamento['fk_id_regulamento'] = $id_reg_laboratorio;
+
+        $this->db->insert('laboratorio_has_regulamento', $laboratorio_has_regulamento);
+
+
+        if ($this->db->trans_status() === FALSE):
+          $this->db->trans_rollback();
+          return false;
+        else:
+          $this->db->trans_commit();
+          return true;
+        endif;
+      endif;
+      return false;
+    }
+
+
 
     /**
      * -------------------------------------------------------- RETRIEVE
