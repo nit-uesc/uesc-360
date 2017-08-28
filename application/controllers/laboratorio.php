@@ -565,7 +565,7 @@ class Laboratorio extends CI_Controller {
                         $this->session->set_flashdata('sucesso', 'Regulamento salvo com sucesso! :)');
                         redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
                     else:
-                        $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao fazer o upload de imagem! :(');
+                        $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao fazer o upload do documento! :(');
                         redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
                     endif;
                 endif;
@@ -582,26 +582,26 @@ class Laboratorio extends CI_Controller {
     /* ------------------- fim função gerenciar_normas_regulamentos_laboratorio------------------------------------- */
 
      //Função deleta o regulamento de acordo com seu id
-    public function deletar_norma_regulamento_laboratorio($id_laboratorio = NULL, $id_reg_laboratorio = NULL) {
+    public function del_norma_regulamento_laboratorio($id_laboratorio = NULL, $id_reg_laboratorio = NULL) {
 
 
         $id_laboratorio = $this->funcoes->antiInjection($id_laboratorio);
         $id_img_laboratorio = $this->funcoes->antiInjection($id_reg_laboratorio);
-      //  $this->security_model->youShallNotPass($id_laboratorio, 'LAB');
+        $this->security_model->youShallNotPass($id_laboratorio, 'LAB');
 
         if ($id_laboratorio != NULL && is_numeric($id_laboratorio) && $id_reg_laboratorio != NULL && is_numeric($id_reg_laboratorio)):
 
             if ($this->laboratorio_model->deletar_norma_regulamento_laboratorio($id_reg_laboratorio)):
-                $this->session->set_flashdata('sucesso', 'Documento removido com sucesso! :)');
 
-                //redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
+            $this->session->set_flashdata('sucesso', 'Documento excluido com sucesso! :)');
+              redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
             else:
 
-                $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao remover o documento! :(');
-              //  redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
+               $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao remover o documento! :(');
+               redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
             endif;
         endif;
-        
+
     }
     /* -------------------fim função deletar_norma_regulamento_laboratorio------------------------------------- */
 
@@ -611,6 +611,7 @@ class Laboratorio extends CI_Controller {
         $this->security_model->youShallNotPass($id_laboratorio, 'LAB');
 
         if ($id_laboratorio != NULL && is_numeric($id_laboratorio) && $id_img_laboratorio != NULL && is_numeric($id_img_laboratorio)):
+
             if ($this->laboratorio_model->deletar_imagem_laboratorio($id_img_laboratorio)):
                 $this->session->set_flashdata('sucesso', 'Imagem removida com sucesso! :)');
                 redirect('laboratorio/gerenciar_imagens_laboratorio/' . $id_laboratorio);

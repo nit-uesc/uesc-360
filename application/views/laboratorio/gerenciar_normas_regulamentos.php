@@ -100,7 +100,8 @@
                             <p><b>Após concluir essa ação você não poderá recuperar o documento.</b></p>
                         </div>
                         <div class="modal-footer">
-                            <a href="<?php echo base_url('laboratorio/deletar_norma_regulamento_laboratorio/' . $row->id_reg_lab . '/' . $row->id_reg_lab); ?>" class="btn red modal-action modal-close waves-effect waves-green">Tenho certeza!</a>
+                            
+                            <a href="<?php echo base_url('laboratorio/del_norma_regulamento_laboratorio/'.$laboratorio[0]->id_laboratorio.'/'.$row->id_reg_lab); ?>" class="btn red modal-action modal-close waves-effect waves-green">Tenho certeza!</a>
                         </div>
                     </div>
 
@@ -112,4 +113,3 @@
     </div>
 
 <?php endif; ?>
-
