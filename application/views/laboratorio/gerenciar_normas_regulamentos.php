@@ -38,6 +38,24 @@
 
 
             <?php echo form_open_multipart('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $this->uri->segment(3)); ?>
+
+            <div class="row"></div>
+            <div class="row">
+                <div class="input-field col s12 ">
+                    <?php
+                    $options = array();
+                    $options['blank'] = '';
+                    foreach ($tipo_regulamento as $row):
+                        $options[$row->id_tipo_regulamento] = $row->nome;
+                    endforeach;
+                    echo form_dropdown('regulamento', $options, set_value('regulamento'));
+                    ?>
+                    <label>Selecione o tipo de regulamento</label>
+                    <?php echo form_error('regulamento'); ?>
+                </div>
+            </div>
+
+
             <div class="file-field input-field">
                 <div class="btn blue">
                     <span>Selecionar</span>
@@ -49,11 +67,12 @@
                 <?php echo form_error('arquivo'); ?>
                 <br>
             </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="descricaoTextarea">Escreva uma descrição sobre o documento</label>
+                    <textarea class="form-control" name="textareaDescricao" rows="3"></textarea>
 
-            <div class="form-group">
-                <label for="descricaoTextarea">Escreva uma descrição sobre o documento</label>
-                <textarea class="form-control" name="textareaDescricao" rows="3"></textarea>
-                <br>
+                </div>
             </div>
 
             <div class="row">
@@ -80,8 +99,11 @@
 
                     <div class="row">
                         <div class="col s8">
-                            <a target="_blank" href="<?php echo site_url('uploads/normas_regulamentos/' . $row->nome_reg_lab) ?>">
-                                <i class="material-icons">&#xE415;</i>Normas e Regulamentos
+                            <a target="_blank" href="<?php echo site_url('uploads/normas_regulamentos/' . $row->nome_reg_lab)
+                    ?>">
+
+                                <i class="material-icons">&#xE415;</i><?php echo $row->nome; ?>
+
                             </a>
                         </div>
                         <div class="col s4">
@@ -90,7 +112,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="collapsible-header"></div>
+                    <div class="collapsible"></div>
 
                     <!-- Confirmação deletar -->
                     <div id="rmi<?php echo $row->id_reg_lab; ?>" class="modal">
@@ -100,8 +122,8 @@
                             <p><b>Após concluir essa ação você não poderá recuperar o documento.</b></p>
                         </div>
                         <div class="modal-footer">
-                            
-                            <a href="<?php echo base_url('laboratorio/del_norma_regulamento_laboratorio/'.$laboratorio[0]->id_laboratorio.'/'.$row->id_reg_lab); ?>" class="btn red modal-action modal-close waves-effect waves-green">Tenho certeza!</a>
+
+                            <a href="<?php echo base_url('laboratorio/del_norma_regulamento_laboratorio/' . $laboratorio[0]->id_laboratorio . '/' . $row->id_reg_lab); ?>" class="btn red modal-action modal-close waves-effect waves-green">Tenho certeza!</a>
                         </div>
                     </div>
 
