@@ -540,6 +540,7 @@ class Laboratorio extends CI_Controller {
             $config['encrypt_name'] = TRUE;
 
             $this->form_validation->set_rules('arquivo', 'ARQUIVO', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('regulamento', 'SELECIONE O TIPO DE REGULAMENTO', 'callback_check_drop');
 
 
             if ($this->form_validation->run() === TRUE):
@@ -556,21 +557,18 @@ class Laboratorio extends CI_Controller {
                     $reg_laboratorio['nome_antigo_reg_lab'] = $reg['upload_data']['orig_name'];
                     $reg_laboratorio['tam_reg_lab'] = $reg['upload_data']['file_size'];
                     $reg_laboratorio['extensao_reg_lab'] = $reg['upload_data']['file_ext'];
-                  $val = $this->input->post('tipo_regulamento');
-                    var_dump($val);
-
                     $reg_laboratorio['descricao_regulamento'] = $this->funcoes->antiInjection($this->input->post("textareaDescricao"));
-                    $reg_laboratorio['fk_id_tipo_regulamento'] = 1;
+                    $reg_laboratorio['fk_id_tipo_regulamento'] = $this->funcoes->antiInjection($this->input->post('regulamento'));;
                     $reg_laboratorio['ativo_reg_lab'] = 1;
 
 
-                    /*if ($this->laboratorio_model->inserir_regulamento_laboratorio($id_laboratorio, $reg_laboratorio)):
+                    if ($this->laboratorio_model->inserir_regulamento_laboratorio($id_laboratorio, $reg_laboratorio)):
                         $this->session->set_flashdata('sucesso', 'Regulamento salvo com sucesso! :)');
                         redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
                     else:
                         $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao fazer o upload do documento! :(');
                         redirect('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $id_laboratorio);
-                    endif;*/
+                    endif;
                 endif;
             endif;
             $data['laboratorio'] = $this->generica_consulta_model->consulta_laboratorio_by_id($id_laboratorio);
