@@ -20,7 +20,7 @@
 
                 <!-- DADOS DO laboratorio -->
                 <div id="dados_lab" class="section scrollspy col s12 center indigo">
-                    <h5 class="white-text">Dados do Laboratório0000000</h5>
+                    <h5 class="white-text">Dados do Laboratório</h5>
                 </div>
 
                 <div class="col s12">
@@ -32,7 +32,8 @@
                                     <?php foreach ($coordenadores_lab as $row): ?>
                                         <p><b><a href="<?php echo base_url('search/pessoa/' . $row->id_pessoa); ?>" title="Clique para visualizar o perfil"><?php echo $row->nome_pes; ?></b></a>
                                         <?php endforeach; ?>
-                                </td>              </tr>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>Ramal</td>
                                 <td><b><?php echo $laboratorio[0]->ramal_lab; ?></b></td>
@@ -146,23 +147,30 @@
                     <?php endif; ?>
                 </div>
 
-                <!-- IMAGENS DO LABORATÓRIO -->
-                <div id="imagens_lab" class="section scrollspy col s12 indigo">
-                    <h5 class="white-text">Imagens do laboratório</h5>
+                 <!-- NORMAS E REGULAMENTOS PARA UTILIZAÇÃO DO LABORATORIO -->
+                <div id="normas_regulamentos_lab" class="section scrollspy col s12 indigo">
+                    <h5 class="white-text">Normas e regulamentos do laboratório</h5>
                 </div>
                 <div class="col s12">
-                    <?php if (empty($laboratorio_img)): ?>
+                    <?php if (empty($laboratorio_reg)): ?>
                         <div class="divider"></div>
-                        <p>Não há imagens vinculadas ao laboratório.</p>
+                        <p>Não há documentos vinculados ao laboratório.</p>
                     <?php else: ?>
-                        <div class="divider"></div>
-                        <?php foreach ($laboratorio_img as $row): ?>
-                            <br>
-                            <img class="materialboxed" data-caption="<?php echo $laboratorio[0]->nome_lab; ?>" width="200" src="<?php echo base_url('uploads/laboratorio/' . $row->nome_iml); ?>">
-                        <?php endforeach; ?>
+                        <ul class="collection">
+                            <?php foreach ($laboratorio_reg as $row): ?>
+                                <li class="collection-item">
+                                    <a target="_blank" href="<?php echo site_url('uploads/normas_regulamentos/' . $row->nome_reg_lab) ?>" class="link_com_icone">
+                                        <i class="material-icons">&#xE415;</i>
+                                        <?php echo $row->nome_reg_infor; ?>
+                                    </a>
+                                    <span class="small"><?php echo $row->descricao_regulamento ?></span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+
                     <?php endif; ?>
                 </div>
-                
+
                 <!-- IMAGENS DO LABORATÓRIO -->
                 <div id="imagens_lab" class="section scrollspy col s12 indigo">
                     <h5 class="white-text">Imagens do laboratório</h5>
@@ -180,8 +188,8 @@
                     <?php endif; ?>
                 </div>
 
-            </div> 
-        </div> 
+            </div>
+        </div>
 
         <div class="col hide-on-small-only m2 l3">
             <div style="position:fixed;">
@@ -191,8 +199,9 @@
                     <li><a href="#departamentos_lab">Departametos</a></li>
                     <li><a href="#cursos_lab">Cursos</a></li>
                     <li><a href="#equipamentos_lab">Equipamentos</a></li>
+                    <li><a href="#regulamento_lab">Regulamentos</a></li>
                     <li><a href="#imagens_lab">Imagens</a></li>
-                    <li><a href="#regulamento_lab">Regulamento</a></li>
+
                 </ul>
             </div>
         </div>

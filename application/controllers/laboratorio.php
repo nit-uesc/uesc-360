@@ -69,6 +69,7 @@ class Laboratorio extends CI_Controller {
             $data['laboratorio_cur'] = $this->generica_consulta_model->consulta_curso_laboratorio($id_laboratorio);
             $data['laboratorio_eqp'] = $this->generica_consulta_model->consulta_equipamento_laboratorio($id_laboratorio);
             $data['coordenadores_lab'] = $this->generica_consulta_model->consulta_coordenadores_laboratorio_by_id($id_laboratorio);
+            $data['laboratorio_reg'] = $this->generica_consulta_model->consulta_normas_regulamentos_laboratorio($id_laboratorio);
         endif;
 
         $data['main'] = 'laboratorio/visualizacao_laboratorio';
@@ -524,11 +525,11 @@ class Laboratorio extends CI_Controller {
     //Função criada para inserir arquivo .pdf que contenha as normas e regulamentos para utilização do laboratorio
     public function gerenciar_normas_regulamentos_laboratorio($id_laboratorio = NULL) {
 
-
+  
         $id_laboratorio = $this->funcoes->antiInjection($id_laboratorio);
         $this->security_model->youShallNotPass($id_laboratorio, 'LAB');
 
-        if ($id_laboratorio != NULL && is_numeric($id_laboratorio)):
+       if ($id_laboratorio != NULL && is_numeric($id_laboratorio)):
             $config['upload_path'] = './uploads/normas_regulamentos/';
             $config['allowed_types'] = 'pdf';
             $config['max_size'] = 1000;
@@ -540,8 +541,7 @@ class Laboratorio extends CI_Controller {
             $config['encrypt_name'] = TRUE;
 
             $this->form_validation->set_rules('arquivo', 'ARQUIVO', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('regulamento', 'SELECIONE O TIPO DE REGULAMENTO', 'callback_check_drop');
-
+            $this->form_validation->set_rules('regulamento', 'NOME REGULAMENTO', 'trim|required|max_length[200]|is_unique[laboratorio.nome_lab]');
 
             if ($this->form_validation->run() === TRUE):
 
@@ -558,7 +558,7 @@ class Laboratorio extends CI_Controller {
                     $reg_laboratorio['tam_reg_lab'] = $reg['upload_data']['file_size'];
                     $reg_laboratorio['extensao_reg_lab'] = $reg['upload_data']['file_ext'];
                     $reg_laboratorio['descricao_regulamento'] = $this->funcoes->antiInjection($this->input->post("textareaDescricao"));
-                    $reg_laboratorio['fk_id_tipo_regulamento'] = $this->funcoes->antiInjection($this->input->post('regulamento'));;
+                    $reg_laboratorio['nome_reg_infor'] = $this->funcoes->antiInjection($this->input->post('regulamento'));
                     $reg_laboratorio['ativo_reg_lab'] = 1;
 
 
@@ -573,8 +573,6 @@ class Laboratorio extends CI_Controller {
             endif;
             $data['laboratorio'] = $this->generica_consulta_model->consulta_laboratorio_by_id($id_laboratorio);
             $data['laboratorio_reg'] = $this->generica_consulta_model->consulta_normas_regulamentos_laboratorio($id_laboratorio);
-            $data['tipo_regulamento'] = $this->generica_consulta_model->consulta_tipos_regulamentos_laboratorio();
-
             $data['main'] = 'laboratorio/gerenciar_normas_regulamentos';
             $this->load->view('templates/template_admin2', $data);
 

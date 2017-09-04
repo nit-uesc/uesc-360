@@ -37,6 +37,7 @@ class Search extends CI_Controller {
             $data['laboratorio_cur'] = $this->generica_consulta_model->consulta_curso_laboratorio($id_laboratorio);
             $data['laboratorio_eqp'] = $this->generica_consulta_model->consulta_equipamento_laboratorio($id_laboratorio);
             $data['coordenadores_lab'] = $this->generica_consulta_model->consulta_coordenadores_laboratorio_by_id($id_laboratorio);
+            $data['laboratorio_reg'] = $this->generica_consulta_model->consulta_normas_regulamentos_laboratorio($id_laboratorio);
         endif;
 
         $data['main'] = 'search/laboratorio2';

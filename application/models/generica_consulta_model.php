@@ -239,21 +239,13 @@ class Generica_consulta_model extends CI_Model
     //Função usada para consltar as normas e regulamentos dos laboratorios de acordo com o ID
     public function consulta_normas_regulamentos_laboratorio($id_laboratorio)
     {
-        $this->db->select('regulamento_laboratorio.id_reg_lab, regulamento_laboratorio.nome_reg_lab, tipo_regulamento.nome');
+        $this->db->select('regulamento_laboratorio.id_reg_lab, regulamento_laboratorio.nome_reg_lab, regulamento_laboratorio.nome_reg_infor, regulamento_laboratorio.descricao_regulamento');
         $this->db->from('regulamento_laboratorio');//tabela de normas e regulamentos
         $this->db->join('laboratorio_has_regulamento', 'regulamento_laboratorio.id_reg_lab = laboratorio_has_regulamento.fk_id_regulamento', 'left');
-        $this->db->join('tipo_regulamento', 'tipo_regulamento.id_tipo_regulamento = regulamento_laboratorio.fk_id_tipo_regulamento', 'left');
         $this->db->where('laboratorio_has_regulamento.fk_id_laboratorio', $id_laboratorio);
         return $this->db->get()->result();
     }
-    //Função usada para consultar os tipos de regulamentos, para fazer o cadastro
-    public function consulta_tipos_regulamentos_laboratorio()
-    {
-        $this->db->select('id_tipo_regulamento, nome');
-        $this->db->from('tipo_regulamento');//tabela que contem os tipos de regulamentos
-        return $this->db->get()->result();
-    }
-    
+   
 
     public function consulta_equipamento_by_id($id_equipamento)
     {

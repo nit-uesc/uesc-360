@@ -38,6 +38,7 @@
     <div class="row">
       <div class="col s12">
         <div class="card-panel">
+        
           <?php $this->load->view($main); ?>
         </div>
       </div>

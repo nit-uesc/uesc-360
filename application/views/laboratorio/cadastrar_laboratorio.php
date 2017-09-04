@@ -56,6 +56,7 @@
           <label>Coordenador</label>
           <?php echo form_error('coordenador'); ?>
         </div>
+          
 
         <div class="input-field col s12 m6">
           <?php

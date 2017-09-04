@@ -196,18 +196,25 @@
 
                 <!-- NORMAS E REGULAMENTOS PARA UTILIZAÇÃO DO LABORATORIO -->
                 <div id="normas_regulamentos_lab" class="section scrollspy col s12 indigo">
-                    <h5 class="white-text">Normas e Regulamentos para utilização do Laboratório</h5>
+                    <h5 class="white-text">Normas e regulamentos do laboratório</h5>
                 </div>
                 <div class="col s12">
-                    <?php if (empty($laboratorio_img)): ?>
+                    <?php if (empty($laboratorio_reg)): ?>
                         <div class="divider"></div>
-                        <p>Não há imagens vinculadas ao laboratório.</p>
+                        <p>Não há documentos vinculados ao laboratório.</p>
                     <?php else: ?>
-                        <div class="divider"></div>
-                        <?php foreach ($laboratorio_img as $row): ?>
-                            <br>
-                            <img class="materialboxed" data-caption="<?php echo $laboratorio[0]->nome_lab; ?>" width="200" src="<?php echo base_url('uploads/laboratorio/' . $row->nome_iml); ?>">
-                        <?php endforeach; ?>
+                        <ul class="collection">
+                            <?php foreach ($laboratorio_reg as $row): ?>
+                                <li class="collection-item">
+                                    <a target="_blank" href="<?php echo site_url('uploads/normas_regulamentos/' . $row->nome_reg_lab) ?>" class="link_com_icone">
+                                        <i class="material-icons">&#xE415;</i>
+                                        <?php echo $row->nome_reg_infor; ?>
+                                    </a>
+                                    <span class="small"><?php echo $row->descricao_regulamento ?></span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+
                     <?php endif; ?>
                 </div>
 
