@@ -39,24 +39,6 @@
 
             <?php echo form_open_multipart('laboratorio/gerenciar_normas_regulamentos_laboratorio/' . $this->uri->segment(3)); ?>
 
-            <div class="row"></div>
-
-            <!--<div class="row">
-                <div class="input-field col s12 ">
-                    <?//php
-                    $options = array();
-                    $options['blank'] = '';
-                    foreach ($tipo_regulamento as $row):
-                        $options[$row->id_tipo_regulamento] = $row->nome;
-                    endforeach;
-                    echo form_dropdown('regulamento', $options, set_value('regulamento'));
-                    ?>
-                    <label>Selecione o tipo de regulamento</label>
-                    <?//php echo form_error('regulamento'); ?>
-                </div>
-            </div>-->
-
-
             <div class="row">
                 <div class="input-field col s12">
                     <?php echo form_input(array('id' => 'iregulamento', 'name' => 'regulamento'), set_value('regulamento'), 'autofocus'); ?>
@@ -110,7 +92,7 @@
                     <div class="row">
                         <div class="col s8">
                             <a target="_blank" href="<?php echo site_url('uploads/normas_regulamentos/' . $row->nome_reg_lab) ?>">
-                              
+
                                 <i class="material-icons">&#xE415;</i><?php echo $row->nome_reg_infor; ?>
 
                             </a>
