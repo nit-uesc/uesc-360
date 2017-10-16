@@ -120,10 +120,10 @@ class Pessoa extends CI_Controller
     public function editar_pessoa($id_pessoa=NULL)
     {
         $id_pessoa = $this->funcoes->antiInjection($id_pessoa);
+        $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]');
 
         if($id_pessoa != NULL && is_numeric($id_pessoa)):
 
-            $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]');
             $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[45]|strtolower|valid_email');
             $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|min_length[14]|max_length[15]|alpha_numeric_spaces');
             $this->form_validation->set_rules('lattes', 'LATTES', 'trim|max_length[70]');

@@ -56,7 +56,7 @@
           <label>Coordenador</label>
           <?php echo form_error('coordenador'); ?>
         </div>
-          
+
 
         <div class="input-field col s12 m6">
           <?php
@@ -190,8 +190,8 @@
           <legend class="grey-text">Laboratório utilizado para:</legend>
           <div class="s12 col">
             <p>
+              $dataCEN = array(
               <?php
-                $dataCEN = array(
                   'name'        => 'usa_ensino',
                   'id'          => 'checkEns',
                   'value'       => 'Sim',
