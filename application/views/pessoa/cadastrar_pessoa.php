@@ -17,9 +17,9 @@
       </div>
     </div>
 
+    <?php echo form_open('pessoa/cadastrar_pessoa'); ?>
     <?php else: ?>
 
-    <?php echo form_open('pessoa/cadastrar_pessoa'); ?>
       <div class="row">
         <div class="input-field col s12 m6">
           <?php echo form_input(array('id' => 'inome', 'name' => 'nome'), set_value('nome'), 'autofocus'); ?>

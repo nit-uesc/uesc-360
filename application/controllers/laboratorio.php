@@ -108,23 +108,25 @@ class Laboratorio extends CI_Controller {
         $this->form_validation->set_rules('atividades', 'ATIVIDADES', 'required|max_length[600]');
         $this->form_validation->set_rules('areas_atendidas', 'AREAS_ATENDIDAS', 'required|max_length[600]');
 
-        // $this->form_validation->set_rules('palavras_chave', 'PALAVRAS CHAVE', 'required|max_length[600]');
+
         $this->form_validation->set_rules('palavras_chave', 'PALAVRAS CHAVE', 'max_length[600]');
+        $this->form_validation->set_rules('sigla', 'SIGLA', 'max_length[10]');
 
         if ($this->form_validation->run() == TRUE):
 
-            $laboratorio['nome_lab'] = $this->input->post('nome');
-            $laboratorio['ramal_lab'] = $this->input->post('ramal');
-            $laboratorio['website_lab'] = $this->input->post('website');
-            $laboratorio['descricao_lab'] = $this->input->post('descricao');
-            $laboratorio['atividades_lab'] = $this->input->post('atividades');
-            $laboratorio['areas_atendidas_lab'] = $this->input->post('areas_atendidas');
-            $laboratorio['multiusuario_lab'] = $this->input->post('multiusuario');
-            $laboratorio['usa_ensino_lab'] = $this->input->post('usa_ensino');
-            $laboratorio['usa_pesquisa_lab'] = $this->input->post('usa_pesquisa');
-            $laboratorio['usa_extensao_lab'] = $this->input->post('usa_extensao');
-            $laboratorio['fk_id_pavilhao'] = $this->input->post('pavilhao');
-            $laboratorio['palavras_chave'] = $this->input->post('palavras_chave');
+            $laboratorio['nome_lab'] = $this->funcoes->antiInjection($this->input->post('nome'));
+            $laboratorio['ramal_lab'] = $this->funcoes->antiInjection($this->input->post('ramal'));
+            $laboratorio['website_lab'] = $this->funcoes->antiInjection($this->input->post('website'));
+            $laboratorio['descricao_lab'] = $this->funcoes->antiInjection($this->input->post('descricao'));
+            $laboratorio['atividades_lab'] = $this->funcoes->antiInjection($this->input->post('atividades'));
+            $laboratorio['areas_atendidas_lab'] = $this->funcoes->antiInjection($this->input->post('areas_atendidas'));
+            $laboratorio['multiusuario_lab'] = $this->funcoes->antiInjection($this->input->post('multiusuario'));
+            $laboratorio['usa_ensino_lab'] = $this->funcoes->antiInjection($this->input->post('usa_ensino'));
+            $laboratorio['usa_pesquisa_lab'] = $this->funcoes->antiInjection($this->input->post('usa_pesquisa'));
+            $laboratorio['usa_extensao_lab'] = $this->funcoes->antiInjection($this->input->post('usa_extensao'));
+            $laboratorio['fk_id_pavilhao'] = $this->funcoes->antiInjection($this->input->post('pavilhao'));
+            $laboratorio['palavras_chave'] = $this->funcoes->antiInjection($this->input->post('palavras_chave'));
+            $laboratorio['sigla'] = $this->funcoes->antiInjection($this->input->post('sigla'));
 
             if ($laboratorio['usa_ensino_lab'] == ''):
                 $laboratorio['usa_ensino_lab'] = 'Não';
@@ -146,6 +148,8 @@ class Laboratorio extends CI_Controller {
 
             $cursos = $this->input->post('curso');
             $departamentos = $this->input->post('departamento');
+
+
 
             if ($this->laboratorio_model->cadastrar_laboratorio($laboratorio, $coordenador, $cursos, $departamentos)):
                 $data['sucesso'] = 'Os dados do laboratório foram cadastrados com sucesso! :)';
@@ -197,6 +201,7 @@ class Laboratorio extends CI_Controller {
             $this->form_validation->set_rules('multiusuario', 'MULTIUSUÁRIO', 'required');
             // $this->form_validation->set_rules('palavras_chave', 'PALAVRAS CHAVE', 'required|max_length[600]');
             $this->form_validation->set_rules('palavras_chave', 'PALAVRAS CHAVE', 'max_length[600]');
+            $this->form_validation->set_rules('sigla', 'SIGLA', 'max_length[10]');
 
             if ($this->form_validation->run() === TRUE):
                 $laboratorio['nome_lab'] = $this->input->post('nome');
@@ -211,6 +216,7 @@ class Laboratorio extends CI_Controller {
                 $laboratorio['usa_pesquisa_lab'] = $this->input->post('usa_pesquisa');
                 $laboratorio['usa_extensao_lab'] = $this->input->post('usa_extensao');
                 $laboratorio['palavras_chave'] = $this->input->post('palavras_chave');
+                $laboratorio['sigla'] = $this->funcoes->antiInjection($this->input->post('sigla'));
 
                 if ($laboratorio['usa_ensino_lab'] == ''):
                     $laboratorio['usa_ensino_lab'] = 'Não';
@@ -525,7 +531,7 @@ class Laboratorio extends CI_Controller {
     //Função criada para inserir arquivo .pdf que contenha as normas e regulamentos para utilização do laboratorio
     public function gerenciar_normas_regulamentos_laboratorio($id_laboratorio = NULL) {
 
-  
+
         $id_laboratorio = $this->funcoes->antiInjection($id_laboratorio);
         $this->security_model->youShallNotPass($id_laboratorio, 'LAB');
 

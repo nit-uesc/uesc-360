@@ -52,6 +52,7 @@ class Home extends CI_Controller
 
 						case 'l':
 			         $aux_lab[] =  $row;
+							 
 
 						break;
 
@@ -185,7 +186,7 @@ class Home extends CI_Controller
 				$data['check'] = $check_filter;
 				$data['main'] = 'telas/explore';
 				$this->load->view('telas/explore', $data);//chamo a tela de explore
-				
+
 		endif;
 	}
 

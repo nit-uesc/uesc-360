@@ -20,13 +20,14 @@ class Consulta_model extends CI_Model
 
 			UNION
 
-			SELECT laboratorio.id_laboratorio as 'id', laboratorio.nome_lab as 'name', 'l' as type, laboratorio.descricao_lab as 'info1', laboratorio.atividades_lab as 'info2', laboratorio.areas_atendidas_lab as 'info3'
+			SELECT laboratorio.id_laboratorio as 'id', laboratorio.nome_lab as 'name', 'l' as type, laboratorio.descricao_lab as 'info1', laboratorio.atividades_lab as 'info2', laboratorio.sigla as 'info3'
 			FROM laboratorio
       LEFT JOIN laboratorio_has_curso ON fk_id_laboratorio = laboratorio.id_laboratorio
       LEFT JOIN curso ON fk_id_curso = id_curso
 			WHERE laboratorio.nome_lab LIKE '%".$input."%'
 			OR laboratorio.palavras_chave LIKE '%".$input."%'
       OR nome_cur LIKE '%".$input."%'
+			OR laboratorio.sigla LIKE '%".$input."%'
 
 			UNION
 
@@ -47,7 +48,7 @@ class Consulta_model extends CI_Model
 
 			UNION
 
-			SELECT laboratorio.id_laboratorio as 'id', laboratorio.nome_lab as 'name', 'l' as type, laboratorio.descricao_lab as 'info1', laboratorio.atividades_lab as 'info2', laboratorio.areas_atendidas_lab as 'info3'
+			SELECT laboratorio.id_laboratorio as 'id', laboratorio.nome_lab as 'name', 'l' as type, laboratorio.descricao_lab as 'info1', laboratorio.atividades_lab as 'info2', laboratorio.sigla as 'info3'
 			FROM laboratorio
       LEFT JOIN laboratorio_has_curso ON fk_id_laboratorio = laboratorio.id_laboratorio
       LEFT JOIN curso ON fk_id_curso = id_curso

@@ -104,9 +104,15 @@
 														<?php endif ?>
 											<?php endif ?>
 																<?php $lab = $laboratorio[$i]; ?>
-												 				<a href="<?php echo base_url('search/pessoa/'.$lab->id); ?>">
+												 				<a href="<?php echo base_url('search/laboratorio/'.$lab->id); ?>">
 												 				<i class="material-icons left">group_work</i>
-																<?php echo $lab->name;?>
+
+																<!-- caso o laboratorio tenha sigla adiciona-->  
+																<?php if($lab->info3 != ''): ?>
+																		<?php echo $lab->name;?> - <?php echo $lab->info3;?>
+															  <?php else: ?>
+																		<?php echo $lab->name;?>
+																<?php endif?>
 															  </a>
 							 		          </td>
 									<?php endif ?>
@@ -147,7 +153,7 @@
 												<?php endif ?>
 
 																	<?php $eq = $equipamento[$i]; ?>
-													 			  <a href="<?php echo base_url('search/pessoa/'.$eq->id); ?>">
+													 			  <a href="<?php echo base_url('search/equipamento/'.$eq->id); ?>">
 													 				<i class="material-icons left">build</i>
 																  <?php echo $eq->name;?>
 													 			  </a>
