@@ -63,8 +63,10 @@ class Pessoa extends CI_Controller
      * -------------------------------------------------------- CREATE
      */
 
-    public function cadastrar_pessoa()
+     public function cadastrar_pessoa()
     {
+
+
         $this->form_validation->set_rules('departamento', 'SELECIONE DEPARTAMENTO', 'callback_check_drop');
         $this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO PESSOA', 'callback_check_drop');
         $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]');
@@ -74,10 +76,19 @@ class Pessoa extends CI_Controller
         $this->form_validation->set_rules('website', 'WEBSITE', 'trim|max_length[50]');
         $this->form_validation->set_rules('permissao', 'SELECIONE A PERMISSÃO DO USUÁRIO', 'callback_check_drop');
 
+        /*Novos campos adiconados ao cadas*/
+        $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|is_unique[pessoa.cpf_pes]|callback_check_cpf');
+        $this->form_validation->set_rules('sexo', 'SEXO', 'required|exact_length[1]');
+        $this->form_validation->set_rules('dia', 'DIA', 'greater_than[0]|less_than[32]|callback_check_drop_date');
+        $this->form_validation->set_rules('mes', 'MÊS', 'greater_than[0]|less_than[13]|callback_check_drop_date');
+        $this->form_validation->set_rules('ano', 'ANO', 'greater_than[1929]|less_than[1999]|callback_check_drop_date');
+
         if ($this->form_validation->run()==TRUE):
+            $dia = $this->input->post('dia');
+            $mes = $this->input->post('mes');
+            $ano = $this->input->post('ano');
 
             $senha = random_string('alnum', 10);
-
             $usuario['login_usu'] = $this->input->post('email');
             $usuario['senha_usu'] = sha1($senha);
 
@@ -88,6 +99,10 @@ class Pessoa extends CI_Controller
             $pessoa['website_pes'] = $this->input->post('website');
             $pessoa['fk_id_tipo_pessoa'] = $this->input->post('tipo_pessoa');
             $pessoa['fk_id_departamento'] = $this->input->post('departamento');
+            $pessoa['cpf_pes'] = $this->input->post('cpf');
+            $pessoa['birthday_pes'] = $ano.'-'.$mes.'-'.$dia;
+            $pessoa['sexo_pes'] =  $this->input->post('sexo');
+
 
             $permissao = $this->input->post('permissao');
 
