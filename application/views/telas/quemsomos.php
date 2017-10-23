@@ -30,7 +30,7 @@
 
 <div class="row">
   <div class="col s12 m10 offset-m1 l8 offset-l2 card-panel">
-  <p>Sobre a licença: <a href="http://nit.uesc.br/uesc360/licenca" target="_blank">saiba mais</a></p>
+  <p>Sobre a licença: <a href="http://nit.uesc.br/uesc360/licenca" target="_blank">Saiba mais</a></p>
   </div>
 </div>
 
