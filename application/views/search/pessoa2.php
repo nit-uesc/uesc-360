@@ -27,7 +27,7 @@
             <tbody>
               <tr>
                 <td>Email</td>
-                <td><b><?php echo $pessoa[0]->email_pes; ?></b></td>
+                <td><b><a href="mailto:<?php echo $pessoa[0]->email_pes; ?>?body="><?php echo $pessoa[0]->email_pes; ?></a></b></td>
               </tr>
               <tr>
                 <td>Ramal</td>
@@ -35,11 +35,11 @@
               </tr>
               <tr>
                 <td>Lattes</td>
-                <td><b><?php echo $pessoa[0]->lattes_pes; ?></b></td>
+                <td><b><a href="<?php echo $pessoa[0]->lattes_pes; ?>"> <?php echo $pessoa[0]->lattes_pes; ?> </a></b></td>
               </tr>
               <tr>
                 <td>Site</td>
-                <td><b><?php echo $pessoa[0]->website_pes; ?></b></td>
+                <td><b><a href="<?php echo $pessoa[0]->website_pes; ?>"> <?php echo $pessoa[0]->website_pes; ?> </a></b></td>
               </tr>
               <tr>
                 <td>Departamento</td>

@@ -7,67 +7,96 @@ class Home extends CI_Controller
 		parent::__construct();
 		$this->load->library('funcoes');
 		$this->load->helper('form_helper');
+
 	}
 
 	public function index()
 	{
-		$dados['main'] = 'telas/home';
-		$this->load->view('templates/template_home', $dados);
+
+		$this->load->model('generica_consulta_model');
+		$data['pessoa'] = $this->generica_consulta_model->listar_pessoas();
+		$data['laboratorio'] = $this->generica_consulta_model->listar_laboratorios();
+		$data['equipamento'] = $this->generica_consulta_model->listar_equipamentos();
+		$data['main'] = 'telas/home';
+		$this->load->view('templates/template_home', $data);
+
+
+
 	}
 
 	public function consulta()
-	{
+  {
 		$data = $this -> input -> post(null, true);
+		$check_filter = $data['checkboxs'];
 
 		if ($data['busca'] != ''):
 			$this->load->model('consulta_model');
+
+			/*vetores auxiliares usado para passar o resultado para pesquisa*/
+			$aux_pes = new ArrayObject();
+			$aux_lab = new ArrayObject();
+			$aux_equi = new ArrayObject();
 
 			$result = $this->consulta_model->busca($data['busca']);
 			$rsNumber = count($result);
 
 			if($rsNumber > 0):
-				echo "<p>Resultados encontrados: <b>".$rsNumber."</b></p>";
+
+
 				foreach ($result as $row):
 					switch ($row->type):
 						case 'p':
-	                        $link = base_url() . 'search/pessoa/'.$row->id.'/';
-							echo "<div class='card-panel'>";
-							echo "<span class='grey-text text-darken-1 right'>Pessoa</span> <br> <div class='divider grey lighten-1'></div>";
-							echo "<br><a class='flow-text' target='_blank' href='{$link}'>{$row->name}</a> <br>";
-							echo "<span><strong>Email: </strong>{$row->info1}</span><br>";
-							echo "<span><strong>Lattes: </strong><a target='_blank' href='{$row->info2}'>{$row->info2}</a></span><br>";
-							if(!empty($row->info3)):
-								echo "<span><strong>Website: </strong>{$row->info3}</span>";
-							endif;
-							echo "</div>";
+						   $aux_pes[] =  $row;
+
 						break;
 
 						case 'l':
-							$link = base_url() . 'search/laboratorio/'.$row->id.'/';
-							echo "<div class='card-panel'>";
-							echo "<span class='grey-text text-darken-1 right'>Laboratório</span> <br> <div class='divider grey lighten-1'></div>";
-							echo "<br><a class='flow-text' target='_blank' href='{$link}'>{$row->name}</a> <br>";
-							echo "<span><strong>Descrição:</strong> {$row->info1}</span><br>";
-							echo "<span><strong>Atividades:</strong> {$row->info2}</span><br>";
-							echo "<span><strong>Áreas atendidas: </strong>{$row->info3}</span>";
-							echo "</div>";
+			         $aux_lab[] =  $row;
+							 
+
 						break;
 
 						case 'e':
-							$link = base_url() . 'search/equipamento/'.$row->id.'/';
-							echo "<div class='card-panel'>";
-							echo "<span class='grey-text text-darken-1 right'>Equipamento</span> <br> <div class='divider grey lighten-1'></div>";
-							echo "<br><a class='flow-text' target='_blank' href='{$link}'>{$row->name}</a> <br>";
-							echo "<span><strong>Descrição:</strong> {$row->info1}</span><br>";
-							echo "<span><strong>Especificação:</strong> {$row->info2}</span><br>";
-							echo "<span><strong>Fabricante: </strong>{$row->info3}</span>";
-							echo "</div>";
+				       $aux_equi[] =  $row;
+
 						break;
 
 						default:
 						break;
 					endswitch;
 				endforeach;
+
+				//pega os tamanhos do vetor para montar a tabela de acordo com o que tiver mais linhas
+				$tam_aux_lab = count ($aux_lab);
+				$tam_aux_equi = count ($aux_equi);
+				$tam_aux_pes = count ($aux_pes);
+
+				if(($tam_aux_lab > $tam_aux_equi) && ($tam_aux_lab > $tam_aux_pes) ){
+          //laboratorios apresenta maior numero
+					$data['maior'] = $tam_aux_lab;
+
+
+				}else if (($tam_aux_equi > $tam_aux_lab) && ($tam_aux_equi > $tam_aux_pes) ){
+         //equipamentos apresenta maior numero
+					$data['maior'] = $tam_aux_equi;
+
+
+				}else{
+				//pessoas apresenta maior numero
+				  $data['maior'] = $tam_aux_pes;
+				}
+        /*Vetor auxiliar para passar os parametros de pesquisa*/
+				$OpcaoPesquisa = array("Laboratorios", "Equipamentos", "Pessoas");
+
+	  		$this->load->model('generica_consulta_model');
+			  $data['pessoa'] = $aux_pes;
+				$data['laboratorio'] = $aux_lab;
+				$data['equipamento'] = $aux_equi;
+				$data['opp'] = $OpcaoPesquisa;
+				$data['check'] = $check_filter;
+				$data['main'] = 'telas/explore';
+				$this->load->view('telas/explore', $data);//chamo a tela de explore
+
 			else:
 				echo"
 					<div class='row'>
@@ -79,10 +108,88 @@ class Home extends CI_Controller
 					</div>
 				";
 			endif;
-		endif;
 
-		// $dados['main'] = 'telas/home2';
-		// $this->load->view('templates/template_home', $dados);
-		// $this->load->view('templates/template_home');
+		else:
+
+		endif;
 	}
+
+	public function getResultados()
+  {
+		$data = $this -> input -> post(null, true);
+		$check_filter = $data['checkboxs'];
+
+
+			$this->load->model('consulta_model');
+
+			/*vetores auxiliares usado para passar o resultado para pesquisa*/
+			$aux_pes = new ArrayObject();
+			$aux_lab = new ArrayObject();
+			$aux_equi = new ArrayObject();
+
+			$result = $this->consulta_model->buscaTodos();
+			$rsNumber = count($result);
+
+
+			if($rsNumber > 0):
+			/*echo "<p>Resultados encontrados: <b>".$rsNumber."</b></p>"; //teg que mostra a quantidade de resultados encontrado*/
+
+				foreach ($result as $row):
+					switch ($row->type):
+						case 'p':
+						   $aux_pes[] =  $row;
+
+						break;
+
+						case 'l':
+			         $aux_lab[] =  $row;
+
+						break;
+
+						case 'e':
+				       $aux_equi[] =  $row;
+
+						break;
+
+						default:
+						break;
+					endswitch;
+				endforeach;
+
+				//pega os tamanhos do vetor para montar a tabela de acordo com o que tiver mais linhas
+				$tam_aux_lab = count ($aux_lab);
+				$tam_aux_equi = count ($aux_equi);
+				$tam_aux_pes = count ($aux_pes);
+
+				if(($tam_aux_lab > $tam_aux_equi) && ($tam_aux_lab > $tam_aux_pes) ){
+          //laboratorios apresenta maior numero
+					$data['maior'] = $tam_aux_lab;
+
+
+				}else if (($tam_aux_equi > $tam_aux_lab) && ($tam_aux_equi > $tam_aux_pes) ){
+         //equipamentos apresenta maior numero
+					$data['maior'] = $tam_aux_equi;
+
+
+				}else{
+				//pessoas apresenta maior numero
+				  $data['maior'] = $tam_aux_pes;
+				}
+        /*Vetor auxiliar para passar os parametros de pesquisa*/
+				$OpcaoPesquisa = array("Laboratorios", "Equipamentos", "Pessoas");
+
+	  		$this->load->model('generica_consulta_model');
+			  $data['pessoa'] = $aux_pes;
+				$data['laboratorio'] = $aux_lab;
+				$data['equipamento'] = $aux_equi;
+				$data['opp'] = $OpcaoPesquisa;
+				$data['check'] = $check_filter;
+				$data['main'] = 'telas/explore';
+				$this->load->view('telas/explore', $data);//chamo a tela de explore
+
+		endif;
+	}
+
+
+
 }

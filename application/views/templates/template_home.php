@@ -33,10 +33,10 @@
               <li class="<?php if($this->uri->segment(1) == 'home' or $this->uri->segment(1) == null){echo 'ativo';} ?>">
                 <a href="<?php echo base_url('home'); ?>">Home</a>
               </li>
-
+              <!--
               <li class="<?php if($this->uri->segment(1) == 'explore'){echo 'ativo';} ?>">
                 <a href="<?php echo base_url('explore'); ?>">Explore</a>
-              </li>
+              </li>-->
 
               <?php if(!$this->session->userdata('logged_in')): ?>
               <li class="<?php if($this->uri->segment(1) == 'cadastro'){echo 'ativo';} ?>">
@@ -88,9 +88,8 @@
 
       </div>
     </div>
+
     <!-- menu fim -->
-
-
     <?php $this->load->view($main); ?>
 
 

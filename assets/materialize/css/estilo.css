@@ -27,6 +27,26 @@ nav ul li:hover a
 }
 
 
+.link_com_icone{
+  position: relative;
+  padding-left: 28px;
+}
+
+.link_com_icone i{
+  position: absolute;
+  left: 0;
+}
+
+span.small{
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  padding-left: 28px
+}
+
+
+
+
 /* header, main, footer {
     padding-left: 240px;
 }

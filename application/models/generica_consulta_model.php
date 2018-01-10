@@ -5,6 +5,7 @@ class Generica_consulta_model extends CI_Model
 {
     public function listar_pessoas()
     {
+
         $this->db->select('pes.id_pessoa, pes.nome_pes, pes.email_pes, tip.tipo_tip');
         $this->db->from('pessoa as pes');
         $this->db->join('tipo_pessoa as tip', 'pes.fk_id_tipo_pessoa = tip.id_tipo_pessoa', 'inner');
@@ -235,11 +236,16 @@ class Generica_consulta_model extends CI_Model
         return $this->db->get()->result();
     }
 
-
-
-
-
-
+    //Função usada para consltar as normas e regulamentos dos laboratorios de acordo com o ID
+    public function consulta_normas_regulamentos_laboratorio($id_laboratorio)
+    {
+        $this->db->select('regulamento_laboratorio.id_reg_lab, regulamento_laboratorio.nome_reg_lab, regulamento_laboratorio.nome_reg_infor, regulamento_laboratorio.descricao_regulamento');
+        $this->db->from('regulamento_laboratorio');//tabela de normas e regulamentos
+        $this->db->join('laboratorio_has_regulamento', 'regulamento_laboratorio.id_reg_lab = laboratorio_has_regulamento.fk_id_regulamento', 'left');
+        $this->db->where('laboratorio_has_regulamento.fk_id_laboratorio', $id_laboratorio);
+        return $this->db->get()->result();
+    }
+   
 
     public function consulta_equipamento_by_id($id_equipamento)
     {

@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col s12 center">
         <p>Clique no botão abaixo para fazer download do código fonte.</p>
-        <a id="download" href="https://github.com/andr3cs/uesc360" target="_blank" class="btn waves-effect blue"><i class="material-icons left">save</i>Download</a>
+        <a id="download" href="https://bitbucket.org/nituesc/uesc360-public" target="_blank" class="btn waves-effect blue"><i class="material-icons left">save</i>Download</a>
       </div>
     </div>
 

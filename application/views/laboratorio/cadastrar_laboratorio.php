@@ -36,10 +36,16 @@
     <?php echo form_open('laboratorio/cadastrar_laboratorio'); ?>
 
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s9">
           <?php echo form_input(array('id' => 'inome', 'name' => 'nome'), set_value('nome'), 'autofocus'); ?>
           <label for="inome">Nome</label>
           <?php echo form_error('nome'); ?>
+        </div>
+
+        <div class="input-field col s3" maxlength="3">
+          <?php echo form_input(array('id' => 'isigla', 'name' => 'sigla'), set_value('sigla')); ?>
+          <label for="isigla">Sigla</label>
+          <?php echo form_error('sigla'); ?>
         </div>
       </div>
 
@@ -70,9 +76,6 @@
           <?php echo form_error('pavilhao'); ?>
         </div>
       </div>
-
-
-
 
       <div class="row">
         <div class="input-field col s12 m6">

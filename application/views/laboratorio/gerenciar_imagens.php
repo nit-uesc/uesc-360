@@ -34,7 +34,7 @@
 				</div>
 			</div>
 			<?php endif; ?>
-
+<!--  -->
 
 			<?php echo form_open_multipart('laboratorio/gerenciar_imagens_laboratorio/'.$this->uri->segment(3));?>
 		    <div class="file-field input-field">

@@ -11,11 +11,18 @@
   <?php echo form_open('laboratorio/editar_dados/'.$laboratorio[0]->id_laboratorio); ?>
 
     <div class="row">
-      <div class="input-field col s12">
-        <?php echo form_input(array('id' => 'inome', 'name' => 'nome'), set_value('nome', $laboratorio[0]->nome_lab)); ?>
-        <label for="inome">Nome</label>
-        <?php echo form_error('nome'); ?>
+      <div class="input-field col s9">
+          <?php echo form_input(array('id' => 'inome', 'name' => 'nome'), set_value('nome', $laboratorio[0]->nome_lab)); ?>
+          <label for="inome">Nome</label>
+          <?php echo form_error('nome'); ?>
       </div>
+      <div class="input-field col s3" maxlength="3">
+          <?php echo form_input(array('id' => 'isigla', 'name' => 'sigla'), set_value('sigla',$laboratorio[0]->sigla)); ?>
+          <label for="isigla">Sigla</label>
+          <?php echo form_error('sigla'); ?>
+      </div>
+
+
     </div>
 
     <div class="row">
