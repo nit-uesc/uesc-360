@@ -40,7 +40,9 @@
 
 $route['default_controller'] = "home";
 $route['404_override'] = '';
-
+$route['cadastro'] = "cadastro/index";
+//exemplo
+$route['checar'] = "cadastro/checar_validacao/test";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

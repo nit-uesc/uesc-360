@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+require 'checar_validacao.php';
 class Index extends CI_Controller
 {
     public function __construct()
@@ -15,6 +15,9 @@ class Index extends CI_Controller
     }
     public function index()
     {
+        $checar = new checar_validacao();
+        $checar->test();
+
         $this->form_validation->set_rules('departamento', 'SELECIONE DEPARTAMENTO', 'callback_check_drop');
         $this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO PESSOA', 'callback_check_drop');
         $this->form_validation->set_rules('dia', 'DIA', 'greater_than[0]|less_than[32]|callback_check_drop_date');
