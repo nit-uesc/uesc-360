@@ -67,13 +67,3 @@
 		</div>
 	</li>
 </ul>
-
-<!-- <div class="row">
-  <div class="col s12 center card-panel">
-    <br>
-    <a href="http://voobex.com/" target="_blank">
-      <img src="<?php echo base_url('assets/img/voobexBlue.png'); ?>" alt="Voobex" width="100">
-      <p><small><b>Soluções Web</b></small></p>
-    </a>
-  </div>
-</div> -->

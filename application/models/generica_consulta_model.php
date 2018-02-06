@@ -100,14 +100,6 @@ class Generica_consulta_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    // public function getAllLaboratorio()
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('laboratorio');
-    //     $this->db->where('ativo_lab', 1);
-    //     return $this->db->get();
-    // }
-
     public function consulta_pessoa_by_id($id_pessoa)
     {
         // $this->db->select('pes.id_pessoa, pes.nome_pes, pes.email_pes, tip.tipo_tip');
@@ -245,7 +237,7 @@ class Generica_consulta_model extends CI_Model
         $this->db->where('laboratorio_has_regulamento.fk_id_laboratorio', $id_laboratorio);
         return $this->db->get()->result();
     }
-   
+
 
     public function consulta_equipamento_by_id($id_equipamento)
     {

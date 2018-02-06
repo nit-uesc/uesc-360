@@ -40,7 +40,7 @@
 
               <?php if(!$this->session->userdata('logged_in')): ?>
               <li class="<?php if($this->uri->segment(1) == 'cadastro'){echo 'ativo';} ?>">
-                <a href="<?php echo base_url('cadastro'); ?>">Cadastro</a>
+                <a href="<?php echo base_url('cadastro/cadastro'); ?>">Cadastro</a>
               </li>
               <?php endif; ?>
 

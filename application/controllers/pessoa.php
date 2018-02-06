@@ -21,6 +21,7 @@ class Pessoa extends CI_Controller
 
         $this->load->model('email_model');
         $this->load->model('pessoa_model');
+        $this->load->model('cadastro_model');
 
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
@@ -32,14 +33,130 @@ class Pessoa extends CI_Controller
         endif;
     }
 
+/*Função usada para cadastrar pessoa externamente [auto cadastro]*/
     public function index()
     {
-        echo "There is nothing here... :X";
-    }
+        $this->form_validation->set_rules('departamento', 'SELECIONE DEPARTAMENTO', 'callback_check_drop');
+        $this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO PESSOA', 'callback_check_drop');
+        $this->form_validation->set_rules('dia', 'DIA', 'greater_than[0]|less_than[32]|callback_check_drop_date');
+        $this->form_validation->set_rules('mes', 'MÊS', 'greater_than[0]|less_than[13]|callback_check_drop_date');
+        $this->form_validation->set_rules('ano', 'ANO', 'greater_than[1929]|less_than[1999]|callback_check_drop_date');
+        $this->form_validation->set_rules('sexo', 'SEXO', 'required|exact_length[1]');
+        $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]|mb_strtoupper');
+        $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[90]|strtolower|valid_email|is_unique[pessoa.email_pes]');
+        $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|max_length[15]|alphanumeric');
+        $this->form_validation->set_rules('lattes', 'LATTES', 'trim|required|max_length[70]');
+        $this->form_validation->set_rules('website', 'WEBSITE', 'trim|max_length[50]|strtolower');
+        $this->form_validation->set_rules('senha', 'SENHA', 'trim|required');
+        $this->form_validation->set_message('matches', 'O campo %s está diferente do campo %s!');
+        $this->form_validation->set_rules('senha2', 'REPETIR SENHA', 'trim|required|matches[senha]');
+        $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|is_unique[pessoa.cpf_pes]|callback_check_cpf');
 
-    /**
-     * -------------------------------------------------------- VIEW
-     */
+
+        if($this->form_validation->run() == TRUE):
+            $dia = $this->input->post('dia');
+            $mes = $this->input->post('mes');
+            $ano = $this->input->post('ano');
+            $dados2 = array('nome_pes' => $this->input->post('nome'),
+                            'email_pes' => $this->input->post('email'),
+                            'ramal_pes' => $this->input->post('ramal'),
+                            'lattes_pes' => $this->input->post('lattes'),
+                            'website_pes' => $this->input->post('website'),
+                            'fk_id_tipo_pessoa' => $this->input->post('tipo_pessoa'),
+                            'fk_id_departamento' => $this->input->post('departamento'),
+                            'cpf_pes' => $this->input->post('cpf'),
+                            'birthday_pes' => $ano.'-'.$mes.'-'.$dia,
+                            'sexo_pes' => $this->input->post('sexo'),
+            );
+
+            $dados1 = array('login_usu' => $this->input->post('email'),
+                            'senha_usu' => sha1($this->input->post('senha'))
+            );
+
+            $this->crud_model->insertUsuario($dados1);
+            $dados2['fk_id_usuario'] = $this->db->insert_id();
+            $this->crud_model->insertPessoa($dados2);
+
+            $dados3['fk_id_usuario'] = $dados2['fk_id_usuario'];
+            $dados3['fk_id_permissao'] = 3;
+            $this->crud_model->insertPermissao($dados3);
+
+            $this->cadastro_model->invalida_token($token, 'pedido_cadastro');/*Devemos mover de cadastro para um model alciliar*/
+
+            $this->session->set_flashdata('sucesso', 'Cadastro efetuado com sucesso! :)');
+            redirect('login');
+        endif;
+
+        $data['departamento'] = $this->crud_model->getAllDepartamento()->result();
+        $data['tipo_pessoa'] = $this->crud_model->getAllTipo_pessoa()->result();
+        $data['main'] = 'telas/cadastro_finalizar';
+        $this->load->view('templates/template_home', $data);
+    }
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+/*Função usada para cadastrar pessoa internamente [atraves de coordenador]*/
+ public function cadastrar_pessoa()
+{
+    $this->form_validation->set_rules('departamento', 'SELECIONE DEPARTAMENTO', 'callback_check_drop');
+    $this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO PESSOA', 'callback_check_drop');
+    $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]');
+    $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[45]|strtolower|valid_email|is_unique[usuario.login_usu]');
+    $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|max_length[15]|alphanumeric');
+    $this->form_validation->set_rules('lattes', 'LATTES', 'trim|max_length[70]');
+    $this->form_validation->set_rules('website', 'WEBSITE', 'trim|max_length[50]');
+    $this->form_validation->set_rules('permissao', 'SELECIONE A PERMISSÃO DO USUÁRIO', 'callback_check_drop');
+
+    /*Novos campos adiconados ao cadas*/
+    $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|is_unique[pessoa.cpf_pes]|callback_check_cpf');
+    $this->form_validation->set_rules('sexo', 'SEXO', 'required|exact_length[1]');
+    $this->form_validation->set_rules('dia', 'DIA', 'greater_than[0]|less_than[32]|callback_check_drop_date');
+    $this->form_validation->set_rules('mes', 'MÊS', 'greater_than[0]|less_than[13]|callback_check_drop_date');
+    $this->form_validation->set_rules('ano', 'ANO', 'greater_than[1929]|less_than[1999]|callback_check_drop_date');
+
+    if ($this->form_validation->run()==TRUE):
+        $dia = $this->input->post('dia');
+        $mes = $this->input->post('mes');
+        $ano = $this->input->post('ano');
+
+        $senha = random_string('alnum', 10);
+        $usuario['login_usu'] = $this->input->post('email');
+        $usuario['senha_usu'] = sha1($senha);
+
+        $pessoa['nome_pes'] = $this->input->post('nome');
+        $pessoa['email_pes'] = $this->input->post('email');
+        $pessoa['ramal_pes'] = $this->input->post('ramal');
+        $pessoa['lattes_pes'] = $this->input->post('lattes');
+        $pessoa['website_pes'] = $this->input->post('website');
+        $pessoa['fk_id_tipo_pessoa'] = $this->input->post('tipo_pessoa');
+        $pessoa['fk_id_departamento'] = $this->input->post('departamento');
+        $pessoa['cpf_pes'] = $this->input->post('cpf');
+        $pessoa['birthday_pes'] = $ano.'-'.$mes.'-'.$dia;
+        $pessoa['sexo_pes'] =  $this->input->post('sexo');
+
+
+        $permissao = $this->input->post('permissao');
+
+        if($this->pessoa_model->cadastrar_pessoa($usuario, $pessoa, $permissao)==true):
+            $email = $pessoa['email_pes'];
+            $assunto = "Seja bem-vindo ao UESC 360º!";
+            $mensagem = "Você foi cadastrado na plataforma UESC 360º!<br> Usuário: ".$usuario['login_usu']."<br> Senha: ".$senha;
+
+            if($this->email_model->enviar_email($email, $assunto, $mensagem)==true):
+                $data['sucesso'] = 'Dados cadastrados com sucesso! (Email enviado ao usuário '.$usuario['login_usu'].')';
+            else:
+                $data['sucesso'] = 'Dados cadastrados com sucesso! (Email <b>NÃO</b> enviado ao usuário '.$usuario['login_usu'].')';
+            endif;
+        else:
+            $data['erro'] = 'Oops... Os dados inseridos não foram cadastrados! :(';
+        endif;
+
+    endif;
+
+    $data['main'] = 'pessoa/cadastrar_pessoa';
+    $data['departamento'] = $this->crud_model->getAllDepartamento()->result();
+    $data['tipo_pessoa'] = $this->crud_model->getAllTipo_pessoa()->result();
+    $this->load->view('templates/template_admin2', $data);
+}
 
     public function visualizar_pessoa($id_pessoa=NULL)
     {
@@ -59,78 +176,6 @@ class Pessoa extends CI_Controller
         $this->load->view('templates/template_admin2', $data);
     }
 
-    /**
-     * -------------------------------------------------------- CREATE
-     */
-
-     public function cadastrar_pessoa()
-    {
-
-
-        $this->form_validation->set_rules('departamento', 'SELECIONE DEPARTAMENTO', 'callback_check_drop');
-        $this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO PESSOA', 'callback_check_drop');
-        $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]');
-        $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[45]|strtolower|valid_email|is_unique[usuario.login_usu]');
-        $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|max_length[15]|alphanumeric');
-        $this->form_validation->set_rules('lattes', 'LATTES', 'trim|max_length[70]');
-        $this->form_validation->set_rules('website', 'WEBSITE', 'trim|max_length[50]');
-        $this->form_validation->set_rules('permissao', 'SELECIONE A PERMISSÃO DO USUÁRIO', 'callback_check_drop');
-
-        /*Novos campos adiconados ao cadas*/
-        $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|is_unique[pessoa.cpf_pes]|callback_check_cpf');
-        $this->form_validation->set_rules('sexo', 'SEXO', 'required|exact_length[1]');
-        $this->form_validation->set_rules('dia', 'DIA', 'greater_than[0]|less_than[32]|callback_check_drop_date');
-        $this->form_validation->set_rules('mes', 'MÊS', 'greater_than[0]|less_than[13]|callback_check_drop_date');
-        $this->form_validation->set_rules('ano', 'ANO', 'greater_than[1929]|less_than[1999]|callback_check_drop_date');
-
-        if ($this->form_validation->run()==TRUE):
-            $dia = $this->input->post('dia');
-            $mes = $this->input->post('mes');
-            $ano = $this->input->post('ano');
-
-            $senha = random_string('alnum', 10);
-            $usuario['login_usu'] = $this->input->post('email');
-            $usuario['senha_usu'] = sha1($senha);
-
-            $pessoa['nome_pes'] = $this->input->post('nome');
-            $pessoa['email_pes'] = $this->input->post('email');
-            $pessoa['ramal_pes'] = $this->input->post('ramal');
-            $pessoa['lattes_pes'] = $this->input->post('lattes');
-            $pessoa['website_pes'] = $this->input->post('website');
-            $pessoa['fk_id_tipo_pessoa'] = $this->input->post('tipo_pessoa');
-            $pessoa['fk_id_departamento'] = $this->input->post('departamento');
-            $pessoa['cpf_pes'] = $this->input->post('cpf');
-            $pessoa['birthday_pes'] = $ano.'-'.$mes.'-'.$dia;
-            $pessoa['sexo_pes'] =  $this->input->post('sexo');
-
-
-            $permissao = $this->input->post('permissao');
-
-            if($this->pessoa_model->cadastrar_pessoa($usuario, $pessoa, $permissao)==true):
-                $email = $pessoa['email_pes'];
-                $assunto = "Seja bem-vindo ao UESC 360º!";
-                $mensagem = "Você foi cadastrado na plataforma UESC 360º!<br> Usuário: ".$usuario['login_usu']."<br> Senha: ".$senha;
-
-                if($this->email_model->enviar_email($email, $assunto, $mensagem)==true):
-                    $data['sucesso'] = 'Dados cadastrados com sucesso! (Email enviado ao usuário '.$usuario['login_usu'].')';
-                else:
-                    $data['sucesso'] = 'Dados cadastrados com sucesso! (Email <b>NÃO</b> enviado ao usuário '.$usuario['login_usu'].')';
-                endif;
-            else:
-                $data['erro'] = 'Oops... Os dados inseridos não foram cadastrados! :(';
-            endif;
-
-        endif;
-
-        $data['main'] = 'pessoa/cadastrar_pessoa';
-        $data['departamento'] = $this->crud_model->getAllDepartamento()->result();
-        $data['tipo_pessoa'] = $this->crud_model->getAllTipo_pessoa()->result();
-        $this->load->view('templates/template_admin2', $data);
-    }
-
-    /**
-     * -------------------------------------------------------- UPDATE
-     */
 
     public function editar_pessoa($id_pessoa=NULL)
     {
@@ -173,9 +218,6 @@ class Pessoa extends CI_Controller
         $this->load->view('templates/template_admin2', $data);
     }
 
-    /**
-     * -------------------------------------------------------- DELETE
-     */
 
     public function deletar_usuario($id_usuario=NULL)
     {
@@ -258,9 +300,4 @@ class Pessoa extends CI_Controller
             return true;
         endif;
     }
-
-
 }
-
-/* End of file pessoa.php */
-/* Location: ./application/controllers/pessoa.php */

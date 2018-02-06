@@ -52,17 +52,6 @@
 <body>
   <div class="layout">
 
-    <!--[if lt IE 9]>
-      <style>
-        .aviso-ie{margin: 20px; text-align: center; font-size: 20px;}
-        .aviso-ie a{color: #047abd;}
-        .aviso-ie a:hover{text-decoration: underline;}
-      </style>
-      <div class="aviso-ie">
-        <p>Seu navegador é muito antigo e não pode exibir este site corretamente.</p>
-        <p>Sugerimos que você <a href="http://browser-update.org/update.html" target="_blank" title="Atualize o seu navegador!">instale um navegador atualizado (clique aqui)</a> para ver este site e aumentar a sua segurança na internet.</p>
-      </div>
-    <![endif]-->
 
 <!-- menu -->
 <?php $this->load->view('coordenador/menu'); ?>

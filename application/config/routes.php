@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "home";
 $route['404_override'] = '';
-$route['cadastro'] = "cadastro/index";
+$route['cadastro'] = "pessoa";/*Rota usada para cadastrar uma pessoa*/
 //exemplo
 $route['checar'] = "cadastro/checar_validacao/test";
 

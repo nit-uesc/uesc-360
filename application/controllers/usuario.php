@@ -65,12 +65,12 @@ class Usuario extends CI_Controller
 	{
 		$this->form_validation->set_rules('nome', 'NOME', 'trim|required|min_length[15]|max_length[50]|mb_strtoupper');
 		$this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[45]|strtolower|valid_email|callback_check_email_unique');
-        $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|min_length[14]|max_length[15]|alpha_numeric_spaces');
+    $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|min_length[14]|max_length[15]|alpha_numeric_spaces');
 		$this->form_validation->set_rules('lattes', 'LATTES', 'trim|max_length[70]');
 		$this->form_validation->set_rules('website', 'WEBSITE', 'trim|max_length[50]|prep_url');
 		$this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO DE PESSOA', 'callback_check_drop');
-        $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|callback_check_cpf|callback_check_cpf_unique');
-        $this->form_validation->set_rules('birthday', 'DATA DE NASCIMENTO', 'required|trim|exact_length[10]|alphanumeric');
+    $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|callback_check_cpf|callback_check_cpf_unique');
+    $this->form_validation->set_rules('birthday', 'DATA DE NASCIMENTO', 'required|trim|exact_length[10]|alphanumeric');
 
 		if ($this->form_validation->run()==TRUE):
 
@@ -186,7 +186,7 @@ class Usuario extends CI_Controller
 		endif;
 	}
 
-    public function check_cpf($cpf)
+    public function heck_cpf($cpf)
     {
         $this->form_validation->set_message('check_cpf', 'O %s informado não é válido.');
         if($cpf == ''):
