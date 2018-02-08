@@ -1,5 +1,6 @@
 uploads/
 application/config/database.php
+application/config/database
 *.swp
 .htaccess
 *.swp
