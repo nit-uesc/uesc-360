@@ -73,7 +73,7 @@
 
         <li class="collection-item indigoa lighten-4">
 					<a class="left grey-text text-darken-2" href="<?php echo base_url('login/recuperar_senha'); ?>">Esqueceu a senha?</a>
-					<a class="right grey-text text-darken-2" href="<?php echo base_url('cadastro'); ?>">Cadastre-se</a>
+					<a class="right grey-text text-darken-2" href="<?php echo base_url('pessoa/'); ?>">Cadastre-se</a>
 					<br>
 				</li>
 
