@@ -288,8 +288,171 @@ class Laboratorio_model extends CI_Model {
         endif;
         return false;
     }
+    /*-------------------------------------------- Importado do model :crud_model
+         Tentando colocar tudo de cada controller em seu devido model..
+         Exemplo tudo relacionado a Laboratorio , irei colocar aqui.
+         Para excluir o crud_model mais a frente
+         */
+    
+        public function getAllLaboratorio()
+        {
+            $this->db->select('*');
+            $this->db->from('laboratorio');
+            $this->db->where('ativo_lab', 1);
+            return $this->db->get();
+        }
+        
+        public function insertLaboratorio($dados=NULL)
+        {
+            if ($dados!=NULL):
+                $this->db->insert('laboratorio', $dados);
+            endif;
+        }
+
+        public function insertImg_laboratorio($dados=NULL)
+        {
+            if ($dados!=NULL):
+                $this->db->insert('img_laboratorio', $dados);
+            endif;
+        }
+        
+        public function insertLaboratorio_has_img($dados=NULL)
+        {
+            if ($dados!=NULL):
+                $this->db->insert('laboratorio_has_img', $dados);
+            endif;
+        }
+        # Retrieve ---------------------------------------------------------------------------------
+
+        public function getBasicInfoLaboratorio()
+        {
+            $this->db->select('lab.id_laboratorio, lab.nome_lab');
+            $this->db->from('laboratorio as lab');
+            $this->db->where('ativo_lab', 1);
+            $this->db->order_by('lab.nome_lab', "asc");
+            return $this->db->get();
+        }
+
+        public function selectLaboratorio()
+        {
+            $this->db->select('lab.id_laboratorio, lab.nome_lab, lab.ramal_lab, lab.website_lab, lab.descricao_lab,
+                            lab.atividades_lab, lab.areas_atendidas_lab, lab.multiusuario_lab, lab.usa_ensino_lab,
+                            lab.usa_pesquisa_lab, lab.usa_extensao_lab, lab.last_modified_lab, lab.status_lab,
+                            pav.nome_pav');
+            $this->db->from('laboratorio as lab');
+            $this->db->join('pavilhao as pav', 'lab.fk_id_pavilhao = pav.id_pavilhao', 'inner');
+            $this->db->where('ativo_lab', 1);
+            return $this->db->get();
+        }
+
+        public function selectLaboratorioByPessoa($id=NULL)
+        {
+            if($id!=NULL):
+                $this->db->select('lab.id_laboratorio, lab.nome_lab');
+                $this->db->from('laboratorio_has_pessoa as lhp');
+                $this->db->join('laboratorio as lab', 'lab.id_laboratorio = lhp.fk_id_laboratorio', 'inner');
+                $this->db->where('lhp.fk_id_pessoa', $id);
+                $this->db->where('lab.ativo_lab', 1);
+
+                return $this->db->get();
+            else:
+                die('Erro! Não foi possível listar os laboratórios. :(');
+            endif;
+        }
+
+        public function selectLaboratorioByID($id)
+        {
+            $this->db->select('lhp.id_laboratorio_pessoa, pes.id_pessoa, lab.id_laboratorio, lab.nome_lab,
+                                lab.ramal_lab, lab.website_lab, lab.descricao_lab, lab.atividades_lab,
+                                lab.areas_atendidas_lab, lab.multiusuario_lab, lab.usa_ensino_lab,
+                                lab.usa_pesquisa_lab, lab.usa_extensao_lab, lab.last_modified_lab,
+                                lab.fk_id_pavilhao, pav.nome_pav');
+            $this->db->from('laboratorio_has_pessoa as lhp');
+            $this->db->join('pessoa as pes', 'pes.id_pessoa = lhp.fk_id_pessoa', 'inner');
+            $this->db->join('laboratorio as lab', 'lab.id_laboratorio = lhp.fk_id_laboratorio', 'inner');
+            $this->db->join('pavilhao as pav', 'lab.fk_id_pavilhao = pav.id_pavilhao', 'inner');
+            $this->db->where('lab.id_laboratorio = '.$id);
+            $this->db->where('lab.ativo_lab', 1);
+            return $this->db->get();
+        }
+
+        public function selectCoordenadorByID($id)
+        {
+            $this->db->select('pes.id_pessoa');
+            $this->db->from('laboratorio_has_pessoa as lhp');
+            $this->db->join('laboratorio as lab', 'lab.id_laboratorio = lhp.fk_id_laboratorio', 'inner');
+            $this->db->join('pessoa as pes', 'pes.id_pessoa = lhp.fk_id_pessoa', 'inner');
+            $this->db->where('lab.id_laboratorio = '.$id);
+            return $this->db->get();
+        }
+
+        public function selectCursoLab($id)
+        {
+            $this->db->select('id_curso, nome_cur');
+            $this->db->from('curso, laboratorio_has_curso');
+            $this->db->where('fk_id_curso = id_curso and fk_id_laboratorio = '.$id);
+            return $this->db->get();
+        }
+
+        public function selectCoordenadorLab($id)
+        {
+            $this->db->select('id_pessoa, nome_pes');
+            $this->db->from('pessoa, laboratorio_has_pessoa');
+            $this->db->where('fk_id_pessoa = id_pessoa and fk_id_laboratorio = '.$id);
+            return $this->db->get();
+        }
+
+        public function selectDepartamentoLab($id)
+        {
+            $this->db->select('id_departamento, nome_dpt');
+            $this->db->from('departamento, laboratorio_has_departamento');
+            $this->db->where('fk_id_departamento = id_departamento and fk_id_laboratorio = '.$id);
+            return $this->db->get();
+        }
+
+        public function selectImgLab($id)
+        {
+            $this->db->select('nome_iml');
+            $this->db->from('laboratorio_has_img, img_laboratorio');
+            $this->db->where('fk_id_img_laboratorio = id_img_laboratorio and fk_id_laboratorio = '.$id);
+            $this->db->where('img_laboratorio.ativo_iml', 1);
+            return $this->db->get();
+        }
+
+        # Update -----------------------------------------------------------------------------------
+
+	public function updateLaboratorio($id, $dados)
+	{
+		$this->db->where('id_laboratorio', $id);
+		$this->db->update('laboratorio', $dados);
+	}
+
+	public function updateLaboratorioHasPessoa($id, $dados)
+	{
+		$this->db->where('id_laboratorio_pessoa', $id);
+		$this->db->update('laboratorio_has_pessoa', $dados);
+	}
+
+	# Delete -----------------------------------------------------------------------------------
+
+	public function deleteLaboratorio($id, $dados)
+	{
+		$this->db->where('id_laboratorio', $id);
+		$this->db->update('laboratorio', $dados);
+	}
+
+	public function deleteEquipamentoDpt($id)
+	{
+		$this->db->where('fk_id_laboratorio', $id);
+		$this->db->delete('laboratorio_has_departamento');
+	}
+
+	public function deleteEquipamentoCursos($id)
+	{
+		$this->db->where('fk_id_laboratorio', $id);
+		$this->db->delete('laboratorio_has_curso');
+	}
 
 }
-
 /* End of file laboratorio_model.php */
 /* Location: ./application/models/laboratorio_model.php */

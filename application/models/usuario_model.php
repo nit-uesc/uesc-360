@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario_model extends CI_Model
 {
+	//Realiza a inserção no banco de dados
+	public function insertUsuario($dados=NULL)
+	{
+		if ($dados!=NULL):
+			$this->db->insert('usuario', $dados);
+		endif;
+	}
+
 	public function get_info_pessoa($ID=NULL)
 	{
 		if($ID != NULL):

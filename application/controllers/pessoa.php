@@ -18,9 +18,12 @@ class Pessoa extends CI_Controller
 
         // remover posteriormente
         $this->load->model('crud_model');
+        //Novo Model em Contrução
+        $this->load->model('departamento_model');
 
         $this->load->model('email_model');
         $this->load->model('pessoa_model');
+        $this->load->model('usuario_model');
         $this->load->model('cadastro_model');
 
         /* inicio de bloco responsavel para permissão de utilizar a função */
@@ -75,9 +78,9 @@ class Pessoa extends CI_Controller
                             'senha_usu' => sha1($this->input->post('senha'))
             );
 
-            $this->crud_model->insertUsuario($dados1);
+            $this->usuario_model->insertUsuario($dados1);
             $dados2['fk_id_usuario'] = $this->db->insert_id();
-            $this->crud_model->insertPessoa($dados2);
+            $this->pessoa_model->insertPessoa($dados2);
 
             $dados3['fk_id_usuario'] = $dados2['fk_id_usuario'];
             $dados3['fk_id_permissao'] = 3;
@@ -89,8 +92,9 @@ class Pessoa extends CI_Controller
             redirect('login');
         endif;
 
-        $data['departamento'] = $this->crud_model->getAllDepartamento()->result();
-        $data['tipo_pessoa'] = $this->crud_model->getAllTipo_pessoa()->result();
+        $data['departamento'] = $this->departamento_model->getAllDepartamento()->result();
+        // $data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
+        $data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
         $data['main'] = 'telas/cadastro_finalizar';
         $this->load->view('templates/template_home', $data);
     }
@@ -166,8 +170,8 @@ class Pessoa extends CI_Controller
     endif;
 
     $data['main'] = 'pessoa/cadastrar_pessoa';
-    $data['departamento'] = $this->crud_model->getAllDepartamento()->result();
-    $data['tipo_pessoa'] = $this->crud_model->getAllTipo_pessoa()->result();
+    $data['departamento'] = $this->departamento_model->getAllDepartamento()->result();
+    $data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
     $this->load->view('templates/template_admin2', $data);
 }
 
@@ -185,7 +189,7 @@ class Pessoa extends CI_Controller
         /* inicio de bloco responsavel para permissão de utilizar a função */
 
         if($id_pessoa != NULL && is_numeric($id_pessoa)):
-            $data['pessoa']               = $this->generica_consulta_model->consulta_pessoa_by_id($this->funcoes->antiInjection($id_pessoa));
+            $data['pessoa']               = $this->pessoa_model->consulta_pessoa_by_id($this->funcoes->antiInjection($id_pessoa));
             $data['laboratorio_coordena'] = $this->generica_consulta_model->consulta_coordenador_laboratorio($this->funcoes->antiInjection($id_pessoa));
             $data['permissoes'] = $this->security_model->getPermissions($this->funcoes->antiInjection($id_pessoa));
         endif;
@@ -206,7 +210,7 @@ class Pessoa extends CI_Controller
         endif;
         /* inicio de bloco responsavel para permissão de utilizar a função */
         
-        $data['pessoa'] = $this->generica_consulta_model->listar_pessoas();
+        $data['pessoa'] = $this->pessoa_model->listar_pessoas();
         $data['main'] = 'pessoa/listar_pessoas';
         $this->load->view('templates/template_admin2', $data);
     }
@@ -256,9 +260,9 @@ class Pessoa extends CI_Controller
                     redirect('pessoa/visualizar_pessoa/'.$id_pessoa);
                 endif;
             endif;
-            $data['pessoa'] = $this->generica_consulta_model->consulta_pessoa_by_id($id_pessoa);
-            $data['departamento'] = $this->generica_consulta_model->consulta_departamentos();
-            $data['tipo_pessoa'] = $this->crud_model->getAllTipo_pessoa()->result();
+            $data['pessoa'] = $this->pessoa_model->consulta_pessoa_by_id($id_pessoa);
+            $data['departamento'] = $this->departamento_model->consulta_departamentos();
+            $data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
         endif;
         $data['main'] = 'pessoa/editar_pessoa';
         $this->load->view('templates/template_admin2', $data);

@@ -84,11 +84,13 @@ class Generica_consulta_model extends CI_Model
         return $this->db->get('curso')->result();
     }
 
+    //remover
     public function consulta_departamentos()
     {
         // $this->db->order_by('nome_dpt', "asc");
         return $this->db->get('departamento')->result();
     }
+
 
     public function consulta_coordenadores()
     {
@@ -100,6 +102,7 @@ class Generica_consulta_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    //verificar quem chama,direcionar para pessoa e remover
     public function consulta_pessoa_by_id($id_pessoa)
     {
         // $this->db->select('pes.id_pessoa, pes.nome_pes, pes.email_pes, tip.tipo_tip');
@@ -112,6 +115,7 @@ class Generica_consulta_model extends CI_Model
         $this->db->where('pes.id_pessoa', $id_pessoa);
         return $this->db->get()->result();
     }
+
 
     public function consulta_coordenador_laboratorio($id_pessoa)
     {
