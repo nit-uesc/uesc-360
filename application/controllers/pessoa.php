@@ -383,4 +383,41 @@ class Pessoa extends CI_Controller
             return true;
         endif;
     }
+
+    /*
+
+    ----------------------------------------------
+    Funções auxiliares para recuperar senha.
+    ----------------------------------------------
+
+    */
+    public function nova_senha($token=NULL)
+    {
+        if($token==NULL || !ctype_alnum($token)){redirect('home','refresh');}
+
+        $retorno = $this->cadastro_model->verifica_token($token, 'recuperar_senha');
+        if ($retorno) {
+            $dados['token'] = $token;
+            $dados['main'] = 'telas/nova_senha';
+        } else {
+            //Token já usado;
+            $dados['main'] = 'telas/recuperar_senha';
+        }
+        $this->load->view('templates/template_home', $dados);
+    }
+
+    public function falso($token=NULL)
+    {
+        if($token==NULL || !ctype_alnum($token)){redirect('home','refresh');}
+
+        $retorno = $this->cadastro_model->verifica_token($token, 'recuperar_senha');
+        if ($retorno) {
+            $this->cadastro_model->pedido_falso($token, 'recuperar_senha');
+            $data['main'] = 'telas/login';
+        } else {
+            $data['main'] = 'telas/login';
+        }
+        $this->load->view('templates/template_home', $data);
+    }
+
 }

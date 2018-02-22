@@ -71,7 +71,7 @@
               <li><a href="<?php echo base_url('explore'); ?>">Explore</a></li>
 
               <?php if(!$this->session->userdata('logged_in')): ?>
-              <li><a href="<?php echo base_url('cadastro'); ?>">Cadastro</a></li>
+              <li><a href="<?php echo base_url('pessoa'); ?>">Cadastro</a></li>
               <?php endif; ?>
 
               <li><a href="<?php echo base_url('contato'); ?>">Contato</a></li>

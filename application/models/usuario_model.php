@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario_model extends CI_Model
 {
+
+	public function updateUsuario($id_usuario, $dados)
+	{
+		$this->db->where('id_usuario', $id_usuario);
+		$this->db->update('usuario', $dados);
+	}
 	//Realiza a inserção no banco de dados
 	public function insertUsuario($dados=NULL)
 	{

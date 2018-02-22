@@ -20,7 +20,7 @@
 					  </div>
 					<?php endif; ?>
 
-          <?php echo form_open('cadastro'); ?>
+          <?php echo form_open('pessoa'); ?>
             <br>
             <div class="input-field col s12">
               <i class="material-icons prefix">email</i>
