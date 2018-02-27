@@ -4,6 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuario_model extends CI_Model
 {
 
+  /*Insere a permissão do usuario*/
+	public function insertPermissao($dados=NULL)
+	{
+		if ($dados!=NULL):
+			$this->db->insert('usuario_has_permissao', $dados);
+		endif;
+	}
+
 	public function updateUsuario($id_usuario, $dados)
 	{
 		$this->db->where('id_usuario', $id_usuario);

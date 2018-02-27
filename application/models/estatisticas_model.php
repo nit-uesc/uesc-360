@@ -10,7 +10,6 @@ class Estatisticas_model extends CI_Model
         $this->db->join('laboratorio as lab', 'lab.id_laboratorio = lhc.fk_id_laboratorio', 'left');
         $this->db->join('curso as cur', 'cur.id_curso = lhc.fk_id_curso', 'left');
         $this->db->group_by('lhc.fk_id_curso');
-        // $this->db->order_by('count(*)', 'desc');
         $this->db->order_by('count(*)', 'asc');
         return $this->db->get()->result();
     }
@@ -22,7 +21,6 @@ class Estatisticas_model extends CI_Model
         $this->db->join('laboratorio as lab', 'lab.id_laboratorio = lhd.fk_id_laboratorio', 'left');
         $this->db->join('departamento as dpt', 'dpt.id_departamento = lhd.fk_id_departamento', 'left');
         $this->db->group_by('lhd.fk_id_departamento');
-        // $this->db->order_by('count(*)', 'desc');
         $this->db->order_by('count(*)', 'asc');
         return $this->db->get()->result();
     }

@@ -16,8 +16,6 @@ class Pessoa extends CI_Controller
         $this->load->model('admin_gerencia_model');
         $this->load->model('generica_consulta_model');
 
-        // remover posteriormente
-        $this->load->model('crud_model');
         //Novo Model em Contrução
         $this->load->model('departamento_model');
 
@@ -25,17 +23,6 @@ class Pessoa extends CI_Controller
         $this->load->model('pessoa_model');
         $this->load->model('usuario_model');
         $this->load->model('cadastro_model');
-
-        /* inicio de bloco responsavel para permissão de utilizar a função */
-      /*   if (!$this->session->userdata('logged_in')):
-            redirect('login/logoff');
-        endif;
- 
-        if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
-            $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
-            redirect('painel', 'refresh');
-        endif; */
-        /* inicio de bloco responsavel para permissão de utilizar a função */
     }
 
 /*Função usada para cadastrar pessoa externamente [auto cadastro]*/
@@ -84,7 +71,7 @@ class Pessoa extends CI_Controller
 
             $dados3['fk_id_usuario'] = $dados2['fk_id_usuario'];
             $dados3['fk_id_permissao'] = 3;
-            $this->crud_model->insertPermissao($dados3);
+            $this->usuario_model->insertPermissao($dados3);
 
             $this->cadastro_model->invalida_token($token, 'pedido_cadastro');/*Devemos mover de cadastro para um model alciliar*/
 
@@ -107,7 +94,7 @@ class Pessoa extends CI_Controller
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
- 
+
         if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
@@ -181,7 +168,7 @@ class Pessoa extends CI_Controller
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
- 
+
         if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
@@ -203,13 +190,13 @@ class Pessoa extends CI_Controller
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
- 
+
         if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
         endif;
         /* inicio de bloco responsavel para permissão de utilizar a função */
-        
+
         $data['pessoa'] = $this->pessoa_model->listar_pessoas();
         $data['main'] = 'pessoa/listar_pessoas';
         $this->load->view('templates/template_admin2', $data);
@@ -222,13 +209,13 @@ class Pessoa extends CI_Controller
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
- 
+
         if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
         endif;
         /* inicio de bloco responsavel para permissão de utilizar a função */
-        
+
         $id_pessoa = $this->funcoes->antiInjection($id_pessoa);
         $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]');
 
@@ -275,13 +262,13 @@ class Pessoa extends CI_Controller
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
- 
+
         if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
         endif;
         /* inicio de bloco responsavel para permissão de utilizar a função */
-        
+
         $id_usuario = $this->funcoes->antiInjection($id_usuario);
 
         if($id_usuario!=NULL && is_numeric($id_usuario)):
@@ -306,13 +293,13 @@ class Pessoa extends CI_Controller
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
- 
+
         if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
         endif;
         /* inicio de bloco responsavel para permissão de utilizar a função */
-        
+
         $id_pessoa = $this->funcoes->antiInjection($id_pessoa);
 
         if($id_pessoa!=NULL && is_numeric($id_pessoa) && $status!=NULL && is_numeric($status) && ($status==0 || $status==1)):
@@ -338,13 +325,13 @@ class Pessoa extends CI_Controller
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
- 
+
         if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
         endif;
         /* inicio de bloco responsavel para permissão de utilizar a função */
-        
+
         $id_pessoa = $this->funcoes->antiInjection($id_pessoa);
         $id_usuario = $this->funcoes->antiInjection($id_usuario);
         $permissao = $this->funcoes->antiInjection($permissao);

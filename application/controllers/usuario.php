@@ -43,7 +43,7 @@ class Usuario extends CI_Controller
 		$this->load->model('usuario_model');
 		$this->load->model('pessoa_model');
 		$this->load->model('departamento_model');
-		// $this->load->model('crud_model', 'crud');
+
 
 		if (!$this->session->userdata('logged_in')):
 			redirect('login/logoff');

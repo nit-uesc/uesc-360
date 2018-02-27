@@ -7,7 +7,6 @@ class Login extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<small class="red-text">* ', '</small>');
-		// $this->load->model('crud_model', 'crud');
 		$this->load->model('acesso_model', 'acesso');
 	}
 
@@ -76,7 +75,7 @@ class Login extends CI_Controller
 
 			$this->load->model('cadastro_model');
 			$this->load->model('email_model');
-			
+
             $token = $this->email_model->get_token();
             if ($this->cadastro_model->gravar_token(0, $email, $token, 'recuperar_senha')):
 				$link_recuperacao = base_url('pessoa/nova_senha/'.$token);
