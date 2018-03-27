@@ -25,26 +25,29 @@ class Departamento extends CI_Controller
     }
 	public function index()
 	{
+		echo "There is nothing here... :X";
+	}
+	public function cadastrar_departamento() 
+	{
 		$this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]|mb_strtoupper');
 		if($this->form_validation->run() == TRUE):
-			$departamento['nome_departamento'] = $this->funcoes->antiInjection($this->input->post('nome'));
+			$departamento['nome_dpt'] = $this->funcoes->antiInjection($this->input->post('nome'));
 
-			if ($this->departamento_model->cadastrar_departamento($departamento, $coordenador)):
-                $data['sucesso'] = 'Os dados do departamento foram cadastrados com sucesso! :)';
-            else:
-                $data['erro'] = 'Oops... Ocorreu algum problema! Os dados não foram salvos! :(';
-            endif;
+			if ($this->departamento_model->cadastrar_departamento($departamento)):
+				$data['sucesso'] = 'Os dados do departamento foram cadastrados com sucesso! :)';
+			else:
+				$data['erro'] = 'Oops... Ocorreu algum problema! Os dados não foram salvos! :(';
+			endif;
 
 		endif;
 
 		// if ($this->security_model->isCoord()):
-        //     $data['coordenador'] = $this->generica_consulta_model->consulta_pessoa_by_id($this->session->userdata('id_pessoa'));
-        // elseif ($this->security_model->isAdmin()):
-        //     $data['coordenador'] = $this->generica_consulta_model->consulta_coordenadores();
-        // endif;
+		//     $data['coordenador'] = $this->generica_consulta_model->consulta_pessoa_by_id($this->session->userdata('id_pessoa'));
+		// elseif ($this->security_model->isAdmin()):
+		//     $data['coordenador'] = $this->generica_consulta_model->consulta_coordenadores();
+		// endif;
 
 		$data['main'] = 'departamento/cadastrar_departamento';
-        $this->load->view('templates/template_admin2', $data);
-       
+		$this->load->view('templates/template_admin2', $data);
 	}
 }
