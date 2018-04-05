@@ -50,6 +50,9 @@
       <div class="collection">
         <?php if($this->security_model->isAdmin() && $this->session->userdata('permissao_usu') == 1): ?>
           <a href="<?php echo base_url('pessoa/listar_pessoas'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Pessoa</a>
+          <a href="<?php echo base_url('departamento/listar_departamento'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Departamento</a>
+          <a href="<?php echo base_url('pavilhao/listar_pavilhao'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Pavilhão</a>
+          
         <?php endif; ?>
         <a href="<?php echo base_url('laboratorio/listar_laboratorios'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Laboratório</a>
         <a href="<?php echo base_url('equipamento/listar_equipamentos'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Equipamento</a>

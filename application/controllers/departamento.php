@@ -50,4 +50,60 @@ class Departamento extends CI_Controller
 		$data['main'] = 'departamento/cadastrar_departamento';
 		$this->load->view('templates/template_admin2', $data);
 	}
+	public function listar_departamento() {
+        if ($this->security_model->isAdmin() && $this->session->userdata('permissao_usu') == 1):
+            $data['departamento'] = $this->departamento_model->listar_departamento();
+    	endif;
+
+        $data['main'] = 'departamento/listar_departamento';
+        $this->load->view('templates/template_admin2', $data);
+	}
+	
+	public function deletar_departamento($id_departamento = NULL) {
+        $id_departamento = $this->funcoes->antiInjection($id_departamento);
+        // $this->security_model->youShallNotPass($id_departamento, 'LAB');
+
+        if ($id_departamento != NULL && is_numeric($id_departamento)):
+            // $this->load->model('equipamento_model');
+
+            // $eqps = $this->generica_consulta_model->consulta_equipamento_departamento($id_departamento);
+            // foreach ($eqps as $row):
+            //     $this->equipamento_model->deletar_equipamento($id_departamento, $row->id_equipamento);
+            // endforeach;
+
+            if ($this->departamento_model->deletar_departamento($id_departamento)):
+                $this->session->set_flashdata('sucesso', 'Departamento removido com sucesso! :)');
+                redirect('departamento/listar_departamento');
+            else:
+                $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao remover o Departamento! :(');
+                redirect('departamento/listar_departamento');
+            endif;
+        endif;
+	}
+	
+	public function editar_departamento($id_departamento = NULL) {
+        $id_departamento = $this->funcoes->antiInjection($id_departamento);
+        // $this->security_model->youShallNotPass($id_departamento, 'LAB');
+
+        if ($id_departamento != NULL && is_numeric($id_departamento)):
+
+            $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[200]');
+            
+            if ($this->form_validation->run() === TRUE):
+                $departamento['nome_dpt'] = $this->input->post('nome');
+
+                if ($this->departamento_model->atualizar_dados_departamento($id_departamento, $departamento)):
+                    $this->session->set_flashdata('sucesso', 'Dados atualizados com sucesso! :)');
+                    redirect('departamento/listar_departamento/');
+                else:
+                    $this->session->set_flashdata('erro', 'Oops... Ocorreu um erro ao atualizar os dados! :(');
+                    redirect('departamento/listar_departamento/');
+                endif;
+            endif;
+            $data['departamento'] = $this->departamento_model->consulta_departamento_by_id($id_departamento);
+            $data['main'] = 'departamento/editar_departamento';
+            $this->load->view('templates/template_admin2', $data);
+        endif;
+    }
+
 }
