@@ -1,4 +1,5 @@
-uploads/
-.htaccess
+application/config/database.php
+uploads/*
+*.swp
 *.swp
 *.swo
