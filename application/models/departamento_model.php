@@ -68,4 +68,15 @@ class Departamento_model extends CI_Model
         endif;
         return false;
     }
+
+    // Departamentos do laboratório por ID
+    public function consulta_departamento_laboratorio($id_departamento)
+    {
+        // $this->db->select('lab.nome_lab');
+        $this->db->select('*');
+        $this->db->from('laboratorio_has_departamento as lhd');
+        $this->db->join('laboratorio as lab', 'lab.id_laboratorio = lhd.fk_id_laboratorio', 'left');
+        $this->db->where('lhd.fk_id_departamento', $id_departamento);
+        return $this->db->get()->result();
+    }
 }

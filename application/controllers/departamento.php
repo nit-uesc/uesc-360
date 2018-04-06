@@ -29,6 +29,17 @@ class Departamento extends CI_Controller
 	}
 	public function cadastrar_departamento() 
 	{
+         /* inicio de bloco responsavel para permissão de utilizar a função */
+         if (!$this->session->userdata('logged_in')):
+            redirect('login/logoff');
+        endif;
+
+        if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
+            $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
+            redirect('painel', 'refresh');
+        endif;
+        /* fim de bloco responsavel para permissão de utilizar a função */
+
 		$this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]|mb_strtoupper');
 		if($this->form_validation->run() == TRUE):
 			$departamento['nome_dpt'] = $this->funcoes->antiInjection($this->input->post('nome'));
@@ -51,6 +62,17 @@ class Departamento extends CI_Controller
 		$this->load->view('templates/template_admin2', $data);
 	}
 	public function listar_departamento() {
+         /* inicio de bloco responsavel para permissão de utilizar a função */
+         if (!$this->session->userdata('logged_in')):
+            redirect('login/logoff');
+        endif;
+
+        if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
+            $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
+            redirect('painel', 'refresh');
+        endif;
+        /* inicio de bloco responsavel para permissão de utilizar a função */
+
         if ($this->security_model->isAdmin() && $this->session->userdata('permissao_usu') == 1):
             $data['departamento'] = $this->departamento_model->listar_departamento();
     	endif;
@@ -60,6 +82,18 @@ class Departamento extends CI_Controller
 	}
 	
 	public function deletar_departamento($id_departamento = NULL) {
+         
+        /* inicio de bloco responsavel para permissão de utilizar a função */
+         if (!$this->session->userdata('logged_in')):
+            redirect('login/logoff');
+        endif;
+
+        if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
+            $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
+            redirect('painel', 'refresh');
+        endif;
+        /* inicio de bloco responsavel para permissão de utilizar a função */
+
         $id_departamento = $this->funcoes->antiInjection($id_departamento);
         // $this->security_model->youShallNotPass($id_departamento, 'LAB');
 
@@ -82,6 +116,17 @@ class Departamento extends CI_Controller
 	}
 	
 	public function editar_departamento($id_departamento = NULL) {
+         /* inicio de bloco responsavel para permissão de utilizar a função */
+         if (!$this->session->userdata('logged_in')):
+            redirect('login/logoff');
+        endif;
+
+        if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
+            $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
+            redirect('painel', 'refresh');
+        endif;
+        /* inicio de bloco responsavel para permissão de utilizar a função */
+
         $id_departamento = $this->funcoes->antiInjection($id_departamento);
         // $this->security_model->youShallNotPass($id_departamento, 'LAB');
 
@@ -105,5 +150,30 @@ class Departamento extends CI_Controller
             $this->load->view('templates/template_admin2', $data);
         endif;
     }
+
+    public function visualizar_departamento($id_departamento = NULL) {
+         /* inicio de bloco responsavel para permissão de utilizar a função */
+         if (!$this->session->userdata('logged_in')):
+            redirect('login/logoff');
+        endif;
+
+        if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
+            $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
+            redirect('painel', 'refresh');
+        endif;
+        /* inicio de bloco responsavel para permissão de utilizar a função */
+
+        $id_departamento = $this->funcoes->antiInjection($id_departamento);
+        // $this->security_model->youShallNotPass($id_departamento, 'LAB');
+
+        if ($id_departamento != NULL && is_numeric($id_departamento)):
+            $data['departamento'] = $this->departamento_model->consulta_departamento_by_id($id_departamento);
+            $data['departamento_lab'] = $this->departamento_model->consulta_departamento_laboratorio($id_departamento);
+        endif;
+
+        $data['main'] = 'departamento/visualizacao_departamento';
+        $this->load->view('templates/template_admin2', $data);
+    }
+
 
 }
