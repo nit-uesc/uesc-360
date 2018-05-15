@@ -29,7 +29,7 @@
             <div class="col s12">
 
                 <a href="<?php echo base_url('home'); ?>" class="brand-logo center hide-on-med-and-down">
-                    <img class="center" id="nav-bar-logo" src="<?php echo base_url('assets/img/logoB.png'); ?>" alt="logo-uesc360" />
+                    <img class="center" id="nav-bar-logo" src="<?php echo base_url('assets/img/logoNova.png'); ?>" alt="logo-uesc360" />
                 </a>
 
             </div>

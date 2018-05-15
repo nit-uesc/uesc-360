@@ -1,8 +1,11 @@
+nav ul li{
+  transition: background-color 0.3s ease-in-out;
+}
 nav ul li.ativo
 {
     position: relative;
     bottom: 0;
-    border-bottom: 3px solid #18ffff;
+    border-bottom: 3px solid #F7B800;
     background-color: transparent;
     color: #FFFFFF;
 }
@@ -15,15 +18,14 @@ nav ul li.ativo a
 nav ul li a
 {
     text-transform: uppercase;
-    font-weight: bolder;
     font-size: .9rem;
-    color: #C5CAE9;
+    color: white;
+    font-size: 18px;
 }
 
-nav ul li:hover a
+nav ul li:hover 
 {
-    background-color: transparent;
-    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 
@@ -44,54 +46,27 @@ span.small{
   padding-left: 28px
 }
 
-
-
-
-/* header, main, footer {
-    padding-left: 240px;
+#myMenu{
+  width: 100%;
+  background: #184B6C !important;
+}
+#myMenu .col{
+  float: none !important;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.indigo.darken-2{
+  background: #013A5E !important;
+}
+.indigo.darken-2 .right-align{
+  float: none !important;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@media only screen and (max-width : 992px) {
-    header, main, footer {
-        padding-left: 0;
-    }
+.btn{
+  border-radius: 4px !important;
 }
-
-#nav-bar-logo {
-    width: 10rem;
+.btn.blue.accent-2{
+  background: #F7B800 !important;
 }
-
-#nav-bar-logo-s {
-    width: 10rem;
-}
-
-header ul li a i
-{
-    position: relative;
-    top: 9px;
-    padding-right: -35px;
-}
-
-header ul li ul li a i
-{
-    color: red;
-    position: relative;
-    top: 0px;
-    left: 2px;
-}
-header ul li ul li a
-{
-    position: relative;
-    left: -5px;
-}
-
-#nav-mobile li a:hover
-{
-    color: #039BE5;
-}
-
-#nav-mobile li:hover
-{
-    background-color: rgba(0,0,0,.1);
-}
- */
