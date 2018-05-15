@@ -28,9 +28,9 @@
 <div class="row">
 
 	<div class="col s12 m10 offset-m1 l8 offset-l2 card-panel">
-		<p class="flow-text grey-text">Cadasto</p>
+		<p class="flow-text grey-text">Cadastro</p>
 
-		<?php echo form_open('cadastro'); ?>
+		<?php echo form_open('pessoa'); ?>
 
 		<div class="row">
 

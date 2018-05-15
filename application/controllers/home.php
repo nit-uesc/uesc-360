@@ -20,8 +20,6 @@ class Home extends CI_Controller
 		$data['main'] = 'telas/home';
 		$this->load->view('templates/template_home', $data);
 
-
-
 	}
 
 	public function consulta()
@@ -52,7 +50,7 @@ class Home extends CI_Controller
 
 						case 'l':
 			         $aux_lab[] =  $row;
-							 
+
 
 						break;
 
@@ -132,7 +130,7 @@ class Home extends CI_Controller
 
 
 			if($rsNumber > 0):
-			/*echo "<p>Resultados encontrados: <b>".$rsNumber."</b></p>"; //teg que mostra a quantidade de resultados encontrado*/
+
 
 				foreach ($result as $row):
 					switch ($row->type):
@@ -189,7 +187,5 @@ class Home extends CI_Controller
 
 		endif;
 	}
-
-
 
 }

@@ -169,7 +169,129 @@ class Equipamento_model extends CI_Model
         endif;
         return false;
     }
+    /* -------------------------------------------------------- Importado do model :crud_model
+         Tentando colocar tudo de cada controller em seu devido model..
+         Exemplo tudo relacionado a EQUIPAMENTO , irei colocar aqui.
+         Para excluir o crud_model mais a frente
+         */
 
+    public function insertEquipamento($dados=NULL)
+	{
+		if ($dados!=NULL):
+			$this->db->insert('equipamento', $dados);
+		endif;
+	}
+
+    public function insertLaboratorio_has_equipamento($dados=NULL)
+	{
+		if ($dados!=NULL):
+			$this->db->insert('laboratorio_has_equipamento', $dados);
+		endif;
+	}
+
+	//Inserção dos metadados das imagens
+	public function insertImg_equipamento($dados=NULL)
+	{
+		if ($dados!=NULL):
+			$this->db->insert('img_equipamento', $dados);
+		endif;
+	}
+
+    public function insertEquipamento_has_img($dados=NULL)
+	{
+		if ($dados!=NULL):
+			$this->db->insert('equipamento_has_img', $dados);
+		endif;
+	}
+
+    # Retrieve ---------------------------------------------------------------------------------
+
+	public function getBasicInfoEquipamento()
+	{
+		$this->db->select('eqp.id_equipamento, eqp.nome_eqp');
+		$this->db->from('equipamento as eqp');
+		$this->db->where('ativo_eqp', 1);
+		$this->db->order_by('eqp.nome_eqp', "asc");
+		return $this->db->get();
+	}
+
+	public function selectEquipamento()
+	{
+		$this->db->select('lab.id_laboratorio, lab.nome_lab, eqp.id_equipamento, eqp.nome_eqp, eqp.fabricante_eqp,
+						   eqp.quantidade_eqp, eqp.especificacao_eqp, eqp.descricao_eqp, eqp.status_eqp');
+		$this->db->from('laboratorio_has_equipamento');
+		$this->db->join('laboratorio as lab', 'fk_id_laboratorio = id_laboratorio', 'inner');
+		$this->db->join('equipamento as eqp', 'fk_id_equipamento = id_equipamento', 'inner');
+		$this->db->where('ativo_eqp', 1);
+		return $this->db->get();
+	}
+
+	public function selectEquipamentoByID($id)
+	{
+		$this->db->select('lhe.id_laboratorio_equipamento, lab.id_laboratorio, lab.nome_lab, eqp.id_equipamento, eqp.nome_eqp,
+							eqp.fabricante_eqp, eqp.quantidade_eqp, eqp.especificacao_eqp, eqp.descricao_eqp');
+		$this->db->from('laboratorio_has_equipamento as lhe');
+		$this->db->join('laboratorio as lab', 'lhe.fk_id_laboratorio = lab.id_laboratorio', 'inner');
+		$this->db->join('equipamento as eqp', 'lhe.fk_id_equipamento = eqp.id_equipamento', 'inner');
+		$this->db->where('eqp.id_equipamento = '.$id);
+		$this->db->where('eqp.ativo_eqp', 1);
+		return $this->db->get();
+	}
+
+	public function selectEquipamentoByLab($labID=NULL)
+	{
+		if($labID!=NULL):
+			$this->db->select('eqp.id_equipamento, eqp.nome_eqp, eqp.fabricante_eqp,
+							   eqp.quantidade_eqp, eqp.especificacao_eqp, eqp.descricao_eqp');
+			$this->db->from('equipamento as eqp');
+			$this->db->join('laboratorio_has_equipamento as lhe', 'lhe.fk_id_equipamento = eqp.id_equipamento', 'inner');
+			$this->db->where('eqp.ativo_eqp', 1);
+			$this->db->where('lhe.fk_id_laboratorio', $labID);
+		return $this->db->get();
+
+		else:
+			die('Erro ao tentar recuperar informações! :(');
+		endif;
+	}
+
+	public function selectLabEquipamento($id)
+	{
+		$this->db->select('nome_lab');
+		$this->db->from('laboratorio, laboratorio_has_equipamento');
+		$this->db->where('fk_id_laboratorio = id_laboratorio and fk_id_equipamento = '.$id);
+		return $this->db->get();
+	}
+
+	public function selectImgEqp($id)
+	{
+		$this->db->select('nome_ime');
+		$this->db->from('equipamento_has_img, img_equipamento');
+		$this->db->where('fk_id_img_equipamento = id_img_equipamento and fk_id_equipamento = '.$id);
+		$this->db->where('img_equipamento.ativo_ime', 1);
+		return $this->db->get();
+	}
+
+	# Update -----------------------------------------------------------------------------------
+
+	public function updateEquipamento($id, $dados)
+	{
+		$this->db->where('id_equipamento', $id);
+		$this->db->update('equipamento', $dados);
+	}
+
+	public function updateLaboratorioHasEquipamento($id, $dados)
+	{
+		$this->db->where('id_laboratorio_equipamento', $id);
+		$this->db->update('laboratorio_has_equipamento', $dados);
+	}
+
+	# Delete -----------------------------------------------------------------------------------
+
+	public function deleteEquipamento($id, $dados)
+	{
+		$this->db->where('id_equipamento', $id);
+		$this->db->update('equipamento', $dados);
+	}
 }
 
 /* End of file equipamento_model.php */

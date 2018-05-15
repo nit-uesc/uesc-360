@@ -40,8 +40,10 @@ class Usuario extends CI_Controller
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<small class="red-text">* ', '</small>');
 		// model
-		$this->load->model('usuario_model', 'usuario');
-		$this->load->model('crud_model', 'crud');
+		$this->load->model('usuario_model');
+		$this->load->model('pessoa_model');
+		$this->load->model('departamento_model');
+
 
 		if (!$this->session->userdata('logged_in')):
 			redirect('login/logoff');
@@ -56,7 +58,7 @@ class Usuario extends CI_Controller
 
 	public function perfil()
 	{
-		$data['pessoa'] = $this->usuario->get_info_pessoa($this->session->userdata('id_pessoa'));
+		$data['pessoa'] = $this->usuario_model->get_info_pessoa($this->session->userdata('id_pessoa'));
 		$data['main'] = '/usuario/perfil';
 		$this->load->view('templates/template_admin2', $data);
 	}
@@ -65,12 +67,12 @@ class Usuario extends CI_Controller
 	{
 		$this->form_validation->set_rules('nome', 'NOME', 'trim|required|min_length[15]|max_length[50]|mb_strtoupper');
 		$this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[45]|strtolower|valid_email|callback_check_email_unique');
-        $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|min_length[14]|max_length[15]|alpha_numeric_spaces');
+    $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|min_length[14]|max_length[15]|alpha_numeric_spaces');
 		$this->form_validation->set_rules('lattes', 'LATTES', 'trim|max_length[70]');
 		$this->form_validation->set_rules('website', 'WEBSITE', 'trim|max_length[50]|prep_url');
 		$this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO DE PESSOA', 'callback_check_drop');
-        $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|callback_check_cpf|callback_check_cpf_unique');
-        $this->form_validation->set_rules('birthday', 'DATA DE NASCIMENTO', 'required|trim|exact_length[10]|alphanumeric');
+    $this->form_validation->set_rules('cpf', 'CPF', 'required|trim|exact_length[14]|callback_check_cpf|callback_check_cpf_unique');
+    $this->form_validation->set_rules('birthday', 'DATA DE NASCIMENTO', 'required|trim|exact_length[10]|alphanumeric');
 
 		if ($this->form_validation->run()==TRUE):
 
@@ -89,16 +91,16 @@ class Usuario extends CI_Controller
 
 			$dataU['login_usu'] = $this->input->post('email');
 
-			$this->crud->updatePessoa($id, $dados);
-			$this->crud->updateUsuario($this->session->userdata('id_usuario'), $dataU);
+			$this->pessoa_model->updatePessoa($id, $dados);
+			$this->usuario_model->updateUsuario($this->session->userdata('id_usuario'), $dataU);
 			$this->session->set_userdata('username', $dados['nome_pes']);
 			$this->session->set_flashdata('success', 'Dados alterados com sucesso!');
 			redirect('usuario/perfil');
 		endif;
 
-		$data['tipo_pessoa'] = $this->crud->getAllTipo_pessoa()->result();
-		$data['departamento'] = $this->crud->getAllDepartamento()->result();
-		$data['pessoa'] = $this->usuario->get_info_pessoa($this->session->userdata('id_pessoa'));
+		$data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
+		$data['departamento'] = $this->departamento_model->getAllDepartamento()->result();
+		$data['pessoa'] = $this->usuario_model->get_info_pessoa($this->session->userdata('id_pessoa'));
 		$data['main'] = '/usuario/editar_usuario';
 		$this->load->view('templates/template_admin2', $data);
 	}
@@ -115,9 +117,9 @@ class Usuario extends CI_Controller
 
 			$senha_atual = sha1($this->input->post('senha'));
 
-			if($this->usuario->senha_valida($id_usuario, $senha_atual)==true):
+			if($this->usuario_model->senha_valida($id_usuario, $senha_atual)==true):
 				$nova_senha = sha1($this->input->post('senha2'));
-				$this->usuario->change_password($id_usuario, $nova_senha);
+				$this->usuario_model->change_password($id_usuario, $nova_senha);
 
 				$this->session->set_flashdata('sucesso', 'Senha alterada com sucesso!');
 
@@ -137,19 +139,19 @@ class Usuario extends CI_Controller
 		$data['fk_id_pessoa'] = $this->session->userdata('id_pessoa');
 		// $data['permissao_lhp'] = 3;
 		$data['permissao_lhp'] = 4;
-		$this->usuario->add_participante($data);
+		$this->usuario_model->add_participante($data);
 		redirect(base_url().'search/laboratorio/'.$data['fk_id_laboratorio'].'/');
 	}
 
 	public function nao_participante()
 	{
-		$this->usuario->remove_participante($this->input->post('ID_LABORATORIO'), $this->session->userdata('id_pessoa'));
+		$this->usuario_model->remove_participante($this->input->post('ID_LABORATORIO'), $this->session->userdata('id_pessoa'));
 		redirect(base_url().'search/laboratorio/'.$this->input->post('ID_LABORATORIO').'/');
 	}
 
 	public function laboratorios()
 	{
-		$data['laboratorios'] = $this->usuario->get_meus_laboratorios();
+		$data['laboratorios'] = $this->usuario_model->get_meus_laboratorios();
 		$data['main'] = '/usuario/laboratorios';
 		$this->load->view('templates/template_usuario', $data);
 	}
@@ -186,7 +188,7 @@ class Usuario extends CI_Controller
 		endif;
 	}
 
-    public function check_cpf($cpf)
+    public function heck_cpf($cpf)
     {
         $this->form_validation->set_message('check_cpf', 'O %s informado não é válido.');
         if($cpf == ''):

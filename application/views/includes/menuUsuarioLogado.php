@@ -7,7 +7,7 @@
 
   <div class="right-align">
     <?php if (!$this->session->userdata('logged_in')): ?>
-      <a href="<?php echo base_url('cadastro'); ?>" class="white-text btn-flat"><i class="material-icons left">assignment</i> Cadastre-se</a>
+      <a href="<?php echo base_url('pessoa'); ?>" class="white-text btn-flat"><i class="material-icons left">assignment</i> Cadastre-se</a>
       <a href="<?php echo base_url('login'); ?>" class="white-text btn-flat"><i class="material-icons left">lock</i>Login</a>
     <?php elseif($this->session->userdata('logged_in')): ?>
       <a class="dropdown-button btn-flat white-text" href="#" data-activates="dropdown1"><i class="material-icons left">account_circle</i>Área Restrita</a>
