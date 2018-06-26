@@ -21,10 +21,10 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" id="pesquisa">
 
      <!--menu filtro para consultas pessoa, laboratorio, equipamentos-->
-     <div class="col s2">
+     <div class="selecionar_pesquisa">
 
        <fieldset >
          <legend class="grey-text"> Pesquisar por </legend>
@@ -53,8 +53,9 @@
 
      <!--Card com o retorno da pesquisa-->
 
-    <div class="col s10" id="div_busca">
+    <div class="resultado_pesquisa" id="div_busca">
     </div>
+</div>
 
 
 

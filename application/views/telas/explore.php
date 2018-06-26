@@ -1,16 +1,16 @@
 <!--Essa classe define a quantidade de colunas que o card ocupará -->
 
-<div class="card-panel">
+<div class="card-panel" id="card-panel">
 
-  <ul class="tabs" style="height: 60px;">
+  <ul class="tabs" id="tabs">
     <!-- Oculta o titulo da coluna pessoas da tabela quando não tem pessoas -->
     <?php if (count($pessoa) != 0 && (($check[0]) == 'true')): ?>
        <?php $conPes = count ($pessoa) ?> <!-- Pega a quantide de pessoas -->
-       <li class="tab col s4" style="text-align:left;margin-left:15px; line-height:20px;">
+       <li class="tab col s4" id="tab" style="text-align:left;margin-left:15px; line-height:20px;">
         <!-- <a href="#tPes">Pessoas <?php echo $conPes;?> </a><a href="#tPes">Pessoas</a>-->
          <ul>
-             <li><p style="text-align:left; color:#ee6e73;  font-weight: bold;">PESSOAS</p></li>
-             <li><p style="text-align:left; margin-top: -15px;  font-size: 12px;"> <?php echo $conPes;?> Resultados </p></li>
+             <li><p id="titulo_tab" >PESSOAS</p></li>
+             <!-- <li><p style="text-align:left; margin-top: -15px;  font-size: 12px;"> <?php echo $conPes;?> Resultados </p></li> -->
          </ul>
        </li>
     <?php endif; ?>
@@ -18,11 +18,11 @@
     <!-- Oculta o titulo da coluna laboratorio da tabela quando não tem laboratorio -->
     <?php if (count($laboratorio) != 0  && (($check[1]) == 'true')): ?>
        <?php $conLab = count ($laboratorio) ?> <!--Pega a aquintidade de laboratorios -->
-       <li class="tab col s4" style="text-align:left;margin-left:15px; line-height:20px;">
+       <li class="tab col s4" id="tab" style="text-align:left;margin-left:15px; line-height:20px;">
          <!--<a href="#tLab">Laboratórios <?php echo $conLab;?></a>-->
          <ul>
-             <li><p style="text-align:left; color:#ee6e73;  font-weight: bold;">LABORATÓRIOS</p></li>
-             <li><p style="text-align:left; margin-top: -15px;  font-size: 12px;"><?php echo $conLab;?> Resultados </p></li>
+             <li><p id="titulo_tab" >LABORATÓRIOS</p></li>
+             <!-- <li><p style="text-align:left; margin-top: -15px;  font-size: 12px;"><?php echo $conLab;?> Resultados </p></li> -->
          </ul>
        </li>
     <?php endif; ?>
@@ -30,11 +30,11 @@
     <!-- Oculta o titulo da coluna equipamento da tabela quando não tem equipamentos -->
     <?php if (count($equipamento) != 0  && (($check[2]) == 'true')): ?>
        <?php $conEqi = count ($equipamento) ?><!-- pega a quantidade de equipamentos -->
-       <li class="tab col s4" style="text-align:left;margin-left:15px; line-height:20px;">
+       <li class="tab col s4" id="tab" style="text-align:left;margin-left:15px; line-height:20px;">
           <!--<a href="#tEqp">Equipamentos <?php echo $conEqi;?></a>-->
           <ul>
-              <li><p style="text-align:left; color:#ee6e73;  font-weight: bold;">Equipamentos</p></li>
-              <li><p style="text-align:left; margin-top: -15px;  font-size: 12px;"><?php echo $conEqi;?> Resultados </p></li>
+              <li><p id="titulo_tab" >Equipamentos</p></li>
+              <!-- <li><p style="text-align:left; margin-top: -15px;  font-size: 12px;"><?php echo $conEqi;?> Resultados </p></li> -->
           </ul>
        </li>
     <?php endif; ?>
@@ -67,7 +67,7 @@
 
                       <?php endif ?>
                               <?php $pes = $pessoa[$i]; ?>
-                              <a href="<?php echo base_url('search/pessoa/'.$pes->id); ?>">
+                              <a id="link_pesquisa" href="<?php echo base_url('search/pessoa/'.$pes->id); ?>">
                                   <i class="material-icons left">person</i>
                                   <?php echo $pes->name;?>
                               </a>
@@ -104,7 +104,7 @@
                           <?php endif ?>
                     <?php endif ?>
                               <?php $lab = $laboratorio[$i]; ?>
-                              <a href="<?php echo base_url('search/laboratorio/'.$lab->id); ?>">
+                              <a id="link_pesquisa" href="<?php echo base_url('search/laboratorio/'.$lab->id); ?>">
                               <i class="material-icons left">group_work</i>
 
                               <!-- caso o laboratorio tenha sigla adiciona-->
@@ -153,7 +153,7 @@
                       <?php endif ?>
 
                                 <?php $eq = $equipamento[$i]; ?>
-                                <a href="<?php echo base_url('search/equipamento/'.$eq->id); ?>">
+                                <a id="link_pesquisa" href="<?php echo base_url('search/equipamento/'.$eq->id); ?>">
                                 <i class="material-icons left">build</i>
                                 <?php echo $eq->name;?>
                                 </a>
