@@ -62,7 +62,7 @@ class Login extends CI_Controller
 		endif;
 
 		$dados['main'] = 'telas/login';
-		$this->load->view('templates/template_blank', $dados);
+		$this->load->view('templates/template_home', $dados);
 	}
 
 	public function recuperar_senha()

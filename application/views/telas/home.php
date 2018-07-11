@@ -1,7 +1,9 @@
 <form data-abide action="<?php echo base_url('home/consulta'); ?>" id="myForm" method="post" onsubmit="return false;">
   <div class="input-field col s12 white card myform" style="margin: 0;">
-    <i class="material-icons">search</i>
-    <input id="busca" type="search" placeholder="Pesquisa" autocomplete="off" name="busca" onkeyup="myFunction()" autofocus />
+    <div class="wrapper">
+      <i class="material-icons">search</i>
+      <input id="busca" type="search" placeholder="Pesquisa" autocomplete="off" name="busca" onkeyup="myFunction()" autofocus />
+    </div>
   </div>
 </form>
 

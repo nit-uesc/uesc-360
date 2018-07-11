@@ -145,3 +145,9 @@ span.prefix, label.prefix
 #tbPesquisa > td.col.s4{
   padding: 1rem 0.5rem;
 }
+
+.myForm .wrapper{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+

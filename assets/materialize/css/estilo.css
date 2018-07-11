@@ -1,3 +1,7 @@
+button.__high{
+  background: #F7B800 !important;
+
+}
 nav ul li{
   transition: background-color 0.3s ease-in-out;
 }
@@ -70,6 +74,14 @@ span.small{
 .btn.blue.accent-2{
   background: #F7B800 !important;
 }
+.wrapper{
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+}
+.wrapper > input{
+  border-bottom: none;
+}
 #pesquisa{
   float: none !important;
   max-width: 900px !important;
@@ -100,4 +112,42 @@ span.small{
 }
 #link_pesquisa{
   color: #023a5f;
+}
+
+#login{
+  margin-top: 4rem;
+}
+
+#login .collection-header, #login .collection-item{
+  padding: 2rem 4rem;
+}
+
+#login .collection-header{
+  background: #013A5E;
+}
+
+#login .row i{
+  color: #013A5E;
+}
+
+#login .row i{
+  color: #013A5E;
+}
+
+#login form button{
+  background: #013A5E;
+  padding: 0.5rem 2rem;
+  height: auto;
+  text-align: center;
+  width: 100%;
+  font-size: 1.3em;
+}
+
+
+#login .row button > i, #login .row button > a{
+  color: white;
+}
+#login .row > a.__center{
+  display: block;
+  text-align: center;
 }
