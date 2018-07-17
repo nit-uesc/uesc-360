@@ -25,7 +25,7 @@
         <?php $this->load->view('includes/menuUsuarioLogado'); ?>
 
         <!-- menu inicio -->
-        <div class="row indigo" style="padding-bottom:0; margin-bottom:0; padding:0; margin:0;">
+        <div class="row indigo" id="myMenu" style="padding-bottom:0; margin-bottom:0; padding:0; margin:0;">
             <div class="col s12">
 
                 <a href="<?php echo base_url('home'); ?>" class="brand-logo center hide-on-med-and-down">
@@ -36,13 +36,13 @@
         </div>
         <!-- menu fim -->
 
-        <div class="row">
+        <div class="row" id="painel">
             <div class="col s12 m3 l2" style="padding:0;">
                 <?php $this->load->view('admin/menuLateral'); ?>
             </div>
 
             <div class="col s12 m9 l10">
-                <div class="card-panel">
+                <div class="card-panel" id="painel-info">
 
                     <?php $this->load->view($main); ?>
 

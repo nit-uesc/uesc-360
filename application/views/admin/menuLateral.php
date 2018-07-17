@@ -1,4 +1,4 @@
-<ul class="collapsible" data-collapsible="accordion">
+<ul class="collapsible" id="menu-lateral" data-collapsible="accordion">
   <li>
     <div class="collapsible-header">
       <a href="<?php echo base_url('home'); ?>" class="grey-text text-darken-4" style="display:block;">

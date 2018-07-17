@@ -21,12 +21,12 @@
     <div id="myMenu" class="row indigo" style="padding:0; margin:0;">
       <div class="col s12">
 
-        <a href="<?php echo base_url('home'); ?>" class="brand-logo center hide-on-med-and-down">
-          <img class="center" id="nav-bar-logo" src="<?php echo base_url('assets/img/logoNova.png'); ?>" alt="logo-uesc360" />
-        </a>
+        <nav class="transparent z-depth-0" id="nav-ul">
 
-        <nav class="transparent z-depth-0">
-          <div class="nav-wrapper">
+          <a href="<?php echo base_url('home'); ?>" class="brand-logo">
+            <img class="center" id="nav-bar-logo" src="<?php echo base_url('assets/img/logoNova.png'); ?>" alt="logo-uesc360" />
+          </a>
+          <div class="nav-wrapper" id="nav-wrapper">
 
             <ul class="left hide-on-med-and-down">
 
