@@ -15,15 +15,6 @@
 <?php endif; ?>
 <!-- fim feedback da ação ao usuário -->
 
-<?php if($this->session->userdata('permissao_usu') == 1): ?>
-  <div class="card-panel blue white-text">
-    <span>Você está acessando a plataforma como <b>Administrador</b>.</span>
-  </div>
-<?php elseif($this->session->userdata('permissao_usu') == 2): ?>
-  <div class="card-panel blue white-text">
-    <span>Você está acessando a plataforma como <b>Coordenador</b>.</span>
-  </div>
-<?php endif; ?>
 
 
 <p class="flow-text">Seja bem-vindo ao UESC 360º</p>
