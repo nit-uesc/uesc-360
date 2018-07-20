@@ -172,3 +172,12 @@ span.small{
   display: block;
   text-align: center;
 }
+.checks_search{
+  text-align: center;
+}
+.search_leg{
+  color:#013a5e;
+}
+.check_op{
+  padding-right: 19px;
+}

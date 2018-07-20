@@ -14,8 +14,5 @@
 </div>
 <?php endif; ?>
 <!-- fim feedback da ação ao usuário -->
-
-
-
 <p class="flow-text">Seja bem-vindo ao UESC 360º</p>
 <p>Acesso o menu ao lado pra navegar.</p>

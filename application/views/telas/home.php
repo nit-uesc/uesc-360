@@ -28,29 +28,29 @@
      <!--menu filtro para consultas pessoa, laboratorio, equipamentos-->
      <div class="selecionar_pesquisa">
 
-       <fieldset >
-         <legend class="grey-text"> Pesquisar por </legend>
-           <form action="<?php echo base_url('home/consulta'); ?>" id="myForm2" method="post" onsubmit="return false;" value="pessoas">
-
-               <p>
-
-                 <input type="checkbox" id="check_pes" onclick="myFunction()" checked="checked" value="laboratorio" />
-                 <label for="check_pes">Pessoas</label>
-               </p>
-
-               <p>
-
-                 <input type="checkbox" id="check_lab" checked="checked" onclick="myFunction()"/>
-                 <label for="check_lab">Laboratorios</label>
-               </p>
-
-               <p>
-
-                 <input type="checkbox" id="check_eq" checked="checked" onclick="myFunction()" value="equipamento"/>
-                 <label for="check_eq">Equipamentos</label>
-               </p>
-           </form>
-        </fieldset>
+       <div class="checks_search">
+         <form action="<?php echo base_url('home/consulta'); ?>" id="myForm2" method="post" onsubmit="return false;" value="pessoas">
+         
+         
+           
+           <input type="checkbox" id="check_pes" onclick="myFunction()" checked="checked" value="laboratorio" />
+           <label class="check_op" for="check_pes">Pessoas</label>
+          
+          
+          
+            
+            <input type="checkbox" id="check_lab" checked="checked" onclick="myFunction()"/>
+            <label class="check_op" for="check_lab">Laboratorios</label>
+          
+          
+          
+            
+            <input type="checkbox" id="check_eq" checked="checked" onclick="myFunction()" value="equipamento"/>
+            <label class="check_op" for="check_eq">Equipamentos</label>
+          
+        </form>
+        <legend class="search_leg"> Pesquisar por </legend>
+        </div>
      </div>
 
      <!--Card com o retorno da pesquisa-->
