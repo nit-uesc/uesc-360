@@ -27,11 +27,63 @@
         <!-- menu inicio -->
         <div class="row indigo" id="myMenu" style="padding-bottom:0; margin-bottom:0; padding:0; margin:0;">
             <div class="col s12">
-
-                <a href="<?php echo base_url('home'); ?>" class="brand-logo center hide-on-med-and-down">
+            <nav class="transparent z-depth-0" id="nav-ul">
+                <a href="<?php echo base_url('home'); ?>" class="brand-logo">
                     <img class="center" id="nav-bar-logo" src="<?php echo base_url('assets/img/logoNova.png'); ?>" alt="logo-uesc360" />
                 </a>
+                <div class="nav-wrapper" id="nav-wrapper">
 
+            <ul class="left hide-on-med-and-down">
+
+              <li class="<?php if($this->uri->segment(1) == 'home' or $this->uri->segment(1) == null){echo 'ativo';} ?>">
+                <a href="<?php echo base_url('home'); ?>">Home</a>
+              </li>
+
+              <?php if(!$this->session->userdata('logged_in')): ?>
+              <li class="<?php if($this->uri->segment(1) == 'cadastro'){echo 'ativo';} ?>">
+                <a href="<?php echo base_url('pessoa'); ?>">Cadastro</a>
+              </li>
+              <?php endif; ?>
+
+              <li class="<?php if($this->uri->segment(1) == 'contato'){echo 'ativo';} ?>">
+                <a href="<?php echo base_url('contato'); ?>">Contato</a>
+              </li>
+
+              <li class="<?php if($this->uri->segment(1) == 'legislacao'){echo 'ativo';} ?>">
+                <a href="<?php echo base_url('legislacao'); ?>">Legislação</a>
+              </li>
+
+              <li class="<?php if($this->uri->segment(1) == 'sobre'){echo 'ativo';} ?>">
+                <a href="<?php echo base_url('sobre'); ?>">Sobre</a>
+              </li>
+
+            </ul>
+
+            <ul class="right hide-on-med-and-down">
+              <?php if(!$this->session->userdata('logged_in')): ?>
+              <li><a href="<?php echo base_url('login'); ?>" class="btn blue accent-2">Login</a></li>
+              <?php endif; ?>
+            </ul>
+
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="side-nav" id="mobile-demo">
+              <li><a href="<?php echo base_url('home'); ?>">Home</a></li>
+
+              <?php if(!$this->session->userdata('logged_in')): ?>
+              <li><a href="<?php echo base_url('pessoa'); ?>">Cadastro</a></li>
+              <?php endif; ?>
+
+              <li><a href="<?php echo base_url('contato'); ?>">Contato</a></li>
+              <li><a href="<?php echo base_url('legislacao'); ?>">Legislação</a></li>
+              <li><a href="<?php echo base_url('sobre'); ?>">Sobre</a></li>
+              <?php if($this->session->userdata('logged_in')): ?>
+              <li><a class="indigo white-text" href="<?php echo base_url('painel'); ?>"><i class="material-icons left">dashboard</i> painel</a></li>
+              <?php else: ?>
+              <li><a class="indigo white-text" href="<?php echo base_url('login'); ?>"><i class="material-icons left">lock</i> login</a></li>
+              <?php endif; ?>
+            </ul>
+          </div>
+            </nav>
             </div>
         </div>
         <!-- menu fim -->
