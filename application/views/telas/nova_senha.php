@@ -22,7 +22,7 @@
         </li>
 
         <li class="collection-item">
-          <?php echo form_open('cadastro/gravar_senha/'.$this->uri->segment(3)); ?>
+          <?php echo form_open('pessoa/gravar_senha/'.$this->uri->segment(3)); ?>
             <div class="row">
               <?php echo form_error('token'); ?>
               <div class="input-field col s12">

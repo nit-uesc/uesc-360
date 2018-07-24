@@ -407,4 +407,33 @@ class Pessoa extends CI_Controller
         $this->load->view('templates/template_home', $data);
     }
 
+    public function gravar_senha($token=NULL)
+    {
+        if($token==NULL || !ctype_alnum($token)){redirect('home','refresh');}
+
+        $this->form_validation->set_rules('senha', 'NOVA SENHA', 'trim|required|min_length[5]');
+        $this->form_validation->set_rules('confirmar_senha', 'CONFIRMAR SENHA', 'trim|required|min_length[5]|matches[senha]');
+        $email = $this->cadastro_model->verifica_token($token, 'recuperar_senha');
+        $data['main'] = 'telas/nova_senha';
+
+        if($email != false)
+        {
+            if ($this->form_validation->run()==TRUE):
+                $senha = $this->input->post('senha');
+                $pessoa = $this->pessoa_model->get_pessoa($email);
+                $this->cadastro_model->update_senha($pessoa[0]['fk_id_usuario'], $senha);
+                $this->cadastro_model->invalida_token($token, 'recuperar_senha');
+                $data['main'] = 'telas/login';
+                $data['sucesso'] = 'Senha alterada com sucesso!';
+            endif;
+        }
+        else
+        {
+            $data['main'] = 'telas/recuperar_senha';
+            $data['erro'] = 'Token inválido! Solicite outro link de recuperação de senha.';
+        }
+        $this->load->view('templates/template_home', $data);
+    }
+
+
 }
