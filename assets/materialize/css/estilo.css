@@ -165,10 +165,44 @@ span.small{
 }
 
 
+
+
 #login .row button > i, #login .row button > a{
   color: white;
 }
 #login .row > a.__center{
   display: block;
   text-align: center;
+}
+.checks_search{
+  text-align: center;
+}
+.search_leg{
+  color:#013a5e;
+}
+.check_op{
+  padding-right: 19px;
+}
+/* Mobile */
+@media only screen and (max-width:768px){
+  #login form button{
+    background: #013A5E;
+    padding: 0.5rem 2rem;
+    height: auto;
+    text-align: center;
+    width: 100%;
+    font-size: 1.3em;
+  }
+  #login form .button_espaco {
+    margin-bottom: inherit;
+  }
+
+  #menu-lateral{
+    min-height: auto;
+}
+#painel-info{
+    min-height: auto;
+}
+
+
 }

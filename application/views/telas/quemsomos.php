@@ -50,6 +50,22 @@
 
       <li class="collection-item avatar">
         <i class="material-icons circle blue accent-2">person</i>
+        <span class="title">Jefson Alves Matos</span>
+        <p>Web Developer - jefsonmatos.ti@gmail.com <br>
+          Ciência da Computação
+        </p>
+      </li>
+
+      <li class="collection-item avatar">
+        <i class="material-icons circle blue accent-2">person</i>
+        <span class="title">José Carlos da Silva Adão</span>
+        <p>Web Developer - jose.carlos.adao@hotmail.com <br>
+          Ciência da Computação
+        </p>
+      </li>
+
+      <li class="collection-item avatar">
+        <i class="material-icons circle blue accent-2">person</i>
         <span class="title">Carina de Souza Ramos</span>
         <p>Bolsista de Iniciação Tecnológica <br>
           Engenharia de Produção

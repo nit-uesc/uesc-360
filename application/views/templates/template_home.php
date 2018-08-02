@@ -33,10 +33,6 @@
               <li class="<?php if($this->uri->segment(1) == 'home' or $this->uri->segment(1) == null){echo 'ativo';} ?>">
                 <a href="<?php echo base_url('home'); ?>">Home</a>
               </li>
-              <!--
-              <li class="<?php if($this->uri->segment(1) == 'explore'){echo 'ativo';} ?>">
-                <a href="<?php echo base_url('explore'); ?>">Explore</a>
-              </li>-->
 
               <?php if(!$this->session->userdata('logged_in')): ?>
               <li class="<?php if($this->uri->segment(1) == 'cadastro'){echo 'ativo';} ?>">
@@ -65,10 +61,8 @@
             </ul>
 
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <a href="<?php echo base_url('home'); ?>" class="brand-logo hide-on-large-only">UESC 360º</a>
             <ul class="side-nav" id="mobile-demo">
               <li><a href="<?php echo base_url('home'); ?>">Home</a></li>
-              <li><a href="<?php echo base_url('explore'); ?>">Explore</a></li>
 
               <?php if(!$this->session->userdata('logged_in')): ?>
               <li><a href="<?php echo base_url('pessoa'); ?>">Cadastro</a></li>

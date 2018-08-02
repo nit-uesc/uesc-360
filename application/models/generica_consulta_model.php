@@ -5,7 +5,6 @@ class Generica_consulta_model extends CI_Model
 {
     public function listar_pessoas()
     {
-
         $this->db->select('pes.id_pessoa, pes.nome_pes, pes.email_pes, tip.tipo_tip');
         $this->db->from('pessoa as pes');
         $this->db->join('tipo_pessoa as tip', 'pes.fk_id_tipo_pessoa = tip.id_tipo_pessoa', 'inner');

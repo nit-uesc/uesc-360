@@ -60,12 +60,12 @@
 							<?php echo form_error('senha'); ?>
 						</div>
 						<div class="row">
-							<div class="col s6">
+							<div class="col s12 m6 button_espaco">
 								<button type="submit" class="btn waves-effect waves-light">
 									ENTRAR
 								</button>
 							</div>
-							<div class="col s6">
+							<div class="col s12 m6">
 								<button class="btn __high waves-effect waves-light">
 									<a class="" href="<?php echo base_url('pessoa/'); ?>">
 										CADASTRE-SE

@@ -24,18 +24,18 @@
     <?php $this->load->view('includes/menuUsuarioLogado'); ?>
 
     <!-- menu inicio -->
-    <div class="row indigo" style="padding-bottom:0; margin-bottom:0; padding:0; margin:0;">
+    <div class="row indigo" id="myMenu" style="padding-bottom:0; margin-bottom:0; padding:0; margin:0;">
       <div class="col s12">
 
-        <a href="<?php echo base_url('home'); ?>" class="brand-logo center hide-on-med-and-down">
+        <a href="<?php echo base_url('home'); ?>" class="brand-logo">
           <img class="center" id="nav-bar-logo" src="<?php echo base_url('assets/img/logoNova.png'); ?>" alt="logo-uesc360" />
         </a>
 
       </div>
     </div>
     <!-- menu fim -->
-
-    <div class="row">
+  
+    <div class="row" id="painel">
       <div class="col s12">
         <div class="card-panel">
         
