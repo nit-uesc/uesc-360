@@ -35,7 +35,7 @@
               <label for="icon_email">Insira o seu email</label>
               <?php echo form_error('email'); ?>
             </div>
-            <button type="submit" class="btn waves-effect waves-light indigo accent-2 right"><i class="material-icons right">send</i>Recuperar senha</button>
+            <button type="submit" class="btn waves-effect waves-light right blue"><i class="material-icons right">send</i>Recuperar senha</button>
           <?php echo form_close(); ?>
         </div>
       </li>

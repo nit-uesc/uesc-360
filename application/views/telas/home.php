@@ -1,7 +1,9 @@
 <form data-abide action="<?php echo base_url('home/consulta'); ?>" id="myForm" method="post" onsubmit="return false;">
   <div class="input-field col s12 white card myform" style="margin: 0;">
-    <i class="material-icons">search</i>
-    <input id="busca" type="search" placeholder="Pesquisa" autocomplete="off" name="busca" onkeyup="myFunction()" autofocus />
+    <div class="wrapper">
+      <i class="material-icons">search</i>
+      <input id="busca" type="search" placeholder="Pesquisa" autocomplete="off" name="busca" onkeyup="myFunction()" autofocus />
+    </div>
   </div>
 </form>
 
@@ -21,61 +23,143 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col s12 m10 offset-m1 l8 offset-l2" id="div_busca">
-    <!-- retorno da pesquisa   -->
-  </div>
+<div class="row" id="pesquisa">
+
+     <!--menu filtro para consultas pessoa, laboratorio, equipamentos-->
+     <div class="selecionar_pesquisa">
+
+       <div class="checks_search">
+         <form action="<?php echo base_url('home/consulta'); ?>" id="myForm2" method="post" onsubmit="return false;" value="pessoas">
+         
+         
+           
+           <input type="checkbox" id="check_pes" onclick="myFunction()" checked="checked" value="laboratorio" />
+           <label class="check_op" for="check_pes">Pessoas</label>
+          
+          
+          
+            
+            <input type="checkbox" id="check_lab" checked="checked" onclick="myFunction()"/>
+            <label class="check_op" for="check_lab">Laboratorios</label>
+          
+          
+          
+            
+            <input type="checkbox" id="check_eq" checked="checked" onclick="myFunction()" value="equipamento"/>
+            <label class="check_op" for="check_eq">Equipamentos</label>
+          
+        </form>
+        <legend class="search_leg"> Pesquisar por </legend>
+        </div>
+     </div>
+
+     <!--Card com o retorno da pesquisa-->
+
+    <div class="resultado_pesquisa" id="div_busca">
+    </div>
 </div>
 
-<div class="row" id="cards-info">
-  <div class="col s4 m2 l2">
-    <img src="<?php echo base_url('assets/img/seta1.png'); ?>" width="90" alt="seta" class="right">
-  </div>
 
-  <div class="col s8 m4 l3">
-    <p class="flow-text tutorFont">Digite aqui o nome de uma pessoa, laboratório ou equipamento</p>
-  </div>
-
-  <div class="col s12 m10 offset-m1 center">
-    <br>
-    <div class="divider"></div>
-    <p class="flow-text grey-text text-darken-2a">O UESC 360° é uma ação do <a href="http://nit.uesc.br/">Núcleo de Inovação Tecnológica</a> da UESC.</p>
-  </div>
-</div>
 
 <script>
   function MySubmit()
   {
+    var params = $("#myForm").serialize()+'';
+    var prms = params.split('=');
     var form = $("#myForm");
+
     $.ajax({
       type : "POST",
       url : form.attr("action"),
-      data : form.serialize(),
+      /*Passa como parametros para o controller home a string digitada na busca e os check box que estão selecionados*/
+      data : {busca:prms[1],checkboxs:getCheckBoxSelected()},
       success : function(response) {
+
         $('#div_busca').html(response);
+
       },
+
       beforeSend: function(){
-        $('#cards-info').css({display:"none"});
-        $('#myMenu').css({display:"none"});
-        //
-        // colocar um loading aqui...
-        //
-        $('#loading').css({display:"block"});
+      $('#loading').css({display:"block"});
       },
       complete: function(msg){
         $('#loading').css({display:"none"});
       }
+
     });
+
   }
 
-  function myFunction()
-  {
+function myFunction()
+{
+
     MySubmit();
-    // console.log($('input#busca').val());
+
     if($('input#busca').val()==''){
-      $('#cards-info').css({display:"block"});
-      $('#myMenu').css({display:"block"});
+        getTodosResultados();
     }
   }
+</script>
+
+<script>
+
+/*Função usada para pegar os checkbox que estão selecionados*/
+function getCheckBoxSelected()
+{
+    var idSelector = function() { return this.id; };
+    var isChecked = [false, false, false];//Vetor usado para guarda quais checkbox estão marcados [0 - pessoa, 1 - laboratorio, 2 - equipamento] default deselect
+    var checked = $(":checkbox:checked").map(idSelector).get()+ '' ;
+    var checkbox = checked.split(',');
+
+        //var noChe = $(":checkbox:not(:checked)").map(idSelector).get() ;
+        for (i = 0; i < checkbox.length; i++) {
+            if(checkbox[i] === 'check_pes'){
+
+              isChecked[0] = true;
+            }
+            if(checkbox[i] === 'check_lab'){
+
+              isChecked[1] = true;
+            }
+            if(checkbox[i] === 'check_eq'){
+
+              isChecked[2] = true;
+            }
+        }
+    return isChecked;
+}
+
+/*evento usado para iniciar a tabela com todos os valores[pessoas, equipamentos, laboratorios]*/
+window.onload = function(){
+      getTodosResultados();
+}
+
+
+/*função que retorna todos os dados de pessoa, laboratorio, equipamentos*/
+function getTodosResultados(){
+      var params = $("#myForm").serialize()+'';
+      var prms = params.split('=');
+      var form = $("#myForm");
+
+      $.ajax({
+        type : "POST",
+        url : 'home/getResultados',
+        /*Passa como parametros para o controller home a string digitada na busca e os check box que estão selecionados*/
+        data : {busca:prms[1],checkboxs:getCheckBoxSelected()},
+        success : function(response) {
+
+          $('#div_busca').html(response);
+
+        },
+
+        beforeSend: function(){
+        $('#loading').css({display:"block"});
+        },
+        complete: function(msg){
+          $('#loading').css({display:"none"});
+        }
+
+      });
+}
 
 </script>

@@ -10,19 +10,15 @@
 
 </style>
 
-<div class="main-wrapper valign-wrapper">
+<div class="valign-wrapper" id="login">
 
 	<div class="row">
-		<div class="col s12 m10 offset-m1">
-			<p class="center flow-text hide-on-small-only">Faça login para acessar sua área restrita do UESC 360º</p>
-
-      <ul class="collection with-header card">
-
-        <li class="collection-header indigo">
-        	<h4 class="white-text">Login</h4>
-      	</li>
-
-        <li class="collection-item">
+		<div class="col s12 m12 offset-m1">
+			<ul class="collection with-header card">
+				<li class="collection-header">
+					<h4 class="white-text">Login</h4>
+				</li>
+				<li class="collection-item">
 					<!-- Mensagem de sucesso -->
 					<?php if($this->session->flashdata('sucesso') != ''): ?>
 					<div class="row">
@@ -46,46 +42,42 @@
 					  echo '</div>';
 					endif;
 					?>
-
+					<!-- The form it self -->
 					<?php echo form_open('login'); ?>
 						<?php if(isset($loginError)): echo '<small class="red-text">* Dados Inválidos!</small>'; endif; ?>
 						<br>
 						<div class="row">
-			        <div class="input-field col s12">
-			          <i class="material-icons prefix">person</i>
-			          <input id="icon_user" type="text" name="usuario" value="<?php echo set_value('usuario'); ?>" class="validate">
-			          <label for="icon_user">Email</label>
-								<?php echo form_error('usuario'); ?>
-			        </div>
-
-
-			        <div class="input-field col s12">
-			          <i class="material-icons prefix">lock</i>
-			          <input id="icon_password" type="password" name="senha">
-			          <label for="icon_password">Senha</label>
-								<?php echo form_error('senha'); ?>
-			        </div>
-
-							<button type="submit" class="btn waves-effect waves-light indigo accent-2 right"><i class="material-icons right">send</i> ENTRAR</button>
+							<div class="input-field col s12">
+							<i class="material-icons prefix">person</i>
+							<input id="icon_user" type="text" name="usuario" value="<?php echo set_value('usuario'); ?>" class="validate">
+							<label for="icon_user">Email</label>
+							<?php echo form_error('usuario'); ?>
 						</div>
+						<div class="input-field col s12">
+							<i class="material-icons prefix">lock</i>
+							<input id="icon_password" type="password" name="senha">
+							<label for="icon_password">Senha</label>
+							<?php echo form_error('senha'); ?>
+						</div>
+						<div class="row">
+							<div class="col s12 m6 button_espaco">
+								<button type="submit" class="btn waves-effect waves-light">
+									ENTRAR
+								</button>
+							</div>
+							<div class="col s12 m6">
+								<button class="btn __high waves-effect waves-light">
+									<a class="" href="<?php echo base_url('pessoa/'); ?>">
+										CADASTRE-SE
+									</a>
+								</button>
+							</div>
+						</div>
+						<a class="__center grey-text" href="<?php echo base_url('login/recuperar_senha'); ?>">Esqueceu a senha? Clique aqui.</a>
+					</div>
 					<?php echo form_close(); ?>
-        </li>
-
-        <li class="collection-item indigoa lighten-4">
-					<a class="left grey-text text-darken-2" href="<?php echo base_url('login/recuperar_senha'); ?>">Esqueceu a senha?</a>
-					<a class="right grey-text text-darken-2" href="<?php echo base_url('cadastro'); ?>">Cadastre-se</a>
-					<br>
 				</li>
-
-      </ul>
-
-			<div class="row center">
-				<div class="col s12">
-					<a href="<?php echo base_url('home'); ?>" class="btn-flat waves-effect waves-light grey-text text-darken-1"><i class="material-icons left">home</i>acessar página principal</a>
-				</div>
-			</div>
-
+			</ul>
 		</div>
 	</div>
-
 </div>

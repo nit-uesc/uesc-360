@@ -83,11 +83,13 @@ class Generica_consulta_model extends CI_Model
         return $this->db->get('curso')->result();
     }
 
+    //remover
     public function consulta_departamentos()
     {
         // $this->db->order_by('nome_dpt', "asc");
         return $this->db->get('departamento')->result();
     }
+
 
     public function consulta_coordenadores()
     {
@@ -99,14 +101,7 @@ class Generica_consulta_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    // public function getAllLaboratorio()
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('laboratorio');
-    //     $this->db->where('ativo_lab', 1);
-    //     return $this->db->get();
-    // }
-
+    //verificar quem chama,direcionar para pessoa e remover
     public function consulta_pessoa_by_id($id_pessoa)
     {
         // $this->db->select('pes.id_pessoa, pes.nome_pes, pes.email_pes, tip.tipo_tip');
@@ -119,6 +114,7 @@ class Generica_consulta_model extends CI_Model
         $this->db->where('pes.id_pessoa', $id_pessoa);
         return $this->db->get()->result();
     }
+
 
     public function consulta_coordenador_laboratorio($id_pessoa)
     {
@@ -235,10 +231,15 @@ class Generica_consulta_model extends CI_Model
         return $this->db->get()->result();
     }
 
-
-
-
-
+    //Função usada para consltar as normas e regulamentos dos laboratorios de acordo com o ID
+    public function consulta_normas_regulamentos_laboratorio($id_laboratorio)
+    {
+        $this->db->select('regulamento_laboratorio.id_reg_lab, regulamento_laboratorio.nome_reg_lab, regulamento_laboratorio.nome_reg_infor, regulamento_laboratorio.descricao_regulamento');
+        $this->db->from('regulamento_laboratorio');//tabela de normas e regulamentos
+        $this->db->join('laboratorio_has_regulamento', 'regulamento_laboratorio.id_reg_lab = laboratorio_has_regulamento.fk_id_regulamento', 'left');
+        $this->db->where('laboratorio_has_regulamento.fk_id_laboratorio', $id_laboratorio);
+        return $this->db->get()->result();
+    }
 
 
     public function consulta_equipamento_by_id($id_equipamento)

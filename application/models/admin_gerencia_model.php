@@ -76,8 +76,6 @@ class Admin_gerencia_model extends CI_Model
             return false;
         endif;
     }
-
-
 }
 
 /* End of file admin_gerencia_model.php */

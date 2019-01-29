@@ -86,14 +86,18 @@ class Cadastro_model extends CI_Model
                'fk_id_pessoa' => $fk_id_pessoa,
                'email' => $email,
                'token' => $token,
-               'validate' => 1
+               'validate' => 1,
+               'falso' => 0,
+               'data_uso' => '2018-01-02 00:00:00'
             );
 
         } else {
             $data = array(
            'email' => $email,
            'token' => $token,
-           'validate' => 1
+           'validate' => 1,
+           'falso' => 0,
+           'data_uso' => '2018-01-02 00:00:00'
         );
         }
 

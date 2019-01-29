@@ -138,3 +138,16 @@ span.prefix, label.prefix
 	margin: 0 0 0.4375rem 0;
 	font-size: 0.875rem;
 }
+.ts{
+	margin: 10px;
+}
+
+#tbPesquisa > td.col.s4{
+  padding: 1rem 0.5rem;
+}
+
+.myForm .wrapper{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+

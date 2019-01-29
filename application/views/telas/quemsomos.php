@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col s12 m10 offset-m1 l8 offset-l2 card-panel indigoa lighten-4">
-    <h2 class="grey-texta text-darken-1">O que é o UESC 360º?</h2>
-    <p class="grey-texta text-darken-1 flow-text">
+    <h4 class="grey-texta text-darken-1">O que é o UESC 360º?</h4>
+    <p class="flow-text" style=" text-align: justify; font-size: 20px; margin:10px; ">
       O Portfólio Virtual de Competências da UESC
       foi desenvolvido para facilitar o mapeamento das capacidades e
       instalações existentes na universidade e disponibilizar estas
@@ -30,7 +30,7 @@
 
 <div class="row">
   <div class="col s12 m10 offset-m1 l8 offset-l2 card-panel">
-  <p>Sobre a licença: <a href="http://nit.uesc.br/uesc360/licenca" target="_blank">saiba mais</a></p>
+  <p>Sobre a licença: <a href="http://nit.uesc.br/uesc360/licenca" target="_blank">Saiba mais</a></p>
   </div>
 </div>
 
@@ -38,12 +38,28 @@
   <div class="col s12 m10 offset-m1 l8 offset-l2 card-panel">
 
     <ul class="collection with-header" style="border:none;">
-      <li class="collection-header"><h2>A Equipe</h2></li>
+      <li class="collection-header"><h4>A Equipe</h4></li>
 
       <li class="collection-item avatar">
         <i class="material-icons circle blue accent-2">person</i>
         <span class="title">André Luiz Cardoso de Sousa</span>
         <p>Web Developer - andrexcardoso@gmail.com <br>
+          Ciência da Computação
+        </p>
+      </li>
+
+      <li class="collection-item avatar">
+        <i class="material-icons circle blue accent-2">person</i>
+        <span class="title">Jefson Alves Matos</span>
+        <p>Web Developer - jefsonmatos.ti@gmail.com <br>
+          Ciência da Computação
+        </p>
+      </li>
+
+      <li class="collection-item avatar">
+        <i class="material-icons circle blue accent-2">person</i>
+        <span class="title">José Carlos da Silva Adão</span>
+        <p>Web Developer - jose.carlos.adao@hotmail.com <br>
           Ciência da Computação
         </p>
       </li>

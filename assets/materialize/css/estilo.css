@@ -1,8 +1,15 @@
+button.__high{
+  background: #F7B800 !important;
+
+}
+nav ul li{
+  transition: background-color 0.3s ease-in-out;
+}
 nav ul li.ativo
 {
     position: relative;
     bottom: 0;
-    border-bottom: 3px solid #18ffff;
+    border-bottom: 3px solid #F7B800;
     background-color: transparent;
     color: #FFFFFF;
 }
@@ -15,63 +22,187 @@ nav ul li.ativo a
 nav ul li a
 {
     text-transform: uppercase;
-    font-weight: bolder;
-    font-size: .9rem;
-    color: #C5CAE9;
+    font-size: 1rem;
+    color: white;
+    /* font-size: 18px; */
+}
+#nav-wrapper{
+    height: 77px !important;
+    float: right;
+}
+#nav-ul{
+    line-height: 78px !important;
 }
 
-nav ul li:hover a
+#painel{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+#menu-lateral{
+    padding: 0;
+    background: #FFFFFF;
+    min-height: 77vh;
+}
+#painel-info{
+    background: #FFFFFF;
+    min-height: 77vh;
+}
+nav ul li:hover 
 {
-    background-color: transparent;
-    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 
-/* header, main, footer {
-    padding-left: 240px;
+.link_com_icone{
+  position: relative;
+  padding-left: 28px;
 }
 
-@media only screen and (max-width : 992px) {
-    header, main, footer {
-        padding-left: 0;
-    }
+.link_com_icone i{
+  position: absolute;
+  left: 0;
 }
 
-#nav-bar-logo {
-    width: 10rem;
+span.small{
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  padding-left: 28px
 }
 
-#nav-bar-logo-s {
-    width: 10rem;
+#myMenu{
+  width: 100%;
+  background: #184B6C !important;
+}
+#myMenu .col{
+  float: none !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 80px;
+}
+.indigo.darken-2{
+  background: #013A5E !important;
+}
+.indigo.darken-2 .right-align{
+  float: none !important;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-header ul li a i
-{
-    position: relative;
-    top: 9px;
-    padding-right: -35px;
+.btn{
+  border-radius: 4px !important;
+}
+.btn.blue.accent-2{
+  background: #F7B800 !important;
+}
+.wrapper{
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+}
+.wrapper > input{
+  border-bottom: none;
+}
+#pesquisa{
+  float: none !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+.selecionar_pesquisa{
+  float: none !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
 }
 
-header ul li ul li a i
-{
-    color: red;
-    position: relative;
-    top: 0px;
-    left: 2px;
-}
-header ul li ul li a
-{
-    position: relative;
-    left: -5px;
+#card-panel{
+  padding: 0;
 }
 
-#nav-mobile li a:hover
-{
-    color: #039BE5;
+#tabs{
+  background-color: #dcdcdc;
+  height: 80px;
+  padding: 15px;
+}
+#tab{
+  height: auto;
+}
+#titulo_tab{
+  text-align: center;
+  color: #f7f7f7;
+  font-weight: bold;
+}
+#link_pesquisa{
+  color: #023a5f;
 }
 
-#nav-mobile li:hover
-{
-    background-color: rgba(0,0,0,.1);
+#login{
+  margin-top: 4rem;
 }
- */
+
+#login .collection-header, #login .collection-item{
+  padding: 2rem 4rem;
+}
+
+#login .collection-header{
+  background: #013A5E;
+}
+
+#login .row i{
+  color: #013A5E;
+}
+
+#login .row i{
+  color: #013A5E;
+}
+
+#login form button{
+  background: #013A5E;
+  padding: 0.5rem 2rem;
+  height: auto;
+  text-align: center;
+  width: 100%;
+  font-size: 1.3em;
+}
+
+
+
+
+#login .row button > i, #login .row button > a{
+  color: white;
+}
+#login .row > a.__center{
+  display: block;
+  text-align: center;
+}
+.checks_search{
+  text-align: center;
+}
+.search_leg{
+  color:#013a5e;
+}
+.check_op{
+  padding-right: 19px;
+}
+/* Mobile */
+@media only screen and (max-width:768px){
+  #login form button{
+    background: #013A5E;
+    padding: 0.5rem 2rem;
+    height: auto;
+    text-align: center;
+    width: 100%;
+    font-size: 1.3em;
+  }
+  #login form .button_espaco {
+    margin-bottom: inherit;
+  }
+
+  #menu-lateral{
+    min-height: auto;
+}
+#painel-info{
+    min-height: auto;
+}
+
+
+}

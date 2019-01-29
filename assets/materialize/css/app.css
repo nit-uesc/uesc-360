@@ -31,9 +31,9 @@
 #nav-bar-logo
 {
     width: 10rem;
-    margin:.5rem;
-    /*padding-top: .8rem;*/
-    /*padding-bottom: 1rem;*/
+    /* margin:.5rem; */
+    padding-top: .8rem;
+    padding-bottom: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -91,19 +91,19 @@ h6 {
    .input-field input[type=password]:focus + label
 
    {
-     color: #448AFF;
+     color: #184b6c;
    }
    /* label underline focus color */
    .input-field input[type=text]:focus,
    .input-field input[type=email]:focus,
    .input-field input[type=password]:focus
    {
-     border-bottom: 1px solid #448AFF;
-     box-shadow: 0 1px 0 0 #448AFF;
+     border-bottom: 1px solid #184b6c;
+     box-shadow: 0 1px 0 0 #184b6c;
    }
    /* icon prefix focus color */
    .input-field .prefix.active {
-     color: #448AFF;
+     color: #013A5E;
    }
 
 

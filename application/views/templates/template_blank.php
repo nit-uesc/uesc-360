@@ -14,7 +14,7 @@
     <?php $this->load->view('analytics'); ?>
   </head>
   <body class="grey lighten-3">
-
+<var></var>
     <?php $this->load->view($main); ?>
 
 
