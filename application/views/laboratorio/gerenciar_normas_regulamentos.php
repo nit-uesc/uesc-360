@@ -69,7 +69,7 @@
 
             <div class="row">
                 <div class="col s12">
-                    <button type="submit" class="btn right blue"><i class="material-icons left">save</i>Salvar Documento</button>
+                    <button type="button" class="btn right blue" onclick=""> <i class="material-icons left">save</i>Salvar Documento</button>
                 </div>
             </div>
             <?php echo form_close(); ?>

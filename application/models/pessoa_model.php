@@ -85,18 +85,26 @@ class Pessoa_model extends CI_Model
         return $retorno->result();
     }
 
-    public function get_pessoa($email)
-    {
-        $this->db->select('*');
-        $this->db->from('pessoa');
-        $this->db->where('email_pes',$email);
-        return $this->db->get()->result_array();
-    }
+  public function get_pessoa($email)
+  {
+      $this->db->select('*');
+      $this->db->from('pessoa');
+      $this->db->where('email_pes',$email);
+      return $this->db->get()->result_array();
+  }
 
-    public function getAllTipo_pessoa()
+  public function getAllTipo_pessoa()
 	{
 		$this->db->order_by('tipo_tip', "asc");
 		return $this->db->get('tipo_pessoa');
+	}
+
+  public function getForCoordinatorTipo_pessoa()
+	{
+    $this->db->order_by('tipo_tip', "asc");
+    $this->db->where('id_tipo_pessoa !=', 2);
+    $this->db->where('id_tipo_pessoa !=', 4);
+    return $this->db->get('tipo_pessoa');
 	}
 
 	public function getPessoaWithoutUser()
@@ -132,7 +140,7 @@ class Pessoa_model extends CI_Model
 		if ($dados!=NULL):
 			$this->db->insert('pessoa', $dados);
 		endif;
-    }    
+    }
     # Retrieve ---------------------------------------------------------------------------------
 
     public function getBasicInfoPessoa()
@@ -195,7 +203,7 @@ class Pessoa_model extends CI_Model
 
 
     //Importado de consulta_generica_model
-    //verificar quem chama e direcionar para pessoa 
+    //verificar quem chama e direcionar para pessoa
     public function consulta_pessoa_by_id($id_pessoa)
     {
         // $this->db->select('pes.id_pessoa, pes.nome_pes, pes.email_pes, tip.tipo_tip');

@@ -6,7 +6,7 @@ class Departamento_model extends CI_Model
     public function cadastrar_departamento($departamento = NULL) {
         if ($departamento != NULL):
             $this->db->trans_start();
-            
+
             $this->db->insert('departamento', $departamento);
 
             $this->db->trans_complete();
@@ -25,7 +25,7 @@ class Departamento_model extends CI_Model
 		$this->db->order_by('nome_dpt', "asc");
 		return $this->db->get('departamento');
     }
-    
+
     public function listar_departamento()
     {
         // $this->db->order_by('nome_dpt', "asc");

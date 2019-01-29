@@ -1,4 +1,4 @@
-<ul class="collapsible" id="menu-lateral" data-collapsible="accordion">
+<ul class="collapsible" data-collapsible="accordion">
   <li>
     <div class="collapsible-header">
       <a href="<?php echo base_url('home'); ?>" class="grey-text text-darken-4" style="display:block;">
@@ -21,9 +21,9 @@
     <div class="collapsible-header"><i class="material-icons">settings</i>Minha Conta</div>
     <div class="collapsible-body">
       <div class="collection">
-        <a href="<?php echo base_url('usuario/perfil'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Meu Perfil</a>
-        <a href="<?php echo base_url('usuario/editar'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Editar Perfil</a>
-        <a href="<?php echo base_url('usuario/senha'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Alterar Senha</a>
+        <a href="<?php echo base_url('usuario/perfil'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Meu Perfil</a>
+        <a href="<?php echo base_url('usuario/editar'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Editar Perfil</a>
+        <a href="<?php echo base_url('usuario/senha'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Alterar Senha</a>
       </div>
     </div>
   </li>
@@ -33,13 +33,18 @@
     <div class="collapsible-header"><i class="material-icons">add</i>Cadastro</div>
     <div class="collapsible-body">
       <div class="collection">
-        <?php if($this->security_model->isAdmin() && $this->session->userdata('permissao_usu') == 1): ?>
+        <?php if($this->security_model->isAdmin() ): ?>
           <a href="<?php echo base_url('pessoa/cadastrar_pessoa'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Pessoa</a>
           <a href="<?php echo base_url('departamento/cadastrar_departamento'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Departamento</a>
           <a href="<?php echo base_url('pavilhao/cadastrar_pavilhao'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Pavilhão</a>
+          <a href="<?php echo base_url('laboratorio/cadastrar_laboratorio'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Laboratório</a>
+          <a href="<?php echo base_url('equipamento/cadastrar_equipamento'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Equipamento</a>
+        <?php elseif($this->security_model->isCoord()): ?>
+          <a href="<?php echo base_url('pessoa/cadastrar_pessoa'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Pessoa</a>
+          <a href="<?php echo base_url('laboratorio/cadastrar_laboratorio'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Laboratório</a>
+          <a href="<?php echo base_url('equipamento/cadastrar_equipamento'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Equipamento</a>
         <?php endif; ?>
-        <a href="<?php echo base_url('laboratorio/cadastrar_laboratorio'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Laboratório</a>
-        <a href="<?php echo base_url('equipamento/cadastrar_equipamento'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Equipamento</a>
+
       </div>
     </div>
   </li>
@@ -51,13 +56,10 @@
     <div class="collapsible-body">
       <div class="collection">
         <?php if($this->security_model->isAdmin() && $this->session->userdata('permissao_usu') == 1): ?>
-          <a href="<?php echo base_url('pessoa/listar_pessoas'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Pessoa</a>
-          <a href="<?php echo base_url('departamento/listar_departamento'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Departamento</a>
-          <a href="<?php echo base_url('pavilhao/listar_pavilhao'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Pavilhão</a>
-          
+          <a href="<?php echo base_url('pessoa/listar_pessoas'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Pessoa</a>
         <?php endif; ?>
-        <a href="<?php echo base_url('laboratorio/listar_laboratorios'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Laboratório</a>
-        <a href="<?php echo base_url('equipamento/listar_equipamentos'); ?>" class="collection-item grey lighten-4 blue-grey-text text-accent-2">Equipamento</a>
+        <a href="<?php echo base_url('laboratorio/listar_laboratorios'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Laboratório</a>
+        <a href="<?php echo base_url('equipamento/listar_equipamentos'); ?>" class="collection-item grey lighten-4 blue-text text-accent-2">Equipamento</a>
       </div>
     </div>
   </li>
@@ -65,10 +67,20 @@
 
 	<li>
 		<div class="collapsible-header">
-      <a href="<?php echo base_url('login/logoff'); ?>" class="black-text text-darken-4" style="display:block;">
-        <i class="material-icons white-text">power_settings_new</i>
+      <a href="<?php echo base_url('login/logoff'); ?>" class="red-text text-darken-4" style="display:block;">
+        <i class="material-icons red-text">power_settings_new</i>
         Sair
       </a>
 		</div>
 	</li>
 </ul>
+
+<!-- <div class="row">
+  <div class="col s12 center card-panel">
+    <br>
+    <a href="http://voobex.com/" target="_blank">
+      <img src="<?php echo base_url('assets/img/voobexBlue.png'); ?>" alt="Voobex" width="100">
+      <p><small><b>Soluções Web</b></small></p>
+    </a>
+  </div>
+</div> -->

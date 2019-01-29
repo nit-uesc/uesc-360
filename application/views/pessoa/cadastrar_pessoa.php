@@ -100,11 +100,16 @@
 
       <div class="row">
         <div class="input-field col s12 m6">
-          <select name="permissao">
-            <option value="3" selected>Padrão</option>
-            <option value="2">Coordenador</option>
-          </select>
-          <label>Permissão do Usuário</label>
+					<?php if($permissao == 'ADM'): ?>
+							<select name="permissao">
+									<option value="3" selected>Padrão</option>
+									<option value="2">Coordenador</option>
+							</select>
+					<?php else: ?>
+							<select name="permissao">
+									<option value="3" selected>Padrão</option>
+							</select>
+					<?php endif; ?>
         </div>
 
         <div class="input-field col s12 m6">
