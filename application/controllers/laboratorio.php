@@ -468,7 +468,7 @@ class Laboratorio extends CI_Controller
     {
         $this->load->model('usuario_model');
 
-        if(!$this->security_model->isAdmin()):
+        if(!($this->security_model->isAdmin()) && !($this->security_model->isCoord())):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel','refresh');
         endif;
