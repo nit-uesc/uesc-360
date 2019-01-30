@@ -73,7 +73,7 @@ class Pessoa extends CI_Controller
             $dados3['fk_id_permissao'] = 3;
             $this->usuario_model->insertPermissao($dados3);
 
-            $this->cadastro_model->invalida_token($token, 'pedido_cadastro');/*Devemos mover de cadastro para um model alciliar*/
+            $this->cadastro_model->invalida_token($token, 'pedido_cadastro');/*Devemos mover de cadastro para um model auxiliar*/
 
             $this->session->set_flashdata('sucesso', 'Cadastro efetuado com sucesso! :)');
             redirect('login');
@@ -87,15 +87,14 @@ class Pessoa extends CI_Controller
     }
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-/*Função usada para cadastrar pessoa internamente [atraves de coordenador]*/
+/*Função usada para cadastrar pessoa internamente [atraves de coordenador ou administrador]*/
  public function cadastrar_pessoa()
 {
       /* inicio de bloco responsavel para permissão de utilizar a função */
         if (!$this->session->userdata('logged_in')):
             redirect('login/logoff');
         endif;
-
-        if(!$this->security_model->isAdmin() || $this->session->userdata('permissao_usu') != 1):
+        if(!($this->security_model->isAdmin()) && !($this->security_model->isCoord())):
             $this->session->set_flashdata('erro', 'Você não possui permissão para acessar essa página! :X');
             redirect('painel', 'refresh');
         endif;
@@ -155,10 +154,17 @@ class Pessoa extends CI_Controller
         endif;
 
     endif;
+    //verifica se é o administrador ou o coordenador que está cadastrando uma pessoa
+    if($this->security_model->isAdmin()):
+        $data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
+        $data['permissao'] = 'ADM';
+    else:
+        $data['tipo_pessoa'] = $this->pessoa_model->getForCoordinatorTipo_pessoa()->result();
+        $data['permissao'] = 'COORD';
+    endif;
 
     $data['main'] = 'pessoa/cadastrar_pessoa';
     $data['departamento'] = $this->departamento_model->getAllDepartamento()->result();
-    $data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
     $this->load->view('templates/template_admin2', $data);
 }
 

@@ -232,8 +232,8 @@
                             <br>
                             <img class="materialboxed" data-caption="<?php echo $laboratorio[0]->nome_lab; ?>" width="200" src="<?php echo base_url('uploads/laboratorio/' . $row->nome_iml); ?>">
                         <?php endforeach; ?>
+                      </div>
                     <?php endif; ?>
-                </div>
             </div>
         </div>
 
