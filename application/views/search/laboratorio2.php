@@ -203,7 +203,7 @@
                     <li><a href="#imagens_lab">Imagens</a></li>
 
                 </ul>
-                <button type="button" onclick="window.location='<?php echo site_url("folder_lab");?>'" class="btn right blue"><i class="material-icons left">file_download</i>download folder</button>
+                <!--<button type="button" onclick="window.location='<?php //echo site_url("folder_lab");?>'" class="btn right blue"><i class="material-icons left">file_download</i>download folder</button>-->
             </div>
 
         </div>
