@@ -1,6 +1,8 @@
-application/config/database.php
 uploads/*
 *.swp
 *.swp
 *.swo
 /api
+
+/vendor/
+.env
