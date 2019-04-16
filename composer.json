@@ -1,0 +1,15 @@
+{
+    "name": "nit-uesc/uesc360",
+    "description": "O Portfólio Virtual de Competências da UESC foi desenvolvido para facilitar o mapeamento das capacidades e instalações existentes na universidade e disponibilizar estas informações para o universo acadêmico e empresarial. Este projeto, de iniciativa do Núcleo de Inovação Tecnológica da UESC, busca derrubar barreiras existentes entre as instituições de nível superior e empresas, viabilizar parcerias, incentivar projetos de caráter inovador e de impacto social para a região. Tornando-se, assim, um ambiente propício de incentivo à transferência de tecnologia e de fomento ao sistema de Tríplice Hélice (Universidade-Governo-Empresa).",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Eduardo Reis Nobre",
+            "email": "eduardo.reisnobre@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^3.3"
+    }
+}
