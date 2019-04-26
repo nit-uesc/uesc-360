@@ -49,13 +49,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = getenv('DB_HOST');
-$db['default']['username'] = getenv('DB_USER');
-$db['default']['password'] = getenv('DB_PASSWORD');
-$db['default']['database'] = getenv('DB_DATABASE');
+$db['default']['hostname'] = '';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
+$db['default']['dbdriver'] = '';
 
 
-$db['default']['dbdriver'] = 'mysqli';
+// $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

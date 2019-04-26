@@ -191,6 +191,14 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
+	/*
+	 * --------------------------------------------------------------------
+	 * LOAD PHP DOT ENV FILE
+	 * --------------------------------------------------------------------
+	 *
+	 * And away we go...
+	 *
+	 */
 
 /*
  * --------------------------------------------------------------------
@@ -203,4 +211,3 @@ if (defined('ENVIRONMENT'))
 require_once BASEPATH.'core/CodeIgniter.php';
 
 /* End of file index.php */
-/* Location: ./index.php */
