@@ -49,11 +49,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
-$db['default']['dbdriver'] = '';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'reisnobre';
+$db['default']['password'] = 'nit_admin';
+$db['default']['database'] = 'uesc360';
+$db['default']['dbdriver'] = 'mysqli';
 
 
 // $db['default']['dbdriver'] = 'mysqli';
