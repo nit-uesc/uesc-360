@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/uesc360';
-$config['composer_autoload'] = true;
+$config['base_url']	= 'http://uesc360.test';
+$config['composer_autoload'] = false;
 
 
 /*
