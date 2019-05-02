@@ -50,8 +50,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'reisnobre';
-$db['default']['password'] = 'nit_admin';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'cannibalcorpse';
 $db['default']['database'] = 'uesc360';
 $db['default']['dbdriver'] = 'mysqli';
 

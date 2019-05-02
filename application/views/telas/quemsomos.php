@@ -1,18 +1,8 @@
 <div class="row">
   <div class="col s12 m10 offset-m1 l8 offset-l2 card-panel indigoa lighten-4">
-    <h4 class="grey-texta text-darken-1">O que é o UESC 360º?</h4>
+    <h4 class="grey-texta text-darken-1">O que é o IF Baiano 360º</h4>
     <p class="flow-text" style=" text-align: justify; font-size: 20px; margin:10px; ">
-      O Portfólio Virtual de Competências da UESC
-      foi desenvolvido para facilitar o mapeamento das capacidades e
-      instalações existentes na universidade e disponibilizar estas
-      informações para o universo acadêmico e empresarial. Este projeto,
-      de iniciativa do Núcleo de Inovação Tecnológica da UESC, busca
-      derrubar barreiras existentes entre as instituições de nível
-      superior e empresas, viabilizar parcerias, incentivar projetos de
-      caráter inovador e de impacto social para a região. Tornando-se,
-      assim, um ambiente propício de incentivo à transferência de
-      tecnologia e de fomento ao sistema de Tríplice Hélice
-      (Universidade-Governo-Empresa).
+    O Portfólio Virtual de Competências desenvolvido pelo Núcleo de Inovação Tecnológica da Universidade Estadual de Santa Cruz – UESC, tem como objetivo facilitar o mapeamento das capacidades e instalações existentes no IF Baiano e disponibilizar estas informações para o universo acadêmico e empresarial colaborando para o incentivo à transferência de tecnologia e fomento ao sistema de Tríplice Hélice (Universidade-Governo-Empresa). Este projeto faz parte de requisito para obtenção de crédito na disciplina Oficina do Projeto Pedagógico do Programa de Pós-Graduação em Propriedade Intelectual e Transferência de Tecnologia para a Inovação – PROFNIT.
     </p>
   </div>
 </div>
