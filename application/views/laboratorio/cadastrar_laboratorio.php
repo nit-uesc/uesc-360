@@ -66,7 +66,6 @@
         <div class="input-field col s12 m6">
           <?php
             $options = array();
-            $options['blank'] = '';
             foreach ($pavilhao as $row):
               $options[$row->id_pavilhao] = $row->nome_pav;
             endforeach;

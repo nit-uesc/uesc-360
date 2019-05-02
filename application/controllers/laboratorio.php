@@ -115,8 +115,9 @@ class Laboratorio extends CI_Controller
         $this->form_validation->set_rules('palavras_chave', 'PALAVRAS CHAVE', 'max_length[600]');
 
         if ($this->form_validation->run()==TRUE):
-
+            
             $laboratorio['nome_lab'] = $this->input->post('nome');
+            $laboratorio['sigla'] = $this->input->post('sigla');
             $laboratorio['ramal_lab'] = $this->input->post('ramal');
             $laboratorio['website_lab'] = $this->input->post('website');
             $laboratorio['descricao_lab'] = $this->input->post('descricao');

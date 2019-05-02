@@ -226,6 +226,7 @@ class Pessoa extends CI_Controller
         $this->form_validation->set_rules('nome', 'NOME', 'trim|required|max_length[50]');
 
         if($id_pessoa != NULL && is_numeric($id_pessoa)):
+      
 
             $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[45]|strtolower|valid_email');
             $this->form_validation->set_rules('ramal', 'RAMAL', 'trim|required|min_length[14]|max_length[15]|alpha_numeric_spaces');
@@ -234,7 +235,10 @@ class Pessoa extends CI_Controller
             $this->form_validation->set_rules('departamento', 'SELECIONE DEPARTAMENTO', 'callback_check_drop');
             $this->form_validation->set_rules('tipo_pessoa', 'SELECIONE TIPO PESSOA', 'callback_check_drop');
 
+
+            var_dump($nome);
             if($this->form_validation->run() == TRUE):
+                
                 $pessoa['nome_pes'] = $this->input->post('nome');
                 $pessoa['email_pes'] = $this->input->post('email');
                 $pessoa['ramal_pes'] = $this->input->post('ramal');
@@ -257,6 +261,7 @@ class Pessoa extends CI_Controller
             $data['departamento'] = $this->departamento_model->consulta_departamentos();
             $data['tipo_pessoa'] = $this->pessoa_model->getAllTipo_pessoa()->result();
         endif;
+        
         $data['main'] = 'pessoa/editar_pessoa';
         $this->load->view('templates/template_admin2', $data);
     }

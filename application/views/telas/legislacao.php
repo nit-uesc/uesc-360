@@ -1,10 +1,11 @@
 <div class="row">
 	<div class="col s12 m10 offset-m1 l8 offset-l2 card-panel text-justify">
 		<strong><h4>Legislação e normas pertinentes</h4></strong>
-		<p class="flow-text" style=" text-align: justify; font-size: 20px; margin:10px; "><a href="http://nbcgib.uesc.br/ppgquim/normas_e_resolucoes/RESOLUCAO_CONSEPE_23.pdf" target="_blank"><strong>Resolução CONSEPE 23/2016</strong></a> - Regulamenta a classificação e as normas para a alocação e funcionamento dos laboratórios de pesquisa da UESC e equipamentos multiusuários.</p>
-
-		<p class="flow-text" style=" text-align: justify; font-size: 20px; margin:10px; ">Normas e Políticas de Legislação: <a href="http://nit.uesc.br/portal/marcolegal/" target="_blank"><strong>Clique Aqui!</strong></a></p>
-
+		<p class="flow-text" style=" text-align: justify; font-size: 20px; margin:10px; ">
+			Resolução CONSUP a definir - Normas e Políticas de Legislação:
+			Lei de Inovação Tecnológica - <a href="http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.973.htm" target="_blank"><strong>Lei n° 10.973/2004</strong></a>
+			Novo Marco Legal da Inovação- <a href="http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13243.htm"><strong>Lei nº 13.243/2016</strong></a> 
+		</p>
 	</div>
 </div>
 

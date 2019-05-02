@@ -374,7 +374,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `login_usu`, `senha_usu`, `ativo_usu`, `permissao_usu`, `first_access_usu`, `data_cadastro_usu`) VALUES
-(199, 'admin', '792cb6752e0ffb1b80413655eaa3b63e9d9b0a74' , 1, 1, 1, '2017-10-17 21:41:16');
+(199, 'admin', '77fb57f01843d0698cf3faa31507a6d4b36bef92' , 1, 1, 1, '2017-10-17 21:41:16');
 
 -- --------------------------------------------------------
 
