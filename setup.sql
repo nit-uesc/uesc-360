@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 17-Out-2017 às 19:53
--- Versão do servidor: 5.7.19-0ubuntu0.17.04.1
+-- Generation Time: 02-Maio-2019 às 19:16
+-- Versão do servidor: 5.7.20-0ubuntu0.17.04.1
 -- PHP Version: 7.0.22-0ubuntu0.17.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `newPortifolio`
+-- Database: `uesc360`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,14 @@ CREATE TABLE `access_log` (
   `ip_usuario` varchar(20) NOT NULL,
   `data_acesso` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `access_log`
+--
+
+INSERT INTO `access_log` (`id_access_log`, `id_usuario`, `ip_usuario`, `data_acesso`) VALUES
+(416, 199, '::1', '2019-04-30 18:24:14'),
+(417, 199, '::1', '2019-05-02 22:15:12');
 
 -- --------------------------------------------------------
 
@@ -61,6 +69,17 @@ CREATE TABLE `curso` (
   `nome_cur` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `nome_cur`) VALUES
+(34, 'Agroecologia '),
+(31, 'Engenharia de Alimentos'),
+(30, 'Técnico em Agrimensura'),
+(33, 'Técnico em Agropecuária'),
+(32, 'Técnico em Alimentos');
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +90,14 @@ CREATE TABLE `departamento` (
   `id_departamento` int(11) NOT NULL,
   `nome_dpt` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `departamento`
+--
+
+INSERT INTO `departamento` (`id_departamento`, `nome_dpt`) VALUES
+(12, 'Centro de Tecnologia de Alimentos'),
+(13, 'Núcleo de Agropecuária');
 
 -- --------------------------------------------------------
 
@@ -88,6 +115,13 @@ CREATE TABLE `equipamento` (
   `ativo_eqp` int(11) NOT NULL DEFAULT '1',
   `last_modified_eqp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `equipamento`
+--
+
+INSERT INTO `equipamento` (`id_equipamento`, `nome_eqp`, `fabricante_eqp`, `quantidade_eqp`, `especificacao_eqp`, `descricao_eqp`, `ativo_eqp`, `last_modified_eqp`) VALUES
+(1, 'PH Metro de bancada', 'Mettler Toledo', 1, 'PH Metro de bancada. Tombo 72468. ', 'Medidor do potencial hidrogeniônico de uma substância.', 1, '2019-04-30 19:33:48');
 
 -- --------------------------------------------------------
 
@@ -156,6 +190,13 @@ CREATE TABLE `laboratorio` (
   `palavras_chave` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `laboratorio`
+--
+
+INSERT INTO `laboratorio` (`id_laboratorio`, `nome_lab`, `sigla`, `ramal_lab`, `website_lab`, `descricao_lab`, `atividades_lab`, `areas_atendidas_lab`, `multiusuario_lab`, `usa_ensino_lab`, `usa_pesquisa_lab`, `usa_extensao_lab`, `last_modified_lab`, `fk_id_pavilhao`, `ativo_lab`, `palavras_chave`) VALUES
+(1, 'Laboratório de Análise de Alimentos', 'LAA', '(73) 3239-2122', 'http://www.ifbaiano.edu.br/unidades/urucuca/', 'Laboratório atendimentos diversos.', 'Atividades de ensino, pesquisa e extensão.', 'Engenharias e alimentos.', 'Sim', 'Sim', 'Sim', 'Sim', '2019-04-30 19:26:59', 16, 1, 'engenharia alimentos inovação');
+
 -- --------------------------------------------------------
 
 --
@@ -167,6 +208,14 @@ CREATE TABLE `laboratorio_has_curso` (
   `fk_id_laboratorio` int(11) NOT NULL,
   `fk_id_curso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `laboratorio_has_curso`
+--
+
+INSERT INTO `laboratorio_has_curso` (`id_laboratorio_curso`, `fk_id_laboratorio`, `fk_id_curso`) VALUES
+(1, 1, 31),
+(2, 1, 32);
 
 -- --------------------------------------------------------
 
@@ -180,6 +229,13 @@ CREATE TABLE `laboratorio_has_departamento` (
   `fk_id_departamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `laboratorio_has_departamento`
+--
+
+INSERT INTO `laboratorio_has_departamento` (`id_laboratorio_departamento`, `fk_id_laboratorio`, `fk_id_departamento`) VALUES
+(1, 1, 12);
+
 -- --------------------------------------------------------
 
 --
@@ -191,6 +247,13 @@ CREATE TABLE `laboratorio_has_equipamento` (
   `fk_id_equipamento` int(11) NOT NULL,
   `fk_id_laboratorio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `laboratorio_has_equipamento`
+--
+
+INSERT INTO `laboratorio_has_equipamento` (`id_laboratorio_equipamento`, `fk_id_equipamento`, `fk_id_laboratorio`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -217,6 +280,13 @@ CREATE TABLE `laboratorio_has_pessoa` (
   `permissao_lhp` int(11) NOT NULL DEFAULT '3'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `laboratorio_has_pessoa`
+--
+
+INSERT INTO `laboratorio_has_pessoa` (`id_laboratorio_pessoa`, `fk_id_laboratorio`, `fk_id_pessoa`, `permissao_lhp`) VALUES
+(1, 1, 1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -239,6 +309,13 @@ CREATE TABLE `pavilhao` (
   `id_pavilhao` int(11) NOT NULL,
   `nome_pav` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `pavilhao`
+--
+
+INSERT INTO `pavilhao` (`id_pavilhao`, `nome_pav`) VALUES
+(16, 'IF Baiano - campus Uruçuca');
 
 -- --------------------------------------------------------
 
@@ -297,6 +374,13 @@ CREATE TABLE `pessoa` (
   `sexo_pes` char(1) NOT NULL,
   `ativo_pes` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `pessoa`
+--
+
+INSERT INTO `pessoa` (`id_pessoa`, `nome_pes`, `email_pes`, `cpf_pes`, `ramal_pes`, `lattes_pes`, `website_pes`, `fk_id_tipo_pessoa`, `fk_id_departamento`, `fk_id_usuario`, `birthday_pes`, `sexo_pes`, `ativo_pes`) VALUES
+(1, 'Josué de Souza Oliveira', 'josue.oliveira@ifbaiano.edu.br', '602.764.285-87', '(73) 3239-2122', 'http://lattes.cnpq.br/4893541221079715', 'http://www.ifbaiano.edu.br/unidades/urucuca/', 2, 12, 200, '1973-05-01', 'M', 1);
 
 -- --------------------------------------------------------
 
@@ -374,7 +458,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `login_usu`, `senha_usu`, `ativo_usu`, `permissao_usu`, `first_access_usu`, `data_cadastro_usu`) VALUES
-(199, 'admin', '77fb57f01843d0698cf3faa31507a6d4b36bef92' , 1, 1, 1, '2017-10-17 21:41:16');
+(199, 'admin', '77fb57f01843d0698cf3faa31507a6d4b36bef92', 1, 1, 1, '2017-10-17 21:41:16'),
+(200, 'josue.oliveira@ifbaiano.edu.br', '254c7e969967a4c962c537f1a87e87b1d985bf4d', 1, 3, 1, '2019-04-30 19:04:06');
 
 -- --------------------------------------------------------
 
@@ -393,7 +478,8 @@ CREATE TABLE `usuario_has_permissao` (
 --
 
 INSERT INTO `usuario_has_permissao` (`id_usuario_has_permissao`, `fk_id_usuario`, `fk_id_permissao`) VALUES
-(174, 199, 1);
+(174, 199, 1),
+(175, 200, 2);
 
 --
 -- Indexes for dumped tables
@@ -577,72 +663,72 @@ ALTER TABLE `usuario_has_permissao`
 -- AUTO_INCREMENT for table `access_log`
 --
 ALTER TABLE `access_log`
-  MODIFY `id_access_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=416;
+  MODIFY `id_access_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=418;
 --
 -- AUTO_INCREMENT for table `convite`
 --
 ALTER TABLE `convite`
-  MODIFY `id_convite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_convite` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT '	', AUTO_INCREMENT=30;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT '	', AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `equipamento`
 --
 ALTER TABLE `equipamento`
-  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=695;
+  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `equipamento_has_img`
 --
 ALTER TABLE `equipamento_has_img`
-  MODIFY `id_equipamento_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=808;
+  MODIFY `id_equipamento_img` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `img_equipamento`
 --
 ALTER TABLE `img_equipamento`
-  MODIFY `id_img_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=808;
+  MODIFY `id_img_equipamento` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `img_laboratorio`
 --
 ALTER TABLE `img_laboratorio`
-  MODIFY `id_img_laboratorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `id_img_laboratorio` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `laboratorio`
 --
 ALTER TABLE `laboratorio`
-  MODIFY `id_laboratorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id_laboratorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `laboratorio_has_curso`
 --
 ALTER TABLE `laboratorio_has_curso`
-  MODIFY `id_laboratorio_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=814;
+  MODIFY `id_laboratorio_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `laboratorio_has_departamento`
 --
 ALTER TABLE `laboratorio_has_departamento`
-  MODIFY `id_laboratorio_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
+  MODIFY `id_laboratorio_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `laboratorio_has_equipamento`
 --
 ALTER TABLE `laboratorio_has_equipamento`
-  MODIFY `id_laboratorio_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=695;
+  MODIFY `id_laboratorio_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `laboratorio_has_img`
 --
 ALTER TABLE `laboratorio_has_img`
-  MODIFY `id_laboratorio_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `id_laboratorio_img` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `laboratorio_has_pessoa`
 --
 ALTER TABLE `laboratorio_has_pessoa`
-  MODIFY `id_laboratorio_pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id_laboratorio_pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `laboratorio_has_regulamento`
 --
@@ -652,12 +738,12 @@ ALTER TABLE `laboratorio_has_regulamento`
 -- AUTO_INCREMENT for table `pavilhao`
 --
 ALTER TABLE `pavilhao`
-  MODIFY `id_pavilhao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_pavilhao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `pedido_cadastro`
 --
 ALTER TABLE `pedido_cadastro`
-  MODIFY `id_pedido_cadastro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_pedido_cadastro` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `permissao`
 --
@@ -667,12 +753,12 @@ ALTER TABLE `permissao`
 -- AUTO_INCREMENT for table `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `id_pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `id_pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `recuperar_senha`
 --
 ALTER TABLE `recuperar_senha`
-  MODIFY `id_recuperar_senha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_recuperar_senha` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `regulamento_laboratorio`
 --
@@ -687,12 +773,12 @@ ALTER TABLE `tipo_pessoa`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 --
 -- AUTO_INCREMENT for table `usuario_has_permissao`
 --
 ALTER TABLE `usuario_has_permissao`
-  MODIFY `id_usuario_has_permissao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+  MODIFY `id_usuario_has_permissao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 --
 -- Constraints for dumped tables
 --
