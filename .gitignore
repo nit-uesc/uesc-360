@@ -8,3 +8,4 @@ uploads/*
 .env
 
 tags
+application/config/database.php
